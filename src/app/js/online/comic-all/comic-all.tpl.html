@@ -1,0 +1,33 @@
+<div class="container">
+<!--
+    <pagination
+        total-items="genresCtrl.pagination.totalCount"
+        items-per-page="genresCtrl.search.limit"
+        ng-model="genresCtrl.pagination.current"
+        max-size="genresCtrl.pagination.maxSize"
+        num-pages="genresCtrl.pagination.numPages"
+        boundary-links="false"
+        ng-change="genresCtrl.onPageChanged()"
+        previous-text="‹"
+        next-text="›">
+    </pagination> -->
+
+    <div class="row">
+        <div class="col-md-2">Title</div>
+        <div class="col-md-3">Image</div>
+        <div class="col-md-2">Alias</div>
+        <div class="col-md-2">Category</div>
+        <div class="col-md-2">Last Chapter Date</div>
+    </div>
+
+    <div class="row" ng-repeat="item in caCtrl.pagination.paginatedComics">
+        <div class="col-md-2" ng-bind="::item.t"></div>
+        <div class="col-md-3">
+            <img ng-src="{{caCtrl.coverUrl + item.im}}">
+        </div>
+        <div class="col-md-2" ng-bind="::item.a"></div>
+        <div class="col-md-2" ng-bind="::item.c"></div>
+        <div class="col-md-2" ng-bind="item.ld"></div>
+    </div>
+
+</div>
