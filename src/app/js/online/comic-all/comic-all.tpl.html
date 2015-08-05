@@ -1,33 +1,33 @@
 <div class="container">
-<!--
+
+    <input ng-model="item.t" ng-change="cactrl.onSearch()">
+
     <pagination
-        total-items="genresCtrl.pagination.totalCount"
-        items-per-page="genresCtrl.search.limit"
-        ng-model="genresCtrl.pagination.current"
-        max-size="genresCtrl.pagination.maxSize"
-        num-pages="genresCtrl.pagination.numPages"
+        total-items="cactrl.pagination.totalCount"
+        items-per-page="cactrl.pagination.limit"
+        ng-model="cactrl.pagination.offset"
+        max-size="cactrl.pagination.maxSize"
         boundary-links="false"
-        ng-change="genresCtrl.onPageChanged()"
         previous-text="‹"
         next-text="›">
-    </pagination> -->
+    </pagination>
 
     <div class="row">
         <div class="col-md-2">Title</div>
         <div class="col-md-3">Image</div>
         <div class="col-md-2">Alias</div>
         <div class="col-md-2">Category</div>
-        <div class="col-md-2">Last Chapter Date</div>
     </div>
 
-    <div class="row" ng-repeat="item in caCtrl.pagination.paginatedComics">
-        <div class="col-md-2" ng-bind="::item.t"></div>
+    <div class="row" ng-repeat="item in cactrl.comics | filter: item.t | offset: {offset: cactrl.pagination.offset, limit: cactrl.pagination.limit}">
+        <div class="col-md-2">
+            <a href="" ng-bind="::item.t"></a>
+        </div>
         <div class="col-md-3">
-            <img ng-src="{{caCtrl.coverUrl + item.im}}">
+            <img ng-src="{{ item.im }}">
         </div>
         <div class="col-md-2" ng-bind="::item.a"></div>
         <div class="col-md-2" ng-bind="::item.c"></div>
-        <div class="col-md-2" ng-bind="item.ld"></div>
     </div>
 
 </div>

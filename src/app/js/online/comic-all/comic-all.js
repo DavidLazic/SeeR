@@ -9,12 +9,12 @@
 
     ComicAllRoute.$inject = ['$routeProvider'];
 
-    function ComicAllRoute ($routeProvider) {
+    function ComicAllRoute($routeProvider) {
         $routeProvider
             .when('/online/list', {
                 templateUrl: 'app/js/online/comic-all/comic-all.tpl.html',
                 controller: 'ComicAllController',
-                controllerAs: 'caCtrl'
+                controllerAs: 'cactrl'
             });
     }
 })();

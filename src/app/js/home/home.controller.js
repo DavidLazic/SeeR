@@ -1,21 +1,16 @@
 (function() {
     'use strict';
 
-    angular.module('readerApp.home.controller', [
-        'readerApp.home.service'
-    ]).controller('HomeController', HomeController);
+    angular.module('readerApp.home.controller', [])
+        .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$rootScope', 'HomeService'];
-    function HomeController ($rootScope, HomeService) {
+    HomeController.$inject = ['$rootScope'];
+    function HomeController($rootScope) {
 
         init();
 
         function init () {
-            if(!angular.isDefined($rootScope.cache.allComics)){
-                HomeService.getAllComics().then(function (data) {
-                    $rootScope.cache.allComics = data;
-                });
-            }
+
         }
     }
 })();

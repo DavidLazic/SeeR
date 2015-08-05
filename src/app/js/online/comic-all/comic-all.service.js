@@ -6,14 +6,25 @@
         'readerApp.config'
     ]).factory('ComicAllService', ComicAllService);
 
-    ComicAllService.$inject = ['HttpRequestService', 'AppConfig'];
-    function ComicAllService(HttpRequestService, AppConfig) {
+    ComicAllService.$inject = ['$filter', 'HttpRequestService', 'AppConfig'];
+    function ComicAllService($filter, HttpRequestService, AppConfig) {
 
         /**
-         * public ComicAllService api.
+         * Get all comics.
+         *
+         * @return {Object}
+         */
+        function getAllComics() {
+            return HttpRequestService.get({url: AppConfig.URL.ALL_COMICS}).then(function (response) {
+                return $filter('orderBy')(response.manga, 't');;
+            });
+        }
+
+        /**
+         * public ComicAllService API.
          */
         return {
-
+            getAllComics: getAllComics
         };
     }
 })();

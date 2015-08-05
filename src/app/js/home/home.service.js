@@ -9,15 +9,9 @@
     HomeService.$inject = ['HttpRequestService', 'AppConfig'];
     function HomeService(HttpRequestService, AppConfig) {
 
-        function getAllComics () {
-            return HttpRequestService.get({url: AppConfig.URL.ALL_COMICS});
-        }
-
         /**
          * public HomeService api.
          */
-        return {
-            getAllComics: getAllComics
-        };
+        return {};
     }
 })();

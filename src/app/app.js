@@ -12,7 +12,9 @@
 
         'readerApp.app',
         'readerApp.home',
-        'readerApp.online'
+        'readerApp.online',
+
+        'readerApp.filter.offset'
     ]).config(function ($routeProvider, AppConfig) {
         $routeProvider
             .otherwise({
@@ -26,6 +28,5 @@
         // Enable CORS
         $http.defaults.useXDomain = true;
         delete $http.defaults.headers.common[AppConfig.HEADER.COMMON];
-        $rootScope.cache = {};
     }
 })();

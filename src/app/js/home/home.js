@@ -9,7 +9,7 @@
 
     HomeRoute.$inject = ['$routeProvider'];
 
-    function HomeRoute ($routeProvider) {
+    function HomeRoute($routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'app/js/home/home.tpl.html',

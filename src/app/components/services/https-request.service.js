@@ -6,55 +6,65 @@
     ]).factory('HttpRequestService', HttpRequestService);
 
     HttpRequestService.$inject = ['$http', '$log', '$q', 'AppConfig'];
-    function HttpRequestService ($http, $log, $q, AppConfig) {
+    function HttpRequestService($http, $log, $q, AppConfig) {
 
         /**
-         * @config {Object}
+         * @params {Object}
          * @return {Function}
          */
-        function httpGet (config) {
-            return _doRequest('GET', config);
+        function httpGet(params) {
+            return _doRequest('GET', params);
         }
 
-        function _doRequest (method, config) {
-            var params = _configuration(method, config.url, config.data);
-            angular.extend(config, params);
+        function _doRequest(method, params) {
+            var config = _configuration(method, params.url, params.data);
+            angular.extend(params, config);
 
-            return _httpRequest(config);
+            return _httpRequest(params);
         }
 
-        function _configuration (method, url, data) {
+        function _configuration(method, url, data) {
             var _url = [AppConfig.URL.ALL, url].join('');
-            var params = {};
+            var config = {};
 
-            if (method === 'GET') params = _configurationGet(_url, data);
+            if (method === 'GET') config = _configurationGet(_url, data);
 
-            return params;
+            return config;
         }
 
-        function _configurationGet (url, data) {
-            var params = {};
+        function _configurationGet(url, data) {
+            var config = {};
 
-            if (!data) {
-                params = {
+            if (data) {
+                config = {
                     method: 'GET',
-                    url: url
+                    url: url,
+                    transformRequest: _formPostParamTransformFn,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    params: data,
+                    cache: true
                 };
+            } else {
+                config = {
+                    method: 'GET',
+                    url: url,
+                    cache: true
+                }
             }
 
-            return params;
+            return config;
         }
 
-        function _httpRequest (config) {
+        function _httpRequest(params) {
             var deffered = $q.defer();
 
-            $http(config)
-                .success(function (data, status, headers, params) {
-                    _logResponse(data, status, params);
+            $http(params)
+                .success(function (data, status, headers, config) {
+                    _logResponse(data, status, config);
                     deffered.resolve(data);
                 })
-                .error(function (data, status, headers, params) {
-                    _logResponse(data, status, params);
+                .error(function (data, status, headers, config) {
+                    _logResponse(data, status, config);
                     deffered.reject(data);
                 });
 
@@ -67,8 +77,21 @@
             return deffered.promise;
         }
 
-        function _logResponse(data, status, params) {
-            $log.debug(data, status, params);
+        function _logResponse(data, status, config) {
+            $log.debug(data, status, config);
+        }
+
+        function _formPostParamTransformFn(obj) {
+            var str = [];
+
+            for (var item in obj) {
+                if (obj.hasOwnProperty(item)) {
+                    str.push(encodeURIComponent(item) + '=' + encodeURIComponent(obj[item]));
+                }
+
+            }
+
+            return str.join('&');
         }
 
         return {
