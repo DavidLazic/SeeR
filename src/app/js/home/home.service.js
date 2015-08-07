@@ -10,7 +10,8 @@
     function HomeService() {
 
         /**
-         * public HomeService api.
+         * @description
+         * Public HomeService API.
          */
         return {};
     }

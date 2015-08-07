@@ -17,7 +17,9 @@
             COMMON: 'X-Requested-With'
         },
         BROADCAST: {
-            VIEW_CHANGED: 'view:changed'
+            VIEW_CHANGED: 'view:changed',
+            MODE_CHOSEN: 'mode:chosen',
+            ITEM_CHOSEN: 'item:chosen'
         }
     });
 })();

@@ -1,11 +1,18 @@
+/**
+ * @description
+ * Directive for showing custom view data outside of "ng-view".
+ * Content url gets set by the currently active ng-view controller.
+ */
+
 (function () {
     'use strict';
 
-    angular.module('readerApp.directive.viewer', [])
-    .directive('viewer', viewer);
+    angular.module('readerApp.directive.viewer', [
+        'readerApp.config'
+    ]).directive('viewer', viewer);
 
-    viewer.$inject = ['$rootScope'];
-    function viewer($rootScope) {
+    viewer.$inject = ['$rootScope', 'AppConfig'];
+    function viewer($rootScope, AppConfig) {
 
         return {
             replace: true,
@@ -14,8 +21,8 @@
                         '<div ng-include="contentUrl"></div>' +
                       '</div>',
             link: function (scope) {
-                $rootScope.$on('view:changed', function (event, data) {
-                    if (data) {
+                $rootScope.$on(AppConfig.BROADCAST.VIEW_CHANGED, function (event, data) {
+                    if (angular.isDefined(data)) {
                         scope.contentUrl = data.url;
                     }
                 });

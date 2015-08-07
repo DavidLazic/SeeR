@@ -14,16 +14,11 @@
         // view model
         vm.comics = [];
         vm.coverBaseUrl = AppConfig.URL.COVER;
-        vm.pagination = {
-            limit: 30,
-            offset: 1,
-            offsetStart: 0,
-            totalCount: 0,
-            maxSize: 5
-        };
+        vm.pagination = viewModifierService.getPaginationConfig();
 
         // events
         vm.onSearch = onSearch;
+        vm.onOpen = onOpen;
 
         init();
 
@@ -45,10 +40,20 @@
 
         /**
          * @description
+         * On open item fn.
+         */
+        function onOpen (item) {
+            ComicsService.getSingleComic().then(function (response) {
+                viewModifierService.setCurrentItem({item: item});
+            });
+        }
+
+        /**
+         * @description
          * Set custom view on the outside scope of ng-view.
          */
         function _setCurrentView () {
-            viewModifierService.setCurrentView({url: 'app/components/templates/view-comic.tpl.html'});
+            ComicsService.setCurrentView({url: 'app/components/templates/view-comic.tpl.html'});
         }
 
         /**
