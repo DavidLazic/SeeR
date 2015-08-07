@@ -15,6 +15,9 @@
         },
         HEADER: {
             COMMON: 'X-Requested-With'
+        },
+        BROADCAST: {
+            VIEW_CHANGED: 'view:changed'
         }
     });
 })();

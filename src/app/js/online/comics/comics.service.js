@@ -1,13 +1,13 @@
 (function () {
     'use strict';
 
-    angular.module('readerApp.online.comicAll.service', [
+    angular.module('readerApp.online.comics.service', [
         'readerApp.httpRequest',
         'readerApp.config'
-    ]).factory('ComicAllService', ComicAllService);
+    ]).factory('ComicsService', ComicsService);
 
-    ComicAllService.$inject = ['$filter', 'HttpRequestService', 'AppConfig'];
-    function ComicAllService($filter, HttpRequestService, AppConfig) {
+    ComicsService.$inject = ['$filter', 'HttpRequestService', 'AppConfig'];
+    function ComicsService($filter, HttpRequestService, AppConfig) {
 
         /**
          * Get all comics.
@@ -16,12 +16,12 @@
          */
         function getAllComics() {
             return HttpRequestService.get({url: AppConfig.URL.ALL_COMICS}).then(function (response) {
-                return $filter('orderBy')(response.manga, 't');;
+                return $filter('orderBy')(response.manga, 't');
             });
         }
 
         /**
-         * public ComicAllService API.
+         * public ComicsService API.
          */
         return {
             getAllComics: getAllComics

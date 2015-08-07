@@ -6,8 +6,8 @@
         'readerApp.config'
     ]).factory('HomeService', HomeService);
 
-    HomeService.$inject = ['HttpRequestService', 'AppConfig'];
-    function HomeService(HttpRequestService, AppConfig) {
+    HomeService.$inject = [];
+    function HomeService() {
 
         /**
          * public HomeService api.

@@ -1,16 +1,28 @@
 (function() {
     'use strict';
 
-    angular.module('readerApp.home.controller', [])
-        .controller('HomeController', HomeController);
+    angular.module('readerApp.home.controller', [
+        'readerApp.service.viewModifier'
+    ]).controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$rootScope'];
-    function HomeController($rootScope) {
+    HomeController.$inject = ['viewModifierService'];
+    function HomeController(viewModifierService) {
 
         init();
 
-        function init () {
+        /**
+         * @return void
+         */
+        function init() {
+            _setCurrentView();
+        }
 
+        /**
+         * @description
+         * Set custom view on the outside scope of ng-view.
+         */
+        function _setCurrentView () {
+            viewModifierService.setCurrentView({url: 'app/components/templates/view-home.tpl.html'});
         }
     }
 })();

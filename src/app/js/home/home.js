@@ -12,9 +12,9 @@
     function HomeRoute($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'app/js/home/home.tpl.html',
+                template: '',
                 controller: 'HomeController',
-                controllerAs: 'homeCtrl'
+                controllerAs: 'homectrl'
             });
     }
 })();

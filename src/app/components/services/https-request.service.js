@@ -27,7 +27,9 @@
             var _url = [AppConfig.URL.ALL, url].join('');
             var config = {};
 
-            if (method === 'GET') config = _configurationGet(_url, data);
+            if (method === 'GET') {
+                config = _configurationGet(_url, data);
+            }
 
             return config;
         }
@@ -49,7 +51,7 @@
                     method: 'GET',
                     url: url,
                     cache: true
-                }
+                };
             }
 
             return config;

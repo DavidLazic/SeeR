@@ -1,13 +1,14 @@
 (function() {
     'use strict';
 
-    angular.module('readerApp.online.comicAll.controller', [
-        'readerApp.online.comicAll.service',
-        'readerApp.config'
-    ]).controller('ComicAllController', ComicAllController);
+    angular.module('readerApp.online.comics.controller', [
+        'readerApp.online.comics.service',
+        'readerApp.config',
+        'readerApp.service.viewModifier'
+    ]).controller('ComicsController', ComicsController);
 
-    ComicAllController.$inject = ['ComicAllService', 'AppConfig'];
-    function ComicAllController(ComicAllService, AppConfig) {
+    ComicsController.$inject = ['ComicsService', 'AppConfig', 'viewModifierService'];
+    function ComicsController(ComicsService, AppConfig, viewModifierService) {
         var vm = this;
 
         // view model
@@ -30,6 +31,7 @@
          * @return void
          */
         function init() {
+            _setCurrentView();
             _getAllComics();
         }
 
@@ -43,10 +45,18 @@
 
         /**
          * @description
+         * Set custom view on the outside scope of ng-view.
+         */
+        function _setCurrentView () {
+            viewModifierService.setCurrentView({url: 'app/components/templates/view-comic.tpl.html'});
+        }
+
+        /**
+         * @description
          * Get all comics and paginate them.
          */
         function _getAllComics() {
-            ComicAllService.getAllComics().then(_setVM);
+            ComicsService.getAllComics().then(_setVM);
 
         }
 

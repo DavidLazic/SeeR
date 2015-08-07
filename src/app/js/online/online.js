@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('readerApp.online', [
-        'readerApp.online.comicAll'
+        'readerApp.online.comics',
+        'readerApp.online.single'
     ]);
 })();

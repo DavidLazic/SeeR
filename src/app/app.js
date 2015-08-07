@@ -14,7 +14,8 @@
         'readerApp.home',
         'readerApp.online',
 
-        'readerApp.filter.offset'
+        'readerApp.filter.offset',
+        'readerApp.directive.viewer'
     ]).config(function ($routeProvider, AppConfig) {
         $routeProvider
             .otherwise({
@@ -22,8 +23,8 @@
             });
     }).run(AppRun);
 
-    AppRun.$inject = ['$rootScope', '$http', 'AppConfig', 'HttpRequestService'];
-    function AppRun ($rootScope, $http, AppConfig, HttpRequestService) {
+    AppRun.$inject = ['$rootScope', '$http', 'AppConfig'];
+    function AppRun ($rootScope, $http, AppConfig) {
 
         // Enable CORS
         $http.defaults.useXDomain = true;

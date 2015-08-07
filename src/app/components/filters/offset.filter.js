@@ -18,6 +18,6 @@
                     sliceEnd = sliceStart + params.limit;
                 return input.slice(sliceStart, sliceEnd);
             }
-        }
+        };
     });
 })();
