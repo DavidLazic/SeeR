@@ -1,6 +1,12 @@
 <div>
     <a href="#/" ng-click="appctrl.onResetMode()">Home</a>
-    <a href ng-click="onRead()">Read</a>
+    <a href ng-click="appctrl.onRead()" ng-if="appctrl.isItemSet()">Read</a>
 </div>
 
 {{appctrl.item.description}}
+
+<ul>
+    <li ng-repeat="comic in appctrl.item.chapters">
+        <a href ng-click="appctrl.onRead(comic[3])">Chapter {{$index + 1}}</a>
+    </li>
+</ul>

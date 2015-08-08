@@ -9,8 +9,11 @@
     function HttpRequestService($http, $log, $q, AppConfig) {
 
         /**
-         * @params {Object}
-         * @return {Function}
+         * @description
+         * Http GET request.
+         *
+         * @params {Object} | params - config object.
+         * @return {Object}
          */
         function httpGet(params) {
             return _doRequest('GET', params);
@@ -96,6 +99,10 @@
             return str.join('&');
         }
 
+        /**
+         * @description
+         * Public HttpRequestService API.
+         */
         return {
             get: httpGet
         };

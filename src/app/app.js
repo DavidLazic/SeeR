@@ -13,11 +13,13 @@
         'readerApp.app',
         'readerApp.home',
         'readerApp.online',
+        'readerApp.modal',
 
-        'readerApp.filter.offset',
-        'readerApp.directive.externalView',
         'readerApp.service.httpRequest',
-        'readerApp.service.externalView'
+        'readerApp.service.externalView',
+        'readerApp.filter.offset',
+        'readerApp.directive.externalView'
+
     ]).config(function ($routeProvider, AppConfig) {
         $routeProvider
             .otherwise({

@@ -3,12 +3,16 @@
 
     angular.module('readerApp.app', [
         'readerApp.config',
+        'readerApp.appService',
         'readerApp.service.externalView'
     ]).controller('AppController', AppController);
 
-    AppController.$inject = ['$rootScope', 'AppConfig', 'externalViewService'];
-    function AppController($rootScope, AppConfig, externalViewService) {
-        var vm = this;
+    AppController.$inject = ['$rootScope', '$modal', 'AppConfig', 'AppService', 'externalViewService'];
+    function AppController($rootScope, $modal, AppConfig, AppService, externalViewService) {
+        var vm = this,
+            data = {
+                chapter: null
+            };
 
         // view model
         vm.modeChosen = false;
@@ -17,6 +21,8 @@
         // events
         vm.onModeChosen = onModeChosen;
         vm.onResetMode = onResetMode;
+        vm.onRead = onRead;
+        vm.isItemSet = isItemSet;
 
         init();
 
@@ -25,6 +31,21 @@
          */
         function init () {
             _onItemChosen();
+        }
+
+        /**
+         * @description
+         * Open modal with specific comic fn.
+         *
+         * @param {String} | id - chapter id.
+         */
+        function onRead (id) {
+            var chapter = (angular.isDefined(id)) ? id : vm.item.chapters[0][3];
+
+            AppService.getChapterById(chapter).then(function (response) {
+                data.chapter = response;
+                _onOpen(data);
+            });
         }
 
         /**
@@ -47,6 +68,39 @@
                 url: null,
                 modeChosen: false,
                 item: null
+            });
+        }
+
+        /**
+         * @description
+         * Check if item is set.
+         *
+         * @return {Bool}
+         */
+        function isItemSet () {
+            return vm.item !== null;
+        }
+
+        /**
+         * @description
+         * Open modal with specific chapter id.
+         *
+         * @param  {Object} | chapter - comic chapter.
+         */
+        function _onOpen (chapter) {
+            var modalInstance = $modal.open({
+                keyboard: false,
+                backdrop: 'static',
+                windowClass: 'ra-modal',
+                templateUrl: 'app/js/modal/modal.tpl.html',
+                controller: "ModalController",
+                size: 'lg',
+                controllerAs: 'mctrl',
+                resolve: {
+                    data: function () {
+                        return chapter;
+                    }
+                }
             });
         }
 
