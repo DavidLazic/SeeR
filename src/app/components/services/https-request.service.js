@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('readerApp.httpRequest', [
+    angular.module('readerApp.service.httpRequest', [
         'readerApp.config'
     ]).factory('HttpRequestService', HttpRequestService);
 

@@ -15,7 +15,9 @@
         'readerApp.online',
 
         'readerApp.filter.offset',
-        'readerApp.directive.viewer'
+        'readerApp.directive.externalView',
+        'readerApp.service.httpRequest',
+        'readerApp.service.externalView'
     ]).config(function ($routeProvider, AppConfig) {
         $routeProvider
             .otherwise({

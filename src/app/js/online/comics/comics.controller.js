@@ -3,18 +3,17 @@
 
     angular.module('readerApp.online.comics.controller', [
         'readerApp.online.comics.service',
-        'readerApp.config',
-        'readerApp.service.viewModifier'
+        'readerApp.config'
     ]).controller('ComicsController', ComicsController);
 
-    ComicsController.$inject = ['ComicsService', 'AppConfig', 'viewModifierService'];
-    function ComicsController(ComicsService, AppConfig, viewModifierService) {
+    ComicsController.$inject = ['ComicsService', 'AppConfig'];
+    function ComicsController(ComicsService, AppConfig) {
         var vm = this;
 
         // view model
         vm.comics = [];
         vm.coverBaseUrl = AppConfig.URL.COVER;
-        vm.pagination = viewModifierService.getPaginationConfig();
+        vm.pagination = ComicsService.getPaginationConfig();
 
         // events
         vm.onSearch = onSearch;
@@ -43,8 +42,8 @@
          * On open item fn.
          */
         function onOpen (item) {
-            ComicsService.getSingleComic().then(function (response) {
-                viewModifierService.setCurrentItem({item: item});
+            ComicsService.getSingleComic(item.i).then(function (response) {
+                ComicsService.setCurrentItem({item: response});
             });
         }
 

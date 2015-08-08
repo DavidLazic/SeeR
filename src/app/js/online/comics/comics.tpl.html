@@ -1,6 +1,6 @@
 <div class="container">
 
-    <input ng-model="item.t" ng-change="cctrl.onSearch()">
+    <input ng-model="item.t" ng-change="cctrl.onSearch()" ng-model-options="{debounce: 350}">
 
     <pagination
         total-items="cctrl.pagination.totalCount"

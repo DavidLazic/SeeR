@@ -2,13 +2,13 @@
     'use strict';
 
     angular.module('readerApp.online.comics.service', [
-        'readerApp.httpRequest',
-        'readerApp.service.viewModifier',
+        'readerApp.service.httpRequest',
+        'readerApp.service.externalView',
         'readerApp.config',
     ]).factory('ComicsService', ComicsService);
 
-    ComicsService.$inject = ['$filter', 'HttpRequestService', 'viewModifierService', 'AppConfig'];
-    function ComicsService($filter, HttpRequestService, viewModifierService, AppConfig) {
+    ComicsService.$inject = ['$filter', 'HttpRequestService', 'externalViewService', 'AppConfig'];
+    function ComicsService($filter, HttpRequestService, externalViewService, AppConfig) {
 
         /**
          * @description
@@ -26,10 +26,15 @@
          * @description
          * Get single comic.
          *
+         * @param {Object} | param - single comic config object.
          * @return {Object}
          */
-        function getSingleComic () {
-            return HttpRequestService.get({url: AppConfig.URL.SINGLE_COMIC}).then(function (response) {
+        function getSingleComic (param) {
+            var param = {
+                url: AppConfig.URL.COMIC_BY_ID + param
+            };
+
+            return HttpRequestService.get(param).then(function (response) {
                 return response;
             });
         }
@@ -38,21 +43,47 @@
          * @description
          * Set current directive view.
          *
-         * @param {[type]} param [description]
+         * @param {Object} | param - config view object.
          */
         function setCurrentView (param) {
-            return viewModifierService.setCurrentView(param).then(function (response) {
-                console.log('service response', response);
+            return externalViewService.setCurrentView(param).then(function (response) {
+                return response;
             });
         }
 
         /**
-         * public ComicsService API.
+         * @description
+         * Set current comic item.
+         *
+         * @param {Object} | param - comic item object.
+         * @return {Object}
+         */
+        function setCurrentItem (param) {
+            return externalViewService.setCurrentItem(param).then(function (response) {
+                return response;
+            });
+        }
+
+        /**
+         * @description
+         * Get pagination config.
+         *
+         * @return {Object}
+         */
+        function getPaginationConfig () {
+            return externalViewService.getPaginationConfig();
+        }
+
+        /**
+         * @description
+         * Public ComicsService API.
          */
         return {
             getAllComics: getAllComics,
+            getPaginationConfig: getPaginationConfig,
             getSingleComic: getSingleComic,
-            setCurrentView: setCurrentView
+            setCurrentView: setCurrentView,
+            setCurrentItem: setCurrentItem
         };
     }
 })();

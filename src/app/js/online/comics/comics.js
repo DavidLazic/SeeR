@@ -4,8 +4,7 @@
     angular.module('readerApp.online.comics', [
         'ngRoute',
         'readerApp.online.comics.controller',
-        'readerApp.online.comics.service',
-        'readerApp.service.viewModifier'
+        'readerApp.online.comics.service'
     ]).config(ComicsRoute);
 
     ComicsRoute.$inject = ['$routeProvider'];
@@ -28,10 +27,10 @@
      *
      * @param  {Object} $rootScope
      * @param  {Object} $location
-     * @param  {Object} viewModifierService
+     * @param  {Object} externalViewService
      */
-    function checkModeChosen ($rootScope, $location, viewModifierService) {
-        viewModifierService.getCurrentConfig().then(function (response) {
+    function checkModeChosen ($rootScope, $location, externalViewService) {
+        externalViewService.getCurrentConfig().then(function (response) {
             if (angular.equals({}, response) || !response.modeChosen) {
                 $location.path('/');
             }

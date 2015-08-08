@@ -2,17 +2,32 @@
     'use strict';
 
     angular.module('readerApp.home.service', [
-        'readerApp.httpRequest',
+        'readerApp.service.externalView',
         'readerApp.config'
     ]).factory('HomeService', HomeService);
 
-    HomeService.$inject = [];
-    function HomeService() {
+    HomeService.$inject = ['externalViewService'];
+    function HomeService(externalViewService) {
+
+        /**
+         * @description
+         * Set config for the current view fn.
+         *
+         * @param {Object} | param - view config.
+         * @return {Object}
+         */
+        function setCurrentView (param) {
+            return externalViewService.setCurrentView(param).then(function (response) {
+                return response;
+            });
+        }
 
         /**
          * @description
          * Public HomeService API.
          */
-        return {};
+        return {
+            setCurrentView: setCurrentView
+        };
     }
 })();

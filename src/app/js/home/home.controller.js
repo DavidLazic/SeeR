@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('readerApp.home.controller', [
-        'readerApp.service.viewModifier'
+        'readerApp.home.service'
     ]).controller('HomeController', HomeController);
 
-    HomeController.$inject = ['viewModifierService'];
-    function HomeController(viewModifierService) {
+    HomeController.$inject = ['HomeService'];
+    function HomeController(HomeService) {
 
         init();
 
@@ -22,7 +22,7 @@
          * Set custom view on the outside scope of ng-view.
          */
         function _setCurrentView () {
-            viewModifierService.setCurrentView({url: 'app/components/templates/view-home.tpl.html'});
+            HomeService.setCurrentView({url: 'app/components/templates/view-home.tpl.html'});
         }
     }
 })();

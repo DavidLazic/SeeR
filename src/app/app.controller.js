@@ -3,11 +3,11 @@
 
     angular.module('readerApp.app', [
         'readerApp.config',
-        'readerApp.service.viewModifier'
+        'readerApp.service.externalView'
     ]).controller('AppController', AppController);
 
-    AppController.$inject = ['$rootScope', 'AppConfig', 'viewModifierService'];
-    function AppController($rootScope, AppConfig, viewModifierService) {
+    AppController.$inject = ['$rootScope', 'AppConfig', 'externalViewService'];
+    function AppController($rootScope, AppConfig, externalViewService) {
         var vm = this;
 
         // view model
@@ -33,7 +33,7 @@
          */
         function onModeChosen () {
             vm.modeChosen = !vm.modeChosen;
-            viewModifierService.setModeChosen({modeChosen: true});
+            externalViewService.setModeChosen({modeChosen: true});
         }
 
         /**
@@ -42,7 +42,12 @@
          */
         function onResetMode () {
             vm.modeChosen = false;
-            viewModifierService.setModeChosen({modeChosen: false});
+            vm.item = null;
+            externalViewService.setModeChosen({
+                url: null,
+                modeChosen: false,
+                item: null
+            });
         }
 
         /**
