@@ -7,7 +7,7 @@
         'readerApp.config',
     ]).factory('ComicsService', ComicsService);
 
-    ComicsService.$inject = ['$filter', 'HttpRequestService', 'externalViewService', 'AppConfig'];
+    ComicsService.$inject = ['$filter', 'HttpRequestService', 'ExternalViewService', 'AppConfig'];
     function ComicsService($filter, HttpRequestService, externalViewService, AppConfig) {
 
         /**
@@ -29,9 +29,9 @@
          * @param {Object} | param - single comic config object.
          * @return {Object}
          */
-        function getSingleComic (param) {
+        function getSingleComic (params) {
             var param = {
-                url: AppConfig.URL.COMIC_BY_ID + param
+                url: AppConfig.URL.COMIC_BY_ID + params
             };
 
             return HttpRequestService.get(param).then(function (response) {

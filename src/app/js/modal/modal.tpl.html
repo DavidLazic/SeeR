@@ -1,2 +1,41 @@
-MODAL
-<img ng-src="{{mctrl.chapter[0]}}">
+<style type="text/css">
+
+    .modal-backdrop.in {
+        opacity: 1;
+    }
+
+    .modal-lg {
+        width: 700px !important;
+    }
+
+    .slider{
+        width: 700px;
+        overflow: hidden;
+    }
+
+    .slider > ul{
+        position: relative;
+        -webkit-transition: 0.5s left;
+        -moz-transition: 0.5s left;
+        -ms-transition: 0.5s left;
+        -o-transition: 0.5s left;
+        list-style: none;
+        margin: 0; padding: 0;
+    }
+
+    .slider ul > li {
+        width: 700px;
+        float: left;
+    }
+
+    .slider ul > li > img {
+        max-width: 100%;
+        width: 99%;
+    }
+</style>
+
+<button type="button" ng-click="mctrl.onCancel()">X</button>
+
+<c-reader chapter="mctrl.chapter"></c-reader>
+
+

@@ -7,6 +7,6 @@
 
 <ul>
     <li ng-repeat="comic in appctrl.item.chapters">
-        <a href ng-click="appctrl.onRead(comic[3])">Chapter {{$index + 1}}</a>
+        <a href ng-click="appctrl.onRead(comic[3], $index)">Chapter {{$index + 1}}</a>
     </li>
 </ul>

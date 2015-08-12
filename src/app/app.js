@@ -18,8 +18,8 @@
         'readerApp.service.httpRequest',
         'readerApp.service.externalView',
         'readerApp.filter.offset',
-        'readerApp.directive.externalView'
-
+        'readerApp.directive.externalView',
+        'readerApp.directive.cReader'
     ]).config(function ($routeProvider, AppConfig) {
         $routeProvider
             .otherwise({

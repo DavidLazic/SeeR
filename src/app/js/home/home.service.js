@@ -6,7 +6,7 @@
         'readerApp.config'
     ]).factory('HomeService', HomeService);
 
-    HomeService.$inject = ['externalViewService'];
+    HomeService.$inject = ['ExternalViewService'];
     function HomeService(externalViewService) {
 
         /**

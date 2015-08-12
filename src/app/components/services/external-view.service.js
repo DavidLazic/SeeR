@@ -3,10 +3,10 @@
 
     angular.module('readerApp.service.externalView', [
         'readerApp.config'
-    ]).factory('externalViewService', externalViewService);
+    ]).factory('ExternalViewService', ExternalViewService);
 
-    externalViewService.$inject = ['$q', '$rootScope', 'AppConfig'];
-    function externalViewService($q, $rootScope, AppConfig) {
+    ExternalViewService.$inject = ['$q', '$rootScope', 'AppConfig'];
+    function ExternalViewService($q, $rootScope, AppConfig) {
 
         // Default config for "viewer" directive.
         var defaultConfig = {

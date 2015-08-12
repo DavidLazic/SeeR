@@ -7,11 +7,13 @@
         'readerApp.service.externalView'
     ]).controller('AppController', AppController);
 
-    AppController.$inject = ['$rootScope', '$modal', 'AppConfig', 'AppService', 'externalViewService'];
+    AppController.$inject = ['$rootScope', '$modal', 'AppConfig', 'AppService', 'ExternalViewService'];
     function AppController($rootScope, $modal, AppConfig, AppService, externalViewService) {
         var vm = this,
             data = {
-                chapter: null
+                chapterIndex: 0,
+                chapters: [],
+                currentChapter: null
             };
 
         // view model
@@ -38,12 +40,17 @@
          * Open modal with specific comic fn.
          *
          * @param {String} | id - chapter id.
+         * @param {String} | idx - chapter index.
          */
-        function onRead (id) {
-            var chapter = (angular.isDefined(id)) ? id : vm.item.chapters[0][3];
+        function onRead (id, idx) {
+            var chapter = (angular.isDefined(id)) ? id : vm.item.chapters[0][3],
+                index = idx || 0;
+
+            _setChapterIndex(index);
+            _setAllChapters();
 
             AppService.getChapterById(chapter).then(function (response) {
-                data.chapter = response;
+                data.currentChapter = response;
                 _onOpen(data);
             });
         }
@@ -83,25 +90,44 @@
 
         /**
          * @description
-         * Open modal with specific chapter id.
+         * Open modal with specific chapter id and prefetch next chapter.
          *
-         * @param  {Object} | chapter - comic chapter.
+         * @param  {Object} | data - comic config object.
          */
-        function _onOpen (chapter) {
-            var modalInstance = $modal.open({
-                keyboard: false,
+        function _onOpen (data) {
+            $modal.open({
                 backdrop: 'static',
                 windowClass: 'ra-modal',
                 templateUrl: 'app/js/modal/modal.tpl.html',
                 controller: "ModalController",
-                size: 'lg',
                 controllerAs: 'mctrl',
+                size: 'lg',
                 resolve: {
                     data: function () {
-                        return chapter;
+                        return data;
                     }
                 }
             });
+        }
+
+        /**
+         * @description
+         * Set all chapters to data chapters array.
+         */
+        function _setAllChapters () {
+            angular.forEach(vm.item.chapters, function (chapter) {
+                data.chapters.push(chapter[3]);
+            });
+        }
+
+        /**
+         * @description
+         * Set current chapter index.
+         *
+         * @param {Integer} | idx - current chapter index.
+         */
+        function _setChapterIndex (idx) {
+            data.chapterIndex = idx;
         }
 
         /**
