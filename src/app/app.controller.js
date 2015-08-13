@@ -10,11 +10,7 @@
     AppController.$inject = ['$rootScope', '$modal', 'AppConfig', 'AppService', 'ExternalViewService'];
     function AppController($rootScope, $modal, AppConfig, AppService, externalViewService) {
         var vm = this,
-            data = {
-                chapterIndex: 0,
-                chapters: [],
-                currentChapter: null
-            };
+            data = AppService.getDataConfig();
 
         // view model
         vm.modeChosen = false;
@@ -95,7 +91,8 @@
          * @param  {Object} | data - comic config object.
          */
         function _onOpen (data) {
-            $modal.open({
+            var modalInstance = $modal.open({
+                keyboard: false,
                 backdrop: 'static',
                 windowClass: 'ra-modal',
                 templateUrl: 'app/js/modal/modal.tpl.html',
@@ -107,6 +104,10 @@
                         return data;
                     }
                 }
+            });
+
+            modalInstance.result.then(function () {
+                data = AppService.getDataConfig();
             });
         }
 

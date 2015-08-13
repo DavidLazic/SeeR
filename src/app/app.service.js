@@ -9,6 +9,24 @@
     AppService.$inject = ['$filter', 'HttpRequestService', 'AppConfig'];
     function AppService($filter, HttpRequestService, AppConfig) {
 
+        var dataConfig = {
+                chapterIndex: 0,
+                chapters: [],
+                currentChapter: null
+            };
+
+        var cfg = {};
+
+        /**
+         * @description
+         * Get data config object.
+         *
+         * @return {Object}
+         */
+        function getDataConfig () {
+            return angular.extend(cfg, angular.copy(dataConfig, {}));
+        }
+
         /**
          * @description
          * Get chapter by id.
@@ -31,6 +49,7 @@
          * Public AppService API.
          */
         return {
+            getDataConfig: getDataConfig,
             getChapterById: getChapterById
         };
     }

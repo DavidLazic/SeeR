@@ -12,6 +12,7 @@
 
         // view model
         vm.coverBaseUrl = AppConfig.URL.COVER;
+        vm.previousChapter = [];
         vm.chapter = [];
         vm.nextChapter = [];
 
@@ -33,7 +34,8 @@
          * Cancel modal.
          */
         function onCancel () {
-            $modalInstance.dismiss('cancel');
+            _destroyResources();
+            $modalInstance.close();
         }
 
         /**
@@ -61,6 +63,16 @@
                     _extractImages(response.images, 'nextChapter');
                 });
             }
+        }
+
+        /**
+         * @description
+         * Empty all chapter arrays.
+         */
+        function _destroyResources () {
+            vm.previousChapter = [];
+            vm.chapter = [];
+            vm.nextChapter = [];
         }
 
         /**

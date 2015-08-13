@@ -69,7 +69,10 @@
                 --ctrl.cfg.currentIndex;
                 ctrl.cfg.posLeft = ctrl._getPosition();
             } else {
-                ctrl._resetSlider();
+                if ($scope.previousChapter.length) {
+                    $scope.chapter = $scope.previousChapter;
+                    ctrl._resetSlider();
+                }
             }
         };
 
@@ -82,8 +85,10 @@
                 ++ctrl.cfg.currentIndex;
                 ctrl.cfg.posLeft = ctrl._getPosition();
             } else {
-                $scope.chapter = $scope.nextChapter;
-                ctrl._resetSlider();
+                if ($scope.nextChapter.length) {
+                    $scope.chapter = $scope.nextChapter;
+                    ctrl._resetSlider();
+                }
             }
         };
 
@@ -114,6 +119,7 @@
             replace: true,
             restrict: 'E',
             scope: {
+                previousChapter: '=',
                 chapter: '=',
                 nextChapter: '='
             },
