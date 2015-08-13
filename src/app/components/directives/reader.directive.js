@@ -16,6 +16,7 @@
 
         this.cfg = {
             isWidthSet: false,
+            currentIndex: 0,
             posLeft: 0,
             wrapperWidth: 0
         };
@@ -52,19 +53,58 @@
          */
         this._checkKeyCode = function (event) {
             var keyCodes = {
-                37: ctrl._moveLeft,
-                39: ctrl._moveRight
+                37: ctrl._onMoveLeft,
+                39: ctrl._onMoveRight
             };
 
             return (keyCodes[event.keyCode]) ? keyCodes[event.keyCode]() : angular.noop;
         };
 
-        this._moveLeft = function () {
-            console.log('left');
+        /**
+         * @description
+         * Move slider to the left or load previous chapter.
+         */
+        this._onMoveLeft = function () {
+            if (ctrl.cfg.currentIndex > 0) {
+                --ctrl.cfg.currentIndex;
+                ctrl.cfg.posLeft = ctrl._getPosition();
+            } else {
+                ctrl._resetSlider();
+            }
         };
 
-        this._moveRight = function () {
-            console.log('right');
+        /**
+         * @description
+         * Move slider to the right or load next chapter.
+         */
+        this._onMoveRight = function () {
+            if (ctrl.cfg.currentIndex < $scope.chapter.length - 1) {
+                ++ctrl.cfg.currentIndex;
+                ctrl.cfg.posLeft = ctrl._getPosition();
+            } else {
+                $scope.chapter = $scope.nextChapter;
+                ctrl._resetSlider();
+            }
+        };
+
+        /**
+         * @description
+         * Get current slider position.
+         *
+         * @return {String}
+         */
+        this._getPosition = function () {
+            return ['-', 100 * ctrl.cfg.currentIndex, '%'].join('');
+        };
+
+        /**
+         * @description
+         * Reset slider.
+         */
+        this._resetSlider = function () {
+            ctrl.cfg.currentIndex = 0;
+            ctrl.cfg.posLeft = 0;
+            ctrl._setWrapperWidth();
         };
     }
 
@@ -74,13 +114,14 @@
             replace: true,
             restrict: 'E',
             scope: {
-                chapter: '='
+                chapter: '=',
+                nextChapter: '='
             },
             controller: 'readerController',
             controllerAs: 'rctrl',
             template: '<div class="slider">' +
                         '<ul reader-wrapper style="left: {{rctrl.cfg.posLeft}}; width: {{rctrl.cfg.wrapperWidth}}">' +
-                            '<li ng-repeat="image in chapter" child-wrapper>' +
+                            '<li ng-repeat="image in chapter" image-wrapper>' +
                                 '<img ng-src="{{image}}">' +
                             '</li>' +
                         '</ul>' +
@@ -99,17 +140,18 @@
 
                 $doc.on('keydown', function (event) {
                     ctrl._checkKeyCode(event);
+                    scope.$apply();
                 });
 
-                scope.$on('$destroy', function (event) {
-                    $doc.off();$
+                scope.$on('$destroy', function () {
+                    $doc.off();
                 });
             }
         };
     }
 
-    cReaderModule.directive('childWrapper', childWrapper);
-    function childWrapper() {
+    cReaderModule.directive('imageWrapper', imageWrapper);
+    function imageWrapper() {
 
         return {
             restrict: 'A',

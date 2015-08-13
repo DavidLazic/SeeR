@@ -13,7 +13,7 @@
         // view model
         vm.coverBaseUrl = AppConfig.URL.COVER;
         vm.chapter = [];
-        vm.nextChapter = null;
+        vm.nextChapter = [];
 
         // events
         vm.onCancel = onCancel;
@@ -25,7 +25,7 @@
          */
         function init () {
             _prefetchNextChapter();
-            _extractImages();
+            _extractImages(data.currentChapter.images, 'chapter');
         }
 
         /**
@@ -39,11 +39,14 @@
         /**
          * @description
          * Extract images from data object.
+         *
+         * @param {String} | data - data object.
+         * @param {String} | vmProperty - model object property.
          */
-        function _extractImages() {
-            angular.forEach(data.currentChapter.images, function (imageItem) {
+        function _extractImages(data, vmProperty) {
+            angular.forEach(data, function (imageItem) {
                 var image = _getImageUrl(imageItem[1]);
-                vm.chapter.push(image);
+                vm[vmProperty].push(image);
             });
         }
 
@@ -55,7 +58,7 @@
             var nextChapterIdx = ++data.chapterIndex;
             if (angular.isDefined(data.chapters[nextChapterIdx])) {
                 ModalService.getNextChapter(data.chapters[nextChapterIdx]).then(function (response) {
-                    vm.nextChapter = response;
+                    _extractImages(response.images, 'nextChapter');
                 });
             }
         }
