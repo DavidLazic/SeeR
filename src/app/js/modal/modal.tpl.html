@@ -36,9 +36,9 @@
 
 <button type="button" ng-click="mctrl.onCancel()">X</button>
 
-<c-reader previous-chapter="mctrl.previousChapter"
-          chapter="mctrl.chapter"
-          next-chapter="mctrl.nextChapter">
+<c-reader ng-model="mctrl.model"
+          on-prev="mctrl.onPrev()"
+          on-next="mctrl.onNext()">
 </c-reader>
 
 

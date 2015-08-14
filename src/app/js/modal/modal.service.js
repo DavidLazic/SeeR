@@ -15,7 +15,7 @@
          *
          * @return {Object}
          */
-        function getNextChapter (params) {
+        function getChapterById (params) {
             var param = {
                 url: AppConfig.URL.CHAPTER_BY_ID + params
             };
@@ -30,7 +30,7 @@
          * Public ModalService API.
          */
         return {
-            getNextChapter: getNextChapter
+            getChapterById: getChapterById
         };
     }
 })();

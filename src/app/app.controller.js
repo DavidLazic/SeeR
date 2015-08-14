@@ -138,6 +138,7 @@
         function _onItemChosen () {
             $rootScope.$on(AppConfig.BROADCAST.ITEM_CHOSEN, function (event, data) {
                 if (angular.isDefined(data)) {
+                    data.item.chapters.reverse();
                     vm.item = data.item;
                 }
             });

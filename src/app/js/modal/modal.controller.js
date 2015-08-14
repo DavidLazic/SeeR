@@ -6,18 +6,22 @@
         'readerApp.modal.service'
     ]).controller('ModalController', ModalController);
 
-    ModalController.$inject = ['$modalInstance', 'AppConfig', 'ModalService', 'data'];
-    function ModalController($modalInstance, AppConfig, ModalService, data) {
+    ModalController.$inject = ['$scope', '$modalInstance', 'AppConfig', 'ModalService', 'data'];
+    function ModalController($scope, $modalInstance, AppConfig, ModalService, data) {
         var vm = this;
 
         // view model
         vm.coverBaseUrl = AppConfig.URL.COVER;
-        vm.previousChapter = [];
-        vm.chapter = [];
-        vm.nextChapter = [];
+        vm.model = {
+           previousChapter: [],
+           chapter: [],
+           nextChapter: []
+        };
 
         // events
         vm.onCancel = onCancel;
+        vm.onPrev = onPrev;
+        vm.onNext = onNext;
 
         init();
 
@@ -25,8 +29,19 @@
          * @return void
          */
         function init () {
+            _prefetchPreviousChapter();
             _prefetchNextChapter();
             _extractImages(data.currentChapter.images, 'chapter');
+        }
+
+        function onPrev () {
+            --data.chapterIndex;
+            _prefetchPreviousChapter();
+        }
+
+        function onNext () {
+            ++data.chapterIndex;
+            _prefetchNextChapter();
         }
 
         /**
@@ -34,7 +49,6 @@
          * Cancel modal.
          */
         function onCancel () {
-            _destroyResources();
             $modalInstance.close();
         }
 
@@ -45,11 +59,28 @@
          * @param {String} | data - data object.
          * @param {String} | vmProperty - model object property.
          */
-        function _extractImages(data, vmProperty) {
+        function _extractImages (data, vmProperty) {
+            vm.model[vmProperty].length = 0;
+
             angular.forEach(data, function (imageItem) {
                 var image = _getImageUrl(imageItem[1]);
-                vm[vmProperty].push(image);
+                vm.model[vmProperty].push(image);
             });
+
+            vm.model[vmProperty].reverse();
+        }
+
+        /**
+         * @description
+         * Prefetch previous comic chapter by id.
+         */
+        function _prefetchPreviousChapter () {
+            var prevChapterIdx = data.chapterIndex - 1;
+            if (angular.isDefined(data.chapters[prevChapterIdx])) {
+                ModalService.getChapterById(data.chapters[prevChapterIdx]).then(function (response) {
+                    _extractImages(response.images, 'previousChapter');
+                });
+            }
         }
 
         /**
@@ -57,22 +88,12 @@
          * Prefetch next comic chapter by id.
          */
         function _prefetchNextChapter () {
-            var nextChapterIdx = ++data.chapterIndex;
+            var nextChapterIdx = data.chapterIndex + 1;
             if (angular.isDefined(data.chapters[nextChapterIdx])) {
-                ModalService.getNextChapter(data.chapters[nextChapterIdx]).then(function (response) {
+                ModalService.getChapterById(data.chapters[nextChapterIdx]).then(function (response) {
                     _extractImages(response.images, 'nextChapter');
                 });
             }
-        }
-
-        /**
-         * @description
-         * Empty all chapter arrays.
-         */
-        function _destroyResources () {
-            vm.previousChapter = [];
-            vm.chapter = [];
-            vm.nextChapter = [];
         }
 
         /**

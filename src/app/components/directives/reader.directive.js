@@ -14,6 +14,14 @@
         var ctrl = this,
             childWidth = 0;
 
+        // $scope.$watch(function ($scope) {
+        //     return $scope.nextChapter;
+        // }, function (newValue) {
+        //     if (angular.isDefined(newValue)) {
+        //         $scope.nextChapter = newValue;
+        //     }
+        // }, true);
+
         this.cfg = {
             isWidthSet: false,
             currentIndex: 0,
@@ -26,7 +34,7 @@
          * Set width of the parent element ("ul").
          */
         this._setWrapperWidth = function () {
-            ctrl.cfg.wrapperWidth = [$scope.chapter.length * childWidth, 'px'].join('');
+            ctrl.cfg.wrapperWidth = [$scope.model.chapter.length * childWidth, 'px'].join('');
         };
 
         /**
@@ -69,10 +77,7 @@
                 --ctrl.cfg.currentIndex;
                 ctrl.cfg.posLeft = ctrl._getPosition();
             } else {
-                if ($scope.previousChapter.length) {
-                    $scope.chapter = $scope.previousChapter;
-                    ctrl._resetSlider();
-                }
+                ctrl._onResetSlider('previousChapter');
             }
         };
 
@@ -81,25 +86,59 @@
          * Move slider to the right or load next chapter.
          */
         this._onMoveRight = function () {
-            if (ctrl.cfg.currentIndex < $scope.chapter.length - 1) {
+            if (ctrl.cfg.currentIndex < $scope.model.chapter.length - 1) {
                 ++ctrl.cfg.currentIndex;
                 ctrl.cfg.posLeft = ctrl._getPosition();
             } else {
-                if ($scope.nextChapter.length) {
-                    $scope.chapter = $scope.nextChapter;
-                    ctrl._resetSlider();
-                }
+                ctrl._onResetSlider('nextChapter');
             }
         };
 
         /**
          * @description
-         * Get current slider position.
+         * On reset slider.
          *
-         * @return {String}
+         * @param  {String} | property - current $scope property.
          */
-        this._getPosition = function () {
-            return ['-', 100 * ctrl.cfg.currentIndex, '%'].join('');
+        this._onResetSlider = function (property) {
+            var type = {
+                'previousChapter': ctrl._moveLeft,
+                'nextChapter': ctrl._moveRight
+            };
+
+            if ($scope.model[property].length && type[property]) {
+                type[property](function () {
+                    ctrl._resetSlider();
+                });
+            }
+        };
+
+        /**
+         * @description
+         * Move slider to the left and prefetch previous chapter.
+         *
+         * @return {Function}
+         */
+        this._moveLeft = function (cb) {
+            $scope.model.nextChapter = $scope.model.chapter;
+            $scope.model.chapter = $scope.model.previousChapter;
+            $scope.onPrev();
+
+            return (angular.isFunction(cb)) ? cb() : angular.noop;
+        };
+
+        /**
+         * @description
+         * Move slider to the right and prefetch next chapter.
+         *
+         * @return {Function}
+         */
+        this._moveRight = function (cb) {
+            $scope.model.previousChapter = $scope.model.chapter.slice();
+            $scope.model.chapter = $scope.model.nextChapter.slice();
+            $scope.onNext();
+
+            return (angular.isFunction(cb)) ? cb() : angular.noop;
         };
 
         /**
@@ -111,6 +150,16 @@
             ctrl.cfg.posLeft = 0;
             ctrl._setWrapperWidth();
         };
+
+        /**
+         * @description
+         * Get current slider position.
+         *
+         * @return {String}
+         */
+        this._getPosition = function () {
+            return ['-', 100 * ctrl.cfg.currentIndex, '%'].join('');
+        };
     }
 
     cReaderModule.directive('cReader', cReader);
@@ -119,15 +168,15 @@
             replace: true,
             restrict: 'E',
             scope: {
-                previousChapter: '=',
-                chapter: '=',
-                nextChapter: '='
+                model: '=ngModel',
+                onPrev: '&',
+                onNext: '&'
             },
             controller: 'readerController',
             controllerAs: 'rctrl',
             template: '<div class="slider">' +
                         '<ul reader-wrapper style="left: {{rctrl.cfg.posLeft}}; width: {{rctrl.cfg.wrapperWidth}}">' +
-                            '<li ng-repeat="image in chapter" image-wrapper>' +
+                            '<li ng-repeat="image in model.chapter track by $index" image-wrapper>' +
                                 '<img ng-src="{{image}}">' +
                             '</li>' +
                         '</ul>' +
