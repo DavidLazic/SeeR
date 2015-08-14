@@ -16,7 +16,6 @@
 
         this.cfg = {
             isWidthSet: false,
-            currentIndex: 0,
             posLeft: 0,
             wrapperWidth: 0
         };
@@ -65,8 +64,8 @@
          * Move slider to the left or load previous chapter.
          */
         this._onMoveLeft = function () {
-            if (ctrl.cfg.currentIndex > 0) {
-                --ctrl.cfg.currentIndex;
+            if ($scope.model.index > 0) {
+                --$scope.model.index;
                 ctrl.cfg.posLeft = ctrl._getPosition();
             } else {
                 ctrl._onResetSlider('previousChapter');
@@ -78,8 +77,8 @@
          * Move slider to the right or load next chapter.
          */
         this._onMoveRight = function () {
-            if (ctrl.cfg.currentIndex < $scope.model.chapter.length - 1) {
-                ++ctrl.cfg.currentIndex;
+            if ($scope.model.index < $scope.model.chapter.length - 1) {
+                ++$scope.model.index;
                 ctrl.cfg.posLeft = ctrl._getPosition();
             } else {
                 ctrl._onResetSlider('nextChapter');
@@ -112,8 +111,8 @@
          * @return {Function}
          */
         this._moveLeft = function (cb) {
-            $scope.model.nextChapter = $scope.model.chapter;
-            $scope.model.chapter = $scope.model.previousChapter;
+            $scope.model.nextChapter = $scope.model.chapter.slice();
+            $scope.model.chapter = $scope.model.previousChapter.slice();
             $scope.onPrev();
 
             return (angular.isFunction(cb)) ? cb() : angular.noop;
@@ -138,7 +137,7 @@
          * Reset slider.
          */
         this._resetSlider = function () {
-            ctrl.cfg.currentIndex = 0;
+            $scope.model.index = 0;
             ctrl.cfg.posLeft = 0;
             ctrl._setWrapperWidth();
         };
@@ -150,7 +149,7 @@
          * @return {String}
          */
         this._getPosition = function () {
-            return ['-', 100 * ctrl.cfg.currentIndex, '%'].join('');
+            return ['-', 100 * $scope.model.index, '%'].join('');
         };
     }
 

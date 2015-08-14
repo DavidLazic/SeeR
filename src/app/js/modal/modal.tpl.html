@@ -5,20 +5,22 @@
     }
 
     .modal-lg {
-        width: 700px !important;
+        margin: 0;
+        width: 100% !important;
     }
 
     .slider{
+        margin: 0 auto;
         width: 700px;
         overflow: hidden;
     }
 
     .slider > ul{
         position: relative;
-        -webkit-transition: 0.5s left;
-        -moz-transition: 0.5s left;
-        -ms-transition: 0.5s left;
-        -o-transition: 0.5s left;
+        -webkit-transition: 0.3s left;
+        -moz-transition: 0.3s left;
+        -ms-transition: 0.3s left;
+        -o-transition: 0.3s left;
         list-style: none;
         margin: 0; padding: 0;
     }
@@ -33,6 +35,13 @@
         width: 99%;
     }
 </style>
+
+<div>
+    {{mctrl.model.index}} / {{mctrl.model.total}}
+</div>
+<div>
+    {{mctrl.model.chapterId}}
+</div>
 
 <button type="button" ng-click="mctrl.onCancel()">X</button>
 

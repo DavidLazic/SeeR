@@ -92,8 +92,7 @@
          */
         function _onOpen (data) {
             var modalInstance = $modal.open({
-                keyboard: false,
-                backdrop: 'static',
+                backdrop: false,
                 windowClass: 'ra-modal',
                 templateUrl: 'app/js/modal/modal.tpl.html',
                 controller: "ModalController",

@@ -7,15 +7,19 @@
     ]).controller('ModalController', ModalController);
 
     ModalController.$inject = ['$scope', '$modalInstance', 'AppConfig', 'ModalService', 'data'];
-    function ModalController($scope, $modalInstance, AppConfig, ModalService, data) {
-        var vm = this;
+    function ModalController($scope, $modalInstance, AppConfig, ModalService, chapter) {
+        var vm = this,
+            data = angular.copy(chapter) || {chapterIndex: 0, chapters: [], currentChapter: {images: []}};
 
         // view model
         vm.coverBaseUrl = AppConfig.URL.COVER;
         vm.model = {
-           previousChapter: [],
-           chapter: [],
-           nextChapter: []
+            chapterId: 0,
+            index: 0,
+            total: 0,
+            previousChapter: [],
+            chapter: [],
+            nextChapter: []
         };
 
         // events
@@ -29,19 +33,36 @@
          * @return void
          */
         function init () {
+            _prepareModel();
+        }
+
+        function _prepareModel () {
+            vm.model.total = data.currentChapter.images.length - 1;
             _prefetchPreviousChapter();
             _prefetchNextChapter();
             _extractImages(data.currentChapter.images, 'chapter');
         }
 
+        /**
+         * @description
+         * On previous previous chapter fn.
+         */
         function onPrev () {
             --data.chapterIndex;
             _prefetchPreviousChapter();
+            _updateChapterIndex();
+            _updateTotal();
         }
 
+        /**
+         * @description
+         * On next chapter fn.
+         */
         function onNext () {
             ++data.chapterIndex;
             _prefetchNextChapter();
+            _updateChapterIndex();
+            _updateTotal();
         }
 
         /**
@@ -94,6 +115,14 @@
                     _extractImages(response.images, 'nextChapter');
                 });
             }
+        }
+
+        function _updateTotal() {
+            vm.model.total = vm.model.chapter.length - 1;
+        }
+
+        function _updateChapterIndex () {
+            vm.model.chapterId = data.chapterIndex;
         }
 
         /**
