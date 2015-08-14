@@ -14,14 +14,6 @@
         var ctrl = this,
             childWidth = 0;
 
-        // $scope.$watch(function ($scope) {
-        //     return $scope.nextChapter;
-        // }, function (newValue) {
-        //     if (angular.isDefined(newValue)) {
-        //         $scope.nextChapter = newValue;
-        //     }
-        // }, true);
-
         this.cfg = {
             isWidthSet: false,
             currentIndex: 0,
