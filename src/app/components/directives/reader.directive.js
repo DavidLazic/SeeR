@@ -9,15 +9,17 @@
     var cReaderModule = angular.module('readerApp.directive.cReader', []);
     cReaderModule.controller('readerController', readerController);
 
-    readerController.$inject = ['$scope'];
-    function readerController($scope) {
+    readerController.$inject = ['$scope', '$timeout'];
+    function readerController($scope, $timeout) {
         var ctrl = this,
             childWidth = 0;
 
         this.cfg = {
+            isLoading: false,
             isWidthSet: false,
             posLeft: 0,
-            wrapperWidth: 0
+            wrapperWidth: 0,
+            timeout: false
         };
 
         /**
@@ -25,7 +27,7 @@
          * Set width of the parent element ("ul").
          */
         this._setWrapperWidth = function () {
-            ctrl.cfg.wrapperWidth = [$scope.model.chapter.length * childWidth, 'px'].join('');
+            ctrl.cfg.wrapperWidth = [$scope.model.total * childWidth, 'px'].join('');
         };
 
         /**
@@ -64,9 +66,11 @@
          * Move slider to the left or load previous chapter.
          */
         this._onMoveLeft = function () {
-            if ($scope.model.index > 0) {
+            if ($scope.model.index > 0 ) {
                 --$scope.model.index;
                 ctrl.cfg.posLeft = ctrl._getPosition();
+            } else if (ctrl._isFirstChapter()) {
+                return angular.noop;
             } else {
                 ctrl._onResetSlider('previousChapter');
             }
@@ -77,9 +81,11 @@
          * Move slider to the right or load next chapter.
          */
         this._onMoveRight = function () {
-            if ($scope.model.index < $scope.model.chapter.length - 1) {
+            if ($scope.model.index < $scope.model.total) {
                 ++$scope.model.index;
                 ctrl.cfg.posLeft = ctrl._getPosition();
+            } else if (ctrl._isLastChapter()) {
+                return angular.noop;
             } else {
                 ctrl._onResetSlider('nextChapter');
             }
@@ -98,8 +104,13 @@
             };
 
             if ($scope.model[property].length && type[property]) {
+                ctrl._setLoader();
                 type[property](function () {
-                    ctrl._resetSlider();
+                    ctrl._resetSlider(function () {
+                        ctrl.cfg.timeout = $timeout(function () {
+                            ctrl._setLoader();
+                        }, 800);
+                    });
                 });
             }
         };
@@ -136,10 +147,20 @@
          * @description
          * Reset slider.
          */
-        this._resetSlider = function () {
+        this._resetSlider = function (cb) {
             $scope.model.index = 0;
             ctrl.cfg.posLeft = 0;
             ctrl._setWrapperWidth();
+
+            return (angular.isFunction(cb)) ? cb() : angular.noop;
+        };
+
+        /**
+         * @description
+         * Set loading status.
+         */
+        this._setLoader = function () {
+            ctrl.cfg.isLoading = !ctrl.cfg.isLoading;
         };
 
         /**
@@ -150,6 +171,26 @@
          */
         this._getPosition = function () {
             return ['-', 100 * $scope.model.index, '%'].join('');
+        };
+
+        /**
+         * @description
+         * Check if current chapters is first chapter.
+         *
+         * @return {Bool}
+         */
+        this._isFirstChapter = function () {
+            return $scope.model.chapterIdx === 0;
+        };
+
+        /**
+         * @description
+         * Check if current chapter is last chapter.
+         *
+         * @return {Bool}
+         */
+        this._isLastChapter = function () {
+            return $scope.model.chapterIdx === $scope.model.totalChapters;
         };
     }
 
@@ -165,7 +206,7 @@
             },
             controller: 'readerController',
             controllerAs: 'rctrl',
-            template: '<div class="slider">' +
+            template: '<div class="slider" ng-class="{ \'-loader-active\' : rctrl.cfg.isLoading }">' +
                         '<ul reader-wrapper style="left: {{rctrl.cfg.posLeft}}; width: {{rctrl.cfg.wrapperWidth}}">' +
                             '<li ng-repeat="image in model.chapter track by $index" image-wrapper>' +
                                 '<img ng-src="{{image}}">' +
@@ -176,7 +217,9 @@
     }
 
     cReaderModule.directive('readerWrapper', readerWrapper);
-    function readerWrapper() {
+
+    readerWrapper.$inject = ['$timeout'];
+    function readerWrapper($timeout) {
 
         return {
             restrict: 'A',
@@ -191,12 +234,15 @@
 
                 scope.$on('$destroy', function () {
                     $doc.off();
+                    $timeout.cancel(ctrl.cfg.timeout);
                 });
             }
         };
     }
 
     cReaderModule.directive('imageWrapper', imageWrapper);
+
+    imageWrapper.$inject = [];
     function imageWrapper() {
 
         return {

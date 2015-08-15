@@ -1,5 +1,36 @@
 <style type="text/css">
 
+    .ra-modal {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    .ra-modal .modal-dialog{
+        @include transition(all, 0.3s, ease);
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        transform: none !important;
+    }
+
+    .ra-modal::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 7px;
+    }
+
+    .ra-modal::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    }
+
+    .ra-modal .modal-content {
+        @include border-radius(0px);
+        box-shadow: none;
+    }
+
     .modal-backdrop.in {
         opacity: 1;
     }
@@ -7,12 +38,25 @@
     .modal-lg {
         margin: 0;
         width: 100% !important;
+
     }
 
     .slider{
         margin: 0 auto;
+        position: relative;
         width: 700px;
         overflow: hidden;
+    }
+
+    .slider.-loader-active::after{
+        content: "Loading";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #fff;
     }
 
     .slider > ul{
@@ -37,10 +81,10 @@
 </style>
 
 <div>
-    {{mctrl.model.index}} / {{mctrl.model.total}}
+    {{mctrl.model.index + 1}} / {{mctrl.model.total + 1}}
 </div>
 <div>
-    {{mctrl.model.chapterId}}
+    Chapter {{mctrl.model.chapterIdx + 1}}
 </div>
 
 <button type="button" ng-click="mctrl.onCancel()">X</button>

@@ -14,12 +14,13 @@
         // view model
         vm.coverBaseUrl = AppConfig.URL.COVER;
         vm.model = {
-            chapterId: 0,
+            chapterIdx: 0,
             index: 0,
             total: 0,
+            totalChapters: 0,
             previousChapter: [],
             chapter: [],
-            nextChapter: []
+            nextChapter: [],
         };
 
         // events
@@ -33,11 +34,13 @@
          * @return void
          */
         function init () {
+            _updateChapterIndex();
             _prepareModel();
         }
 
         function _prepareModel () {
             vm.model.total = data.currentChapter.images.length - 1;
+            vm.model.totalChapters = data.chapters.length -1;
             _prefetchPreviousChapter();
             _prefetchNextChapter();
             _extractImages(data.currentChapter.images, 'chapter');
@@ -117,12 +120,20 @@
             }
         }
 
+        /**
+         * @description
+         * Update total chapter length.
+         */
         function _updateTotal() {
             vm.model.total = vm.model.chapter.length - 1;
         }
 
+        /**
+         * @description
+         * Update current chapter index.
+         */
         function _updateChapterIndex () {
-            vm.model.chapterId = data.chapterIndex;
+            vm.model.chapterIdx = data.chapterIndex;
         }
 
         /**
