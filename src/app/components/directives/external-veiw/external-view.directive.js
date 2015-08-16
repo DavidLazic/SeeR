@@ -17,8 +17,8 @@
         return {
             replace: true,
             restrict: 'E',
-            template: '<div class="asdf" ng-class="{ \'active\' : appctrl.modeChosen }" style="position: absolute; top:0; bottom: 0; left: 50%; width: 700px; margin-left: -350px; background-color: red">' +
-                        '<div ng-include="contentUrl"></div>' +
+            template: '<div class="col-md-6 cr-wrapper -wrapper-external-view" ng-class="{ \'active\' : appctrl.modeChosen }">' +
+                        '<div class="wrapper-content" ng-include="contentUrl"></div>' +
                       '</div>',
             link: function (scope) {
                 $rootScope.$on(AppConfig.BROADCAST.VIEW_CHANGED, function (event, data) {

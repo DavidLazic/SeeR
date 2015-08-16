@@ -1,0 +1,23 @@
+//
+// cReader helper classes
+// --------------------------------------------------
+
+//== Margins and paddings.
+@each $value in $margin-and-padding-values{
+
+    .-margin-#{$value} {margin: #{$value}px;}
+    .-margin-top-#{$value} {margin-top: #{$value}px;}
+    .-margin-bottom-#{$value} {margin-bottom: #{$value}px;}
+    .-margin-right-#{$value} {margin-right: #{$value}px;}
+    .-margin-left-#{$value} {margin-left: #{$value}px;}
+    .-margin-x-#{$value} {margin-left: #{$value}px; margin-right: #{$value}px;}
+    .-margin-y-#{$value} {margin-top: #{$value}px; margin-bottom: #{$value}px;}
+
+    .-padding-#{$value} {padding: #{$value}px;}
+    .-padding-top-#{$value} {padding-top: #{$value}px;}
+    .-padding-bottom-#{$value} {padding-bottom: #{$value}px;}
+    .-padding-right-#{$value} {padding-right: #{$value}px;}
+    .-padding-left-#{$value} {padding-left: #{$value}px;}
+    .-padding-x-#{$value} {padding-left: #{$value}px; padding-right: #{$value}px;}
+    .-padding-y-#{$value} {padding-top: #{$value}px; padding-bottom: #{$value}px;}
+}

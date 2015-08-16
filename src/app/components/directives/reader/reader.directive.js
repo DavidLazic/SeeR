@@ -27,7 +27,7 @@
          * Set width of the parent element ("ul").
          */
         this._setWrapperWidth = function () {
-            ctrl.cfg.wrapperWidth = [$scope.model.total * childWidth, 'px'].join('');
+            ctrl.cfg.wrapperWidth = [($scope.model.total + 1) * childWidth, 'px'].join('');
         };
 
         /**
@@ -206,13 +206,7 @@
             },
             controller: 'readerController',
             controllerAs: 'rctrl',
-            template: '<div class="slider" ng-class="{ \'-loader-active\' : rctrl.cfg.isLoading }">' +
-                        '<ul reader-wrapper style="left: {{rctrl.cfg.posLeft}}; width: {{rctrl.cfg.wrapperWidth}}">' +
-                            '<li ng-repeat="image in model.chapter track by $index" image-wrapper>' +
-                                '<img ng-src="{{image}}">' +
-                            '</li>' +
-                        '</ul>' +
-                      '</div>'
+            templateUrl: 'app/components/directives/reader/reader.tpl.html'
         };
     }
 
