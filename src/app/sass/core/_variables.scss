@@ -4,6 +4,7 @@ $bootstrap-sass-asset-helper: false !default;
 // --------------------------------------------------
 
 $margin-and-padding-values: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100;
+$position-values: 'static', 'block', 'inline-block', 'inline', 'hidden';
 
 //== Colors
 //
@@ -20,6 +21,9 @@ $red-darkest:           #3d2226 !default;
 $red-darker:            #470009 !default;
 
 $green-dark:            #394121 !default;
+
+$blue-dark:             #141d29 !default;
+$blue:                  #1b2838 !default;
 
 $brand-primary:         darken(#428bca, 6.5%) !default; // #337ab7
 $brand-success:         #5cb85c !default;

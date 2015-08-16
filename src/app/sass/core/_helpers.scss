@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 //== Margins and paddings.
-@each $value in $margin-and-padding-values{
+@each $value in $margin-and-padding-values {
 
     .-margin-#{$value} {margin: #{$value}px;}
     .-margin-top-#{$value} {margin-top: #{$value}px;}
@@ -20,4 +20,9 @@
     .-padding-left-#{$value} {padding-left: #{$value}px;}
     .-padding-x-#{$value} {padding-left: #{$value}px; padding-right: #{$value}px;}
     .-padding-y-#{$value} {padding-top: #{$value}px; padding-bottom: #{$value}px;}
+}
+
+//== Positions.
+@each $value in $position-values {
+    .-position-#{$value} {position: #{$value};}
 }
