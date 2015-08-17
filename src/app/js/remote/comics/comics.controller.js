@@ -1,8 +1,8 @@
 (function() {
     'use strict';
 
-    angular.module('readerApp.online.comics.controller', [
-        'readerApp.online.comics.service',
+    angular.module('readerApp.remote.comics.controller', [
+        'readerApp.remote.comics.service',
         'readerApp.config'
     ]).controller('ComicsController', ComicsController);
 

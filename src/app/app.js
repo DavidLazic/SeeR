@@ -12,7 +12,7 @@
 
         'readerApp.app',
         'readerApp.home',
-        'readerApp.online',
+        'readerApp.remote',
         'readerApp.modal',
 
         'readerApp.service.httpRequest',

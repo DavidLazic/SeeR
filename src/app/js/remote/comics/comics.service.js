@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('readerApp.online.comics.service', [
+    angular.module('readerApp.remote.comics.service', [
         'readerApp.service.httpRequest',
         'readerApp.service.externalView',
         'readerApp.config',

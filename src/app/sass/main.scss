@@ -18,7 +18,11 @@
 @import "core/_helpers.scss";
 
 // elements
-@import "elements/_cr-wrapper.scss";
+@import "elements/_sr-wrapper.scss";
+@import "elements/_sr-pagination.scss";
+
+// forms
+@import "elements/forms/_sr-form-text.scss";
 
 /**
  *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject

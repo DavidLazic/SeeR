@@ -13,8 +13,8 @@ $position-values: 'static', 'block', 'inline-block', 'inline', 'hidden';
 $gray-base:              #999 !default;
 $gray-darker:            #161818 !default;
 $gray-dark:              #212326 !default;
-$gray:                   lighten($gray-base, 33.5%) !default; // #555
-$gray-light:             lighten($gray-base, 46.7%) !default; // #777
+$gray:                   #8e8e8e !default;
+$gray-light:             #b4b4b4 !default;
 $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 
 $red-darkest:           #3d2226 !default;

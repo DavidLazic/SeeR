@@ -1,10 +1,10 @@
 (function () {
     'use strict';
 
-    angular.module('readerApp.online.comics', [
+    angular.module('readerApp.remote.comics', [
         'ngRoute',
-        'readerApp.online.comics.controller',
-        'readerApp.online.comics.service',
+        'readerApp.remote.comics.controller',
+        'readerApp.remote.comics.service',
         'readerApp.service.externalView'
     ]).config(ComicsRoute);
 
@@ -12,8 +12,8 @@
 
     function ComicsRoute($routeProvider) {
         $routeProvider
-            .when('/online/comics', {
-                templateUrl: 'app/js/online/comics/comics.tpl.html',
+            .when('/remote/comics', {
+                templateUrl: 'app/js/remote/comics/comics.tpl.html',
                 controller: 'ComicsController',
                 controllerAs: 'cctrl',
                 resolve : {

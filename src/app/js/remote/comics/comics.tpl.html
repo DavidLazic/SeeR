@@ -1,0 +1,79 @@
+<section>
+
+    <div class="row sr-wrapper -wrapper-fixed-header">
+        <div class="col-md-6">
+            <input class="sr-form-text"
+                   ng-model="item.t"
+                   ng-change="cctrl.onSearch()"
+                   ng-model-options="{debounce: 350}">
+        </div>
+        <div class="col-md-6">
+            <pagination
+                class="sr-pagination"
+                total-items="cctrl.pagination.totalCount"
+                items-per-page="cctrl.pagination.limit"
+                ng-model="cctrl.pagination.offset"
+                max-size="cctrl.pagination.maxSize"
+                boundary-links="false"
+                previous-text="‹"
+                next-text="›">
+            </pagination>
+        </div>
+    </div>
+
+    <div class="sr-wrapper -wrapper-table">
+        <div>
+
+            <div class="row">
+                <div class="col-md-2">Title</div>
+                <div class="col-md-3">Image</div>
+                <div class="col-md-2">Category</div>
+                <div class="col-md-2">Hits</div>
+                <div class="col-md-2">Action</div>
+            </div>
+            <style>
+                /* The starting CSS styles for the enter animation */
+                .fadeas.ng-enter {
+                  transition:0.3s linear all;
+                  opacity:0;
+                }
+
+                /* The starting CSS styles for the enter animation */
+                .fadeas.ng-enter.ng-enter-active {
+                    transition:0.3s linear all;
+                  opacity:1;
+                }
+
+                .fadeas.ng-leave {
+                  transition:0.3s linear all;
+                  opacity:0;
+                }
+                .fadeas.ng-leave.ng-leave-active {
+                  opacity:1;
+                }
+
+                span + span::before {
+                    content: ", ";
+                }
+            </style>
+            <div class="row fadeas" ng-repeat="item in cctrl.comics | filter: item.t | offset: {offset: cctrl.pagination.offset, limit: cctrl.pagination.limit}">
+                <div class="col-md-2">
+                    <div ng-bind="::item.t"></div>
+                </div>
+                <div class="col-md-3">
+                    <img ng-src="{{ item.im }}">
+                </div>
+                <div class="col-md-2">
+                    <span ng-repeat="category in item.c" ng-bind="::category"></span>
+                </div>
+                <div class="col-md-2">
+                    <div ng-bind="::item.h"></div>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" ng-click="cctrl.onOpen(item)">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
