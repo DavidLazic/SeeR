@@ -1,0 +1,16 @@
+//
+// SeeR logo
+// --------------------------------------------------
+
+.sr-logo {
+
+    &.-logo-lg {
+        width: 1000px;
+    }
+
+    &.-logo-absolute {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

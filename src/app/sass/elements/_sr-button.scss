@@ -1,0 +1,20 @@
+//
+// SeeR buttons
+// --------------------------------------------------
+
+.sr-btn {
+    @include border-radius(4px);
+    display: inline-block;
+    color: #fff;
+
+    &.-btn-mode {
+        @include transition(all 0.2s ease);
+        position: relative;
+        display: block;
+        font-size: 35px;
+
+        &:hover {
+            text-shadow: -1px 1px 8px $blue-lighter, 1px -1px 8px #fff;
+        }
+    }
+}

@@ -1,3 +1,39 @@
-<div>
-    <a href="#/remote/comics" ng-click="appctrl.onModeChosen()">Online</a>
-</div>
+<section>
+    <div class="sr-title -title-lg -title-neon">SeeR</div>
+
+    <div class="sr-wrapper -wrapper-logo">
+        <svg version="1.1" class="sr-logo -logo-lg -logo-absolute" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 960 560" style="enable-background:new 0 0 960 560;" xml:space="preserve" width="1000">
+            <path d="M411.7,265.7c0,0-16.3-20-23-46.7c0,0,24.7,7.5,51.5,2.8c26.8-4.7,59.2,24.5,59.2,24.5s61.2,54.3,84.2,52.7
+                c0,0-17.5,22.7-97.4,21.8c0,0,45.4-9.2,59.6-22.2c0,0,2.5-3-0.2-4.3s-15.7-7.6-23.3-13.1c0,0-17.8,21.6-34.5-1.3c0,0,9,1.5,8.2-4.5
+                c-0.8-6-6.2-7.3-8.7-5.6c0,0-0.2-5.5,7.3-7.9c0,0,0.4-0.6-0.4-1.4s-15.8-11.6-18.6-13.8s-8.8-2.5-12.4,1.5s-27.6,28.2,0,63
+                c0,0-46.8-30.5-26.5-68c0,0,1.7-1.5,0-2c-1.7-0.5-15.7,2.3-31.2-6.2C405.5,235.2,400.2,246.7,411.7,265.7z"/>
+            <circle fill="#4f201e" cx="549.9" cy="343.3" r="7.8"/>
+            <circle fill="#4f201e" cx="513.1" cy="350.3" r="11.4"/>
+        </svg>
+    </div>
+
+    <div class="sr-wrapper -wrapper-absolute -absolute-center-x">
+
+        <div class="sr-title -title-lg -title-upper">Choose mode</div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <a class="sr-btn -btn-mode" href="#/remote/comics" ng-click="appctrl.onModeChosen()">
+                    <i class="icon-bookmarks"></i>
+                </a>
+                <div class="-margin-top-20">
+                    Remote mode enables you to read comics from a remote server. Choose this mode if you have internet connection.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <a class="sr-btn -btn-mode" href="javascript:void(0)">
+                    <i class="icon-bookmark"></i>
+                </a>
+                <div class="-margin-top-20">
+                    Local mode enables you to read comics from your local machine. Choose this mode if you're working offline.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

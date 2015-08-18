@@ -1,0 +1,19 @@
+//
+// SeeR titles
+// --------------------------------------------------
+
+.sr-title {
+    font-family: $font-family-juraLight;
+
+    &.-title-lg {
+        font-size: 45px;
+    }
+
+    &.-title-neon {
+        text-shadow: -1px 1px 8px $blue-lighter, 1px -1px 8px #fff;
+    }
+
+    &.-title-upper {
+        text-transform: uppercase;
+    }
+}

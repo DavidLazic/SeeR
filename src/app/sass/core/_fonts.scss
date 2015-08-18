@@ -1,0 +1,185 @@
+//
+// SeeR fonts
+// --------------------------------------------------
+
+@font-face {
+    font-family: 'juraLight';
+    src: url('../../../assets/fonts/jura/jura-light/jura-light-webfont.eot');
+    src: url('../../../assets/fonts/jura/jura-light/jura-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../assets/fonts/jura/jura-light/jura-light-webfont.woff2') format('woff2'),
+         url('../../../assets/fonts/jura/jura-light/jura-light-webfont.woff') format('woff'),
+         url('../../../assets/fonts/jura/jura-light/jura-light-webfont.ttf') format('truetype'),
+         url('../../../assets/fonts/jura/jura-light/jura-light-webfont.svg#juralight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'juraRegular';
+    src: url('../../../assets/fonts/jura/jura-regular/jura-regular-webfont.eot');
+    src: url('../../../assets/fonts/jura/jura-regular/jura-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../assets/fonts/jura/jura-regular/jura-regular-webfont.woff2') format('woff2'),
+         url('../../../assets/fonts/jura/jura-regular/jura-regular-webfont.woff') format('woff'),
+         url('../../../assets/fonts/jura/jura-regular/jura-regular-webfont.ttf') format('truetype'),
+         url('../../../assets/fonts/jura/jura-regular/jura-regular-webfont.svg#jurabook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'juraMedium';
+    src: url('../../../assets/fonts/jura/jura-medium/jura-medium-webfont.eot');
+    src: url('../../../assets/fonts/jura/jura-medium/jura-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../assets/fonts/jura/jura-medium/jura-medium-webfont.woff2') format('woff2'),
+         url('../../../assets/fonts/jura/jura-medium/jura-medium-webfont.woff') format('woff'),
+         url('../../../assets/fonts/jura/jura-medium/jura-medium-webfont.ttf') format('truetype'),
+         url('../../../assets/fonts/jura/jura-medium/jura-medium-webfont.svg#juramedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'juraSemibold';
+    src: url('../../../assets/fonts/jura/jura-semibold/jura-demibold-webfont.eot');
+    src: url('../../../assets/fonts/jura/jura-semibold/jura-demibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../assets/fonts/jura/jura-semibold/jura-demibold-webfont.woff2') format('woff2'),
+         url('../../../assets/fonts/jura/jura-semibold/jura-demibold-webfont.woff') format('woff'),
+         url('../../../assets/fonts/jura/jura-semibold/jura-demibold-webfont.ttf') format('truetype'),
+         url('../../../assets/fonts/jura/jura-semibold/jura-demibold-webfont.svg#jurademibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'openLight';
+    src: url('../../../assets/fonts/open-sans/open-light/opensans-light-webfont.eot');
+    src: url('../../../assets/fonts/open-sans/open-light/opensans-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../assets/fonts/open-sans/open-light/opensans-light-webfont.woff2') format('woff2'),
+         url('../../../assets/fonts/open-sans/open-light/opensans-light-webfont.woff') format('woff'),
+         url('../../../assets/fonts/open-sans/open-light/opensans-light-webfont.ttf') format('truetype'),
+         url('../../../assets/fonts/open-sans/open-light/opensans-light-webfont.svg#open_sanslight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'openLightItalic';
+    src: url('../../../assets/fonts/open-sans/open-light-italic/opensans-lightitalic-webfont.eot');
+    src: url('../../../assets/fonts/open-sans/open-light-italic/opensans-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../assets/fonts/open-sans/open-light-italic/opensans-lightitalic-webfont.woff2') format('woff2'),
+         url('../../../assets/fonts/open-sans/open-light-italic/opensans-lightitalic-webfont.woff') format('woff'),
+         url('../../../assets/fonts/open-sans/open-light-italic/opensans-lightitalic-webfont.ttf') format('truetype'),
+         url('../../../assets/fonts/open-sans/open-light-italic/opensans-lightitalic-webfont.svg#open_sanslight_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'openRegular';
+    src: url('../../../assets/fonts/open-sans/open-regular/opensans-regular-webfont.eot');
+    src: url('../../../assets/fonts/open-sans/open-regular/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../assets/fonts/open-sans/open-regular/opensans-regular-webfont.woff2') format('woff2'),
+         url('../../../assets/fonts/open-sans/open-regular/opensans-regular-webfont.woff') format('woff'),
+         url('../../../assets/fonts/open-sans/open-regular/opensans-regular-webfont.ttf') format('truetype'),
+         url('../../../assets/fonts/open-sans/open-regular/opensans-regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'openSemibold';
+    src: url('../../../assets/fonts/open-sans/open-semibold/opensans-semibold-webfont.eot');
+    src: url('../../../assets/fonts/open-sans/open-semibold/opensans-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../assets/fonts/open-sans/open-semibold/opensans-semibold-webfont.woff2') format('woff2'),
+         url('../../../assets/fonts/open-sans/open-semibold/opensans-semibold-webfont.woff') format('woff'),
+         url('../../../assets/fonts/open-sans/open-semibold/opensans-semibold-webfont.ttf') format('truetype'),
+         url('../../../assets/fonts/open-sans/open-semibold/opensans-semibold-webfont.svg#open_sanssemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src:url('../../../assets/fonts/icomoon/icomoon.eot?-2ff8rl');
+    src:url('../../../assets/fonts/icomoon/icomoon.eot?#iefix-2ff8rl') format('embedded-opentype'),
+        url('../../../assets/fonts/icomoon/icomoon.ttf?-2ff8rl') format('truetype'),
+        url('../../../assets/fonts/icomoon/icomoon.woff?-2ff8rl') format('woff'),
+        url('../../../assets/fonts/icomoon/icomoon.svg?-2ff8rl#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-display:before {
+    content: "\e956";
+}
+.icon-upload:before {
+    content: "\e961";
+}
+.icon-undo2:before {
+    content: "\e967";
+}
+.icon-redo2:before {
+    content: "\e968";
+}
+.icon-spinner9:before {
+    content: "\e982";
+}
+.icon-spinner10:before {
+    content: "\e983";
+}
+.icon-search:before {
+    content: "\e986";
+}
+.icon-bookmark:before {
+    content: "\e9d2";
+}
+.icon-bookmarks:before {
+    content: "\e9d3";
+}
+.icon-info:before {
+    content: "\ea0c";
+}
+.icon-cancel-circle:before {
+    content: "\ea0d";
+}
+.icon-cross:before {
+    content: "\ea0f";
+}
+.icon-loop2:before {
+    content: "\ea2e";
+}
+.icon-circle-right:before {
+    content: "\ea42";
+}
+.icon-circle-left:before {
+    content: "\ea44";
+}
+.icon-embed:before {
+    content: "\ea7f";
+}
+.icon-share2:before {
+    content: "\ea82";
+}
+.icon-facebook2:before {
+    content: "\ea8d";
+}
+.icon-twitter2:before {
+    content: "\ea92";
+}
+.icon-linkedin:before {
+    content: "\eac8";
+}

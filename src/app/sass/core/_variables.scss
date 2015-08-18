@@ -18,12 +18,14 @@ $gray-light:             #b4b4b4 !default;
 $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 
 $red-darkest:           #3d2226 !default;
-$red-darker:            #470009 !default;
+$red-darker:            #4f201e !default;
 
 $green-dark:            #394121 !default;
 
-$blue-dark:             #141d29 !default;
-$blue:                  #1b2838 !default;
+$blue-darkest:          #141d29 !default;
+$blue-dark:             #1b2838 !default;
+$blue:                  #1b1d21 !default;
+$blue-lighter:          #337ab7 !default;
 
 $brand-primary:         darken(#428bca, 6.5%) !default; // #337ab7
 $brand-success:         #5cb85c !default;
@@ -53,11 +55,21 @@ $link-hover-decoration: underline !default;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
+$font-family-juraLight:     "juraLight", Helvetica, Arial, sans-serif !default;
+$font-family-juraRegular:   "juraRegular", Helvetica, Arial, sans-serif !default;
+$font-family-juraMedium:    "juraMedium", Helvetica, Arial, sans-serif !default;
+$font-family-juraSemibold:  "juraSemibold", Helvetica, Arial, sans-serif !default;
+
+$font-family-openLight:         "openLight", Helvetica, Arial, sans-serif !default;
+$font-family-openLightItalic:   "openLightItalic", Helvetica, Arial, sans-serif !default;
+$font-family-openRegular:       "openRegular", Helvetica, Arial, sans-serif !default;
+$font-family-openSemibold:      "openSemibold", Helvetica, Arial, sans-serif !default;
+
 $font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
-$font-family-base:        $font-family-sans-serif !default;
+$font-family-base:       $font-family-openRegular !default;
 
 $font-size-base:          14px !default;
 $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
