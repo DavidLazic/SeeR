@@ -3,10 +3,23 @@
 // --------------------------------------------------
 
 .sr-title {
-    font-family: $font-family-juraLight;
+
+    &.-title-sm {
+        font-size: $font-size-base;
+    }
 
     &.-title-lg {
-        font-size: 45px;
+        font-family: $font-family-juraLight;
+        font-size: $font-size-h3;
+    }
+
+    &.-title-xxlg {
+        font-family: $font-family-juraLight;
+        font-size: $font-size-h2;
+    }
+
+    &.-title-gray {
+        color: $gray;
     }
 
     &.-title-neon {
@@ -15,5 +28,22 @@
 
     &.-title-upper {
         text-transform: uppercase;
+    }
+}
+
+@media screen and (min-width: $screen-md) {
+    .sr-title {
+
+        &.-title-sm {
+            font-size: $font-size-medium;
+        }
+
+        &.-title-lg {
+            font-size: $font-size-h2;
+        }
+
+        &.-title-xxlg {
+            font-size: $font-size-h1;
+        }
     }
 }

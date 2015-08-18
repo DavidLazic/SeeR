@@ -42,8 +42,9 @@
         position: absolute;
         top: -3px;
         bottom: -3px;
-        left: 25%;
+        left: 50%;
         z-index: 100;
+        transform: translateX(-50%);
         background-color: $gray-dark;
         box-shadow: 0 0 10px -1px #000;
 
@@ -61,7 +62,7 @@
         }
 
         &.active {
-            transform: translateX(50%);
+            transform: translateX(0);
 
             &::after {
                 right: 5px;
@@ -69,7 +70,7 @@
         }
 
         .wrapper-content {
-            padding: 25px;
+            padding: 25px 0;
             text-align: center;
         }
     }
@@ -78,8 +79,9 @@
         position: absolute;
 
         &.-absolute-center-x {
-            bottom: 40px;
+            top: 50%;
             left: 50%;
+            width: 70%;
             transform: translateX(-50%);
         }
     }
@@ -101,5 +103,21 @@
 
     &.-wrapper-fixed-header {
         height: 40px;
+    }
+}
+
+@media screen and (min-width: $screen-md) {
+    .sr-wrapper {
+
+        &.-wrapper-absolute {
+
+            &.-absolute-center-x {
+                width: auto;
+            }
+        }
+
+        &.-wrapper-logo {
+            margin-top: -200px;
+        }
     }
 }

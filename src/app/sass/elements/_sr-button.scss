@@ -10,11 +10,26 @@
     &.-btn-mode {
         @include transition(all 0.2s ease);
         position: relative;
+        margin-bottom: 20px;
         display: block;
-        font-size: 35px;
+        font-size: $font-size-large;
 
         &:hover {
             text-shadow: -1px 1px 8px $blue-lighter, 1px -1px 8px #fff;
+        }
+
+        &::after {
+            display: block;
+            content: attr(data-text);
+        }
+    }
+}
+
+@media screen and (min-width: $screen-md) {
+    .sr-btn {
+
+        &.-btn-mode {
+            font-size: $font-size-h3;
         }
     }
 }

@@ -5,12 +5,21 @@
 .sr-logo {
 
     &.-logo-lg {
-        width: 1000px;
+        width: 700px;
     }
 
     &.-logo-absolute {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+    }
+}
+
+@media screen and (min-width: $screen-md) {
+    .sr-logo {
+
+        &.-logo-lg {
+            width: 1000px;
+        }
     }
 }
