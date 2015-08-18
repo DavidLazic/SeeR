@@ -42,7 +42,12 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
+    @include border-radius(4px);
     background-color: rgba(57, 65, 33, 0.8);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-track {
+    @include border-radius(10px);
+    -webkit-box-shadow: inset 0 0 6px rgba(79, 32, 30, 0.4);
 }

@@ -1,13 +1,13 @@
 <section>
 
     <div class="row sr-wrapper -wrapper-fixed-header">
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <input class="sr-form-text"
                    ng-model="item.t"
                    ng-change="cctrl.onSearch()"
                    ng-model-options="{debounce: 350}">
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <pagination
                 class="sr-pagination"
                 total-items="cctrl.pagination.totalCount"
@@ -19,11 +19,7 @@
                 next-text="›">
             </pagination>
         </div>
-    </div>
-
-    <div class="sr-wrapper -wrapper-table">
-        <div>
-
+        <div class="col-sm-12">
             <div class="row">
                 <div class="col-md-2">Title</div>
                 <div class="col-md-3">Image</div>
@@ -31,6 +27,11 @@
                 <div class="col-md-2">Hits</div>
                 <div class="col-md-2">Action</div>
             </div>
+        </div>
+    </div>
+
+    <div class="sr-wrapper -wrapper-table">
+        <div class="sr-form-table">
             <style>
                 /* The starting CSS styles for the enter animation */
                 .fadeas.ng-enter {
@@ -56,7 +57,7 @@
                     content: ", ";
                 }
             </style>
-            <div class="row fadeas" ng-repeat="item in cctrl.comics | filter: item.t | offset: {offset: cctrl.pagination.offset, limit: cctrl.pagination.limit}">
+            <div class="row form-row" ng-repeat="item in cctrl.comics | filter: item.t | offset: {offset: cctrl.pagination.offset, limit: cctrl.pagination.limit}">
                 <div class="col-md-2">
                     <div ng-bind="::item.t"></div>
                 </div>
