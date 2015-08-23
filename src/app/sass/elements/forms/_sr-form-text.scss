@@ -3,7 +3,6 @@
 // --------------------------------------------------
 
 .sr-form-text {
-    @include border-radius(4px);
     @include transition(all 0.3s ease);
     display: block;
     padding: 0 10px;
@@ -11,6 +10,9 @@
     width: 100%;
     max-width: 320px;
     box-shadow: none;
+    background-color: $gray-darker;
+    border: none;
+    border-bottom: 1px solid $gray-dark;
 
     &:focus {
         outline: none;

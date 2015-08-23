@@ -1,0 +1,13 @@
+//
+// SeeR icon
+// --------------------------------------------------
+
+.sr-icon {
+    display: inline-block;
+    color: #000;
+    cursor: pointer;
+
+    &.-icon-lg {
+        font-size: $font-size-big;
+    }
+}

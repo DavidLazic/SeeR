@@ -3,5 +3,110 @@
 // --------------------------------------------------
 
 .sr-pagination {
+    position: relative;
     margin: 0;
+    padding-bottom: 10px;
+    width: 100%;
+    font-family: $font-family-base;
+    font-size: $font-size-small;
+    text-align: right;
+    background-color: $gray-darker;
+
+    &.-pagination-results{
+
+        &::before{
+            display: inline-block;
+            margin: 10px 15px 0 0;
+            vertical-align: top;
+            content: "Showing " attr(data-pagination-start) " - " attr(data-pagination-end) " of " attr(data-pagination-total);
+        }
+    }
+
+    li{
+        display: inline-block;
+        padding: 0 4px;
+
+        &:first-of-type,
+        &:last-of-type{
+            display: none;
+        }
+
+        &:nth-child(-n+2),
+        &:nth-last-child(-n+2){
+            margin-bottom: -4px;
+            font-size: $font-size-big;
+
+            >a{
+                padding: 0;
+                border: none;
+                color: lighten($red-darker, 10);
+                background-color: $gray-darker;
+
+                &:active,
+                &:active:focus,
+                &:focus,
+                &:visited {
+                    color: lighten($red-darker, 10);
+                }
+            }
+        }
+
+        &.disabled{
+
+            >a{
+
+                &:hover,
+                &:visited,
+                &:active,
+                &:focus,
+                &:active:focus{
+                    background-color: $gray-darker;
+                }
+            }
+        }
+
+        >a{
+            @include border-radius(50%);
+            padding: 1px 6px 0 6px;
+            text-transform: uppercase;
+            border: none;
+            background-color: $gray-darker;
+            color: lighten($gray-dark, 20);
+
+            &:hover {
+                color: #fff;
+                background-color: $gray-darker;
+            }
+
+            &:focus,
+            &:active,
+            &:focus:active
+            &:visited{
+                border: none;
+                background-color: $gray-darker;
+                color: lighten($gray-dark, 20);
+            }
+        }
+
+        &.active{
+
+            >a{
+                color: #fff !important;
+                background-color: transparent;
+
+                &:focus,
+                &:active:focus,
+                &:visited {
+                    border: none;
+                    outline: none;
+                    background-color: transparent;
+                }
+
+                &:hover {
+                    color: #fff;
+                    background-color: transparent;
+                }
+            }
+        }
+    }
 }

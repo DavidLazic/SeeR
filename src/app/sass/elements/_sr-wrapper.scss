@@ -38,7 +38,7 @@
     }
 
     &.-wrapper-external-view {
-        @include transition(all 0.4s ease);
+        @include transition(all 0.3s ease);
         position: absolute;
         top: -3px;
         bottom: -3px;
@@ -49,7 +49,7 @@
         box-shadow: 0 0 10px -1px #000;
 
         &::after {
-            @include transition(right 0.5s ease);
+            @include transition(right 0.4s ease);
             position: absolute;
             display: block;
             top: 8px;
@@ -90,11 +90,23 @@
         }
     }
 
+    &.-wrapper-animate {
+
+        &.ng-enter {
+            @include transition(opacity 0.4s linear);
+            opacity: 0;
+        }
+
+        &.ng-enter.ng-enter-active {
+            opacity: 1;
+        }
+    }
+
     &.-wrapper-absolute {
         position: absolute;
 
         &.-absolute-center-x {
-            top: 50%;
+            bottom: 15%;
             left: 50%;
             width: 70%;
             transform: translateX(-50%);
@@ -108,7 +120,7 @@
 
     &.-wrapper-table {
         position: absolute;
-        top: 40px;
+        top: 80px;
         right: 50%;
         bottom: 0;
         left: 0;
@@ -117,11 +129,21 @@
     }
 
     &.-wrapper-fixed-header {
+        padding-top: 5px;
         height: 40px;
     }
 }
 
-@media screen and (min-width: $screen-md) {
+@media screen and (min-height: $screen-v) {
+    .sr-wrapper {
+
+        &.-wrapper-logo {
+            margin-top: -200px;
+        }
+    }
+}
+
+@media screen and (min-width: $screen-x-lg) {
     .sr-wrapper {
 
         &.-wrapper-absolute {
@@ -129,10 +151,6 @@
             &.-absolute-center-x {
                 width: auto;
             }
-        }
-
-        &.-wrapper-logo {
-            margin-top: -200px;
         }
     }
 }
