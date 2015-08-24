@@ -120,12 +120,44 @@
 
     &.-wrapper-table {
         position: absolute;
-        top: 80px;
+        top: 95px;
         right: 50%;
         bottom: 0;
         left: 0;
         overflow-x: hidden;
         overflow-y: auto;
+    }
+
+    &.-wrapper-header {
+        margin: 0 2px 0 0;
+        padding: 5px 0;
+        background-color: $gray-dark;
+        box-shadow: 0 0 10px -1px #000;
+
+        .headline {
+            @include transition(all 0.3s ease);
+            padding: 5px 0;
+            text-align: center;
+            box-shadow: 0 0 6px -1px #000;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $red-darker;
+            }
+
+            &.-not-sortable {
+                box-shadow: none;
+                cursor: default;
+
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+
+            &.active {
+                background-color: $red-darker;
+            }
+        }
     }
 
     &.-wrapper-fixed-header {
