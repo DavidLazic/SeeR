@@ -16,8 +16,8 @@
             border-bottom: 15px solid $gray-dark;
             border-left: 15px solid $red-darkest;
             border-right: 15px solid $gray-dark;
-            -webkit-animation: middleTopLeft 0.7s forwards ease;
-            animation: middleTopLeft 0.7s forwards ease;
+            -webkit-animation: middleTopLeft 0.7s forwards ease-out;
+            animation: middleTopLeft 0.7s forwards ease-out;
             -webkit-animation-delay: 0.5s;
             animation-delay: 0.5s;
         }
@@ -29,8 +29,8 @@
             border-bottom: 15px solid $gray-dark;
             border-left: 15px solid $gray-dark;
             border-right: 15px solid $red-darkest;
-            -webkit-animation: middleTopRight 0.7s forwards ease;
-            animation: middleTopRight 0.7s forwards ease;
+            -webkit-animation: middleTopRight 0.7s forwards ease-out;
+            animation: middleTopRight 0.7s forwards ease-out;
             -webkit-animation-delay: 0.5s;
             animation-delay: 0.5s;
         }
@@ -42,8 +42,8 @@
             border-bottom: 15px solid $red-darkest;
             border-left: 15px solid $gray-dark;
             border-right: 15px solid $red-darkest;
-            -webkit-animation: middleBottomRight 0.7s forwards ease;
-            animation: middleBottomRight 0.7s forwards ease;
+            -webkit-animation: middleBottomRight 0.7s forwards ease-out;
+            animation: middleBottomRight 0.7s forwards ease-out;
             -webkit-animation-delay: 0.5s;
             animation-delay: 0.5s;
         }
@@ -55,8 +55,8 @@
             border-bottom: 15px solid $red-darkest;
             border-left: 15px solid $red-darkest;
             border-right: 15px solid $gray-dark;
-            -webkit-animation: middleBottomLeft 0.7s forwards ease;
-            animation: middleBottomLeft 0.7s forwards ease;
+            -webkit-animation: middleBottomLeft 0.7s forwards ease-out;
+            animation: middleBottomLeft 0.7s forwards ease-out;
             -webkit-animation-delay: 0.5s;
             animation-delay: 0.5s;
         }
