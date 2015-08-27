@@ -1,4 +1,7 @@
-<section>
+<section class="sr-wrapper -wrapper-view">
+    <div class="sr-view -view-corner -corner-tl"></div>
+    <div class="sr-view -view-corner -corner-tr"></div>
+
     <div>
         <a href="#/" ng-click="appctrl.onResetMode()">Home</a>
         <a href ng-click="appctrl.onRead()" ng-if="appctrl.isItemSet()">Read</a>
@@ -11,4 +14,7 @@
             <a href ng-click="appctrl.onRead(comic[3], $index)">{{$index + 1}}</a>
         </li>
     </ul>
+
+    <div class="sr-view -view-corner -corner-br"></div>
+    <div class="sr-view -view-corner -corner-bl"></div>
 </section>

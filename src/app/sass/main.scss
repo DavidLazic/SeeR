@@ -16,6 +16,7 @@
 
 @import "core/_global.scss";
 @import "core/_helpers.scss";
+@import "core/_animations.scss";
 
 // elements
 @import "elements/_sr-wrapper.scss";
@@ -24,6 +25,7 @@
 @import "elements/_sr-title.scss";
 @import "elements/_sr-logo.scss";
 @import "elements/_sr-icon.scss";
+@import "elements/_sr-view.scss";
 
 // forms
 @import "elements/forms/_sr-form-text.scss";
