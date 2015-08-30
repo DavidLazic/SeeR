@@ -27,7 +27,7 @@
         }
 
         function _configuration(method, url, data) {
-            var _url = [AppConfig.URL.ALL, url].join('');
+            var _url = [AppConfig.URL.BASE, url].join('');
             var config = {};
 
             if (method === 'GET') {

@@ -3,7 +3,7 @@
     <div class="row sr-wrapper -wrapper-fixed-header">
         <div class="col-sm-6">
             <input class="sr-form-text"
-                   ng-model="item.t"
+                   ng-model="item.name"
                    ng-change="cctrl.onSearch()"
                    ng-model-options="{debounce: 350}"
                    placeholder="Search">
@@ -22,19 +22,10 @@
         </div>
         <div class="col-sm-12">
             <div class="row sr-wrapper -wrapper-header">
-                <div class="col-md-3 -padding-y-0 -padding-x-5">
+                <div class="col-md-6 -padding-y-0 -padding-x-5">
                     <div class="headline active" data-text="Title">Title</div>
                 </div>
-                <div class="col-md-3 -padding-y-0 -padding-x-5">
-                    <div class="headline -not-sortable">Image</div>
-                </div>
-                <div class="col-md-2 -padding-y-0 -padding-x-5">
-                    <div class="headline" data-text="Category">Category</div>
-                </div>
-                <div class="col-md-2 -padding-y-0 -padding-x-5">
-                    <div class="headline" data-text="Hits">Hits</div>
-                </div>
-                <div class="col-md-2 -padding-y-0 -padding-x-5">
+                <div class="col-md-6 -padding-y-0 -padding-x-5">
                     <div class="headline -not-sortable">Actions</div>
                 </div>
             </div>
@@ -43,20 +34,11 @@
 
     <div class="sr-wrapper -wrapper-table">
         <div class="sr-form-table">
-            <div class="row form-row" ng-repeat="item in cctrl.comics | filter: item.t | offset: {offset: cctrl.pagination.offset, limit: cctrl.pagination.limit}">
-                <div class="col-md-3 -text-center">
-                    <div ng-bind="::item.t"></div>
+            <div class="row form-row" ng-repeat="item in cctrl.comics | filter: item.name | offset: {offset: cctrl.pagination.offset, limit: cctrl.pagination.limit}">
+                <div class="col-md-6 -text-center">
+                    <div ng-bind="::item.name"></div>
                 </div>
-                <div class="col-md-3 -text-center">
-                    <!-- <img ng-src="{{ item.im }}"> -->
-                </div>
-                <div class="col-md-2 -text-center">
-                    <span ng-repeat="category in item.c" ng-bind="::category"></span>
-                </div>
-                <div class="col-md-2 -text-center">
-                    <div ng-bind="::item.h"></div>
-                </div>
-                <div class="col-md-2 -text-center">
+                <div class="col-md-6 -text-center">
                     <i class="sr-icon -icon-lg icon-eye" ng-click="cctrl.onOpen(item)"></i>
                     </button>
                 </div>

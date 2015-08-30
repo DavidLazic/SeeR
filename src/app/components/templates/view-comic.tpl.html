@@ -2,16 +2,16 @@
     <div class="sr-view -view-corner -corner-tl"></div>
     <div class="sr-view -view-corner -corner-tr"></div>
 
-    <div>
+    <div class="sr-wrapper -wrapper-bar">
         <a href="#/" ng-click="appctrl.onResetMode()">Home</a>
         <a href ng-click="appctrl.onRead()" ng-if="appctrl.isItemSet()">Read</a>
     </div>
 
-    {{appctrl.item.description}}
+    {{appctrl.item.info}}
 
     <ul>
         <li ng-repeat="comic in appctrl.item.chapters">
-            <a href ng-click="appctrl.onRead(comic[3], $index)">{{$index + 1}}</a>
+            <a href ng-click="appctrl.onRead(appctrl.item.href, comic.chapterId, $index)">{{comic.chapterId}}</a>
         </li>
     </ul>
 

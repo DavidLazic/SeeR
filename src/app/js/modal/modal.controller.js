@@ -2,17 +2,15 @@
     'use strict';
 
     angular.module('readerApp.modal.controller', [
-        'readerApp.config',
         'readerApp.modal.service'
     ]).controller('ModalController', ModalController);
 
-    ModalController.$inject = ['$scope', '$modalInstance', 'AppConfig', 'ModalService', 'data'];
-    function ModalController($scope, $modalInstance, AppConfig, ModalService, chapter) {
+    ModalController.$inject = ['$scope', '$modalInstance', 'ModalService', 'data'];
+    function ModalController($scope, $modalInstance, ModalService, chapter) {
         var vm = this,
-            data = angular.copy(chapter) || {chapterIndex: 0, chapters: [], currentChapter: {images: []}};
+            data = angular.copy(chapter) || {name: null, chapterIndex: 0, chapters: [], currentChapter: {images: []}};
 
         // view model
-        vm.coverBaseUrl = AppConfig.URL.COVER;
         vm.model = {
             chapterIdx: 0,
             index: 0,
@@ -38,12 +36,16 @@
             _prepareModel();
         }
 
+        /**
+         * @description
+         * Prepare model.
+         */
         function _prepareModel () {
-            vm.model.total = data.currentChapter.images.length - 1;
-            vm.model.totalChapters = data.chapters.length -1;
+            vm.model.total = data.currentChapter.pages.length - 1;
+            vm.model.totalChapters = data.chapters.length - 1;
             _prefetchPreviousChapter();
             _prefetchNextChapter();
-            _extractImages(data.currentChapter.images, 'chapter');
+            _extractImages(data.currentChapter.pages, 'chapter');
         }
 
         /**
@@ -87,11 +89,8 @@
             vm.model[vmProperty].length = 0;
 
             angular.forEach(data, function (imageItem) {
-                var image = _getImageUrl(imageItem[1]);
-                vm.model[vmProperty].push(image);
+                vm.model[vmProperty].push(imageItem.url);
             });
-
-            vm.model[vmProperty].reverse();
         }
 
         /**
@@ -101,8 +100,8 @@
         function _prefetchPreviousChapter () {
             var prevChapterIdx = data.chapterIndex - 1;
             if (angular.isDefined(data.chapters[prevChapterIdx])) {
-                ModalService.getChapterById(data.chapters[prevChapterIdx]).then(function (response) {
-                    _extractImages(response.images, 'previousChapter');
+                ModalService.getChapterById({comic: data.name, chapterId: data.chapters[prevChapterIdx]}).then(function (response) {
+                    _extractImages(response.pages, 'previousChapter');
                 });
             }
         }
@@ -114,8 +113,8 @@
         function _prefetchNextChapter () {
             var nextChapterIdx = data.chapterIndex + 1;
             if (angular.isDefined(data.chapters[nextChapterIdx])) {
-                ModalService.getChapterById(data.chapters[nextChapterIdx]).then(function (response) {
-                    _extractImages(response.images, 'nextChapter');
+                ModalService.getChapterById({comic: data.name, chapterId: data.chapters[nextChapterIdx]}).then(function (response) {
+                    _extractImages(response.pages, 'nextChapter');
                 });
             }
         }
@@ -134,17 +133,6 @@
          */
         function _updateChapterIndex () {
             vm.model.chapterIdx = data.chapterIndex;
-        }
-
-        /**
-         * @description
-         * Get image full url.
-         *
-         * @param  {String} | url - image url.
-         * @return {String}
-         */
-        function _getImageUrl (url) {
-            return vm.coverBaseUrl + url;
         }
     }
 })();

@@ -94,13 +94,18 @@
         }
     }
 
+    &.-wrapper-bar {
+        padding: 5px 0;
+        box-shadow: 0 0 10px -1px #000;
+        background-color: $gray-dark;
+    }
+
     &.-wrapper-view {
         position: absolute;
         top: 20px;
         left: 35px;
         right: 15px;
         bottom: 20px;
-        border: 1px solid $red-darkest;
     }
 
     &.-wrapper-animate {

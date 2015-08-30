@@ -16,7 +16,7 @@
         'readerApp.modal',
 
         'readerApp.service.httpRequest',
-        'readerApp.service.externalView',
+        'readerApp.service.utility',
         'readerApp.filter.offset',
         'readerApp.directive.externalView',
         'readerApp.directive.cReader'
@@ -33,5 +33,6 @@
         // Enable CORS
         $http.defaults.useXDomain = true;
         delete $http.defaults.headers.common[AppConfig.HEADER.COMMON];
+        $http.defaults.headers.common['X-Mashape-Key'] = AppConfig.HEADER.MASH_KEY;
     }
 })();

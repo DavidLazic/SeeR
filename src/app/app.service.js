@@ -3,13 +3,16 @@
 
     angular.module('readerApp.appService', [
         'readerApp.service.httpRequest',
-        'readerApp.config',
+        'readerApp.service.utility'
     ]).factory('AppService', AppService);
 
-    AppService.$inject = ['$filter', 'HttpRequestService', 'AppConfig'];
-    function AppService($filter, HttpRequestService, AppConfig) {
+    AppService.$inject = ['$filter', 'HttpRequestService', 'UtilityService'];
+    function AppService($filter, HttpRequestService, UtilityService) {
+
+        var hostConfig = {};
 
         var dataConfig = {
+                name: null,
                 chapterIndex: 0,
                 chapters: [],
                 currentChapter: null
@@ -31,12 +34,13 @@
          * @description
          * Get chapter by id.
          *
-         * @param  {String} | chapterId - current chapter id.
+         * @param  {Object} | params - current comic config object. {comic: <name>, chapterId: <id>}
          * @return {Object}
          */
-        function getChapterById (chapterId) {
+        function getChapterById (params) {
+            angular.copy(UtilityService.getHostConfig(), hostConfig);
             var param = {
-                url: AppConfig.URL.CHAPTER_BY_ID + chapterId
+                url: hostConfig.COMIC_BY_ID + '-' + params.comic + '/' + params.chapterId
             };
 
             return HttpRequestService.get(param).then(function (response) {

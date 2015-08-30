@@ -2,13 +2,14 @@
     'use strict';
 
     angular.module('readerApp.app', [
+        'ui.bootstrap',
         'readerApp.config',
         'readerApp.appService',
-        'readerApp.service.externalView'
+        'readerApp.service.utility'
     ]).controller('AppController', AppController);
 
-    AppController.$inject = ['$rootScope', '$modal', 'AppConfig', 'AppService', 'ExternalViewService'];
-    function AppController($rootScope, $modal, AppConfig, AppService, externalViewService) {
+    AppController.$inject = ['$rootScope', '$modal', 'AppConfig', 'AppService', 'UtilityService'];
+    function AppController($rootScope, $modal, AppConfig, AppService, UtilityService) {
         var vm = this,
             data = AppService.getDataConfig();
 
@@ -21,6 +22,7 @@
         vm.onResetMode = onResetMode;
         vm.onRead = onRead;
         vm.isItemSet = isItemSet;
+        vm.setHostValue = setHostValue;
 
         init();
 
@@ -28,24 +30,36 @@
          * @return void
          */
         function init () {
+            setHostValue('READER');
             _onItemChosen();
+        }
+
+        /**
+         * @description
+         * Set global host value.
+         *
+         * @param {String} | hostValue - chosen host value.
+         */
+        function setHostValue (hostValue) {
+            UtilityService.setHostValue(hostValue);
         }
 
         /**
          * @description
          * Open modal with specific comic fn.
          *
+         * @param {String} | name - comic name.
          * @param {String} | id - chapter id.
          * @param {String} | idx - chapter index.
          */
-        function onRead (id, idx) {
-            var chapter = (angular.isDefined(id)) ? id : vm.item.chapters[0][3],
+        function onRead (name, id, idx) {
+            var chapter = (angular.isDefined(id)) ? id : vm.item.chapters[0].chapterId,
                 index = idx || 0;
 
-            _setChapterIndex(index);
+            _setChapterIndex(name, index);
             _setAllChapters();
 
-            AppService.getChapterById(chapter).then(function (response) {
+            AppService.getChapterById({comic: name, chapterId: chapter}).then(function (response) {
                 data.currentChapter = response;
                 _onOpen(data);
             });
@@ -57,7 +71,7 @@
          */
         function onModeChosen () {
             vm.modeChosen = !vm.modeChosen;
-            externalViewService.setModeChosen({modeChosen: true});
+            UtilityService.setModeChosen({modeChosen: true});
         }
 
         /**
@@ -67,7 +81,7 @@
         function onResetMode () {
             vm.modeChosen = false;
             vm.item = null;
-            externalViewService.setModeChosen({
+            UtilityService.setModeChosen({
                 url: null,
                 modeChosen: false,
                 item: null
@@ -117,7 +131,7 @@
          */
         function _setAllChapters () {
             angular.forEach(vm.item.chapters, function (chapter) {
-                data.chapters.push(chapter[3]);
+                data.chapters.push(chapter.chapterId);
             });
         }
 
@@ -125,10 +139,11 @@
          * @description
          * Set current chapter index.
          *
+         * @param {String}  | name - comic name.
          * @param {Integer} | idx - current chapter index.
          */
-        function _setChapterIndex (idx) {
-            data.chapterIndex = idx;
+        function _setChapterIndex (name, idx) {
+            angular.extend(data, {name: name, chapterIndex: idx});
         }
 
         /**
@@ -138,7 +153,6 @@
         function _onItemChosen () {
             $rootScope.$on(AppConfig.BROADCAST.ITEM_CHOSEN, function (event, data) {
                 if (angular.isDefined(data)) {
-                    data.item.chapters.reverse();
                     vm.item = data.item;
                 }
             });

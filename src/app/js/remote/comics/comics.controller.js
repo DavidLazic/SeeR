@@ -2,17 +2,15 @@
     'use strict';
 
     angular.module('readerApp.remote.comics.controller', [
-        'readerApp.remote.comics.service',
-        'readerApp.config'
+        'readerApp.remote.comics.service'
     ]).controller('ComicsController', ComicsController);
 
-    ComicsController.$inject = ['ComicsService', 'AppConfig'];
-    function ComicsController(ComicsService, AppConfig) {
+    ComicsController.$inject = ['ComicsService'];
+    function ComicsController(ComicsService) {
         var vm = this;
 
         // view model
         vm.comics = [];
-        vm.coverBaseUrl = AppConfig.URL.COVER;
         vm.pagination = ComicsService.getPaginationConfig();
 
         // events
@@ -42,7 +40,7 @@
          * On open item fn.
          */
         function onOpen (item) {
-            ComicsService.getSingleComic(item.i).then(function (response) {
+            ComicsService.getSingleComic(item.mangaId).then(function (response) {
                 ComicsService.setCurrentItem({item: response});
             });
         }
@@ -61,7 +59,6 @@
          */
         function _getAllComics() {
             ComicsService.getAllComics().then(_setVM);
-
         }
 
         /**
@@ -73,22 +70,10 @@
         function _setVM(data) {
             vm.pagination.totalCount = data.length;
             angular.forEach(data, function (comic) {
-                if (angular.isDefined(comic) && comic.im !== null) {
-                    comic.im = _getImageUrl(comic.im);
+                if (angular.isDefined(comic)) {
                     vm.comics.push(comic);
                 }
             });
-        }
-
-        /**
-         * @description
-         * Modify comic cover url.
-         *
-         * @param  {String} | url - API cover url.
-         * @return {String}
-         */
-        function _getImageUrl(url) {
-            return  vm.coverBaseUrl + url;
         }
     }
 })();

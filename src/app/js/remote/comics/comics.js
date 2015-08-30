@@ -5,7 +5,7 @@
         'ngRoute',
         'readerApp.remote.comics.controller',
         'readerApp.remote.comics.service',
-        'readerApp.service.externalView'
+        'readerApp.service.utility'
     ]).config(ComicsRoute);
 
     ComicsRoute.$inject = ['$routeProvider'];
@@ -28,11 +28,11 @@
      *
      * @param  {Object} $rootScope
      * @param  {Object} $location
-     * @param  {Object} externalViewService
+     * @param  {Object} UtilityService
      */
-    checkModeChosen.$inject = ['$rootScope', '$location', 'ExternalViewService'];
-    function checkModeChosen ($rootScope, $location, externalViewService) {
-        externalViewService.getCurrentConfig().then(function (response) {
+    checkModeChosen.$inject = ['$rootScope', '$location', 'UtilityService'];
+    function checkModeChosen ($rootScope, $location, UtilityService) {
+        UtilityService.getCurrentConfig().then(function (response) {
             if (angular.equals({}, response) || !response.modeChosen) {
                 $location.path('/');
             }

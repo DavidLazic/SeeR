@@ -3,12 +3,13 @@
 
     angular.module('readerApp.remote.comics.service', [
         'readerApp.service.httpRequest',
-        'readerApp.service.externalView',
-        'readerApp.config',
+        'readerApp.service.utility'
     ]).factory('ComicsService', ComicsService);
 
-    ComicsService.$inject = ['$filter', 'HttpRequestService', 'ExternalViewService', 'AppConfig'];
-    function ComicsService($filter, HttpRequestService, externalViewService, AppConfig) {
+    ComicsService.$inject = ['$filter', 'HttpRequestService', 'UtilityService'];
+    function ComicsService($filter, HttpRequestService, UtilityService) {
+
+        var hostConfig = UtilityService.getHostConfig();
 
         /**
          * @description
@@ -17,8 +18,8 @@
          * @return {Object}
          */
         function getAllComics() {
-            return HttpRequestService.get({url: AppConfig.URL.ALL_COMICS}).then(function (response) {
-                return $filter('orderBy')(response.manga, 't');
+            return HttpRequestService.get({url: hostConfig.LIST}).then(function (response) {
+                return $filter('orderBy')(response, 'name');
             });
         }
 
@@ -31,7 +32,7 @@
          */
         function getSingleComic (params) {
             var param = {
-                url: AppConfig.URL.COMIC_BY_ID + params
+                url: hostConfig.COMIC_BY_ID + params
             };
 
             return HttpRequestService.get(param).then(function (response) {
@@ -46,7 +47,7 @@
          * @param {Object} | param - config view object.
          */
         function setCurrentView (param) {
-            return externalViewService.setCurrentView(param).then(function (response) {
+            return UtilityService.setCurrentView(param).then(function (response) {
                 return response;
             });
         }
@@ -59,7 +60,7 @@
          * @return {Object}
          */
         function setCurrentItem (param) {
-            return externalViewService.setCurrentItem(param).then(function (response) {
+            return UtilityService.setCurrentItem(param).then(function (response) {
                 return response;
             });
         }
@@ -71,7 +72,7 @@
          * @return {Object}
          */
         function getPaginationConfig () {
-            return externalViewService.getPaginationConfig();
+            return UtilityService.getPaginationConfig();
         }
 
         /**

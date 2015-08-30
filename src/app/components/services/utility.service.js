@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('readerApp.service.externalView', [
+    angular.module('readerApp.service.utility', [
         'readerApp.config'
-    ]).factory('ExternalViewService', ExternalViewService);
+    ]).factory('UtilityService', UtilityService);
 
-    ExternalViewService.$inject = ['$q', '$rootScope', 'AppConfig'];
-    function ExternalViewService($q, $rootScope, AppConfig) {
+    UtilityService.$inject = ['$q', '$rootScope', 'AppConfig'];
+    function UtilityService($q, $rootScope, AppConfig) {
 
         // Default config for "viewer" directive.
         var defaultConfig = {
@@ -22,6 +22,14 @@
                 offsetStart: 0,
                 totalCount: 0,
                 maxSize: 5
+            };
+
+        // Default host config.
+        var hostConfig = {
+                HOST: '',
+                LIST: '',
+                COMIC_BY_ID: '',
+                COVER: ''
             };
 
         var config = {};
@@ -47,6 +55,29 @@
          */
         function getPaginationConfig (params) {
             return angular.extend(paginationConfig, angular.copy(paginationConfig, params));
+        }
+
+        /**
+         * @description
+         * Get host config.
+         *
+         * @return {Object} | params - config object.
+         * @return {Object}
+         */
+        function getHostConfig () {
+            angular.extend(hostConfig, angular.copy(AppConfig.HOST[hostConfig.HOST], {}));
+            return angular.copy(hostConfig, {});
+        }
+
+        /**
+         * @description
+         * Set host config value.
+         *
+         * @return {String} | hostValue - chosen host value.
+         * @return {Object}
+         */
+        function setHostValue (hostValue) {
+            return angular.extend(hostConfig, {HOST: hostValue});
         }
 
         /**
@@ -116,11 +147,13 @@
 
         /**
          * @description
-         * Public ExternalViewService API.
+         * Public UtilityService API.
          */
         return {
             getPaginationConfig: getPaginationConfig,
+            getHostConfig: getHostConfig,
             getCurrentConfig: getCurrentConfig,
+            setHostValue: setHostValue,
             setCurrentView: setCurrentView,
             setCurrentItem: setCurrentItem,
             setModeChosen: setModeChosen

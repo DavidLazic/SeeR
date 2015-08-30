@@ -9,6 +9,9 @@
   "unused": true,
   "validthis": true,
   "jasmine": true,
+  "predef": [
+    "document"
+  ],
   "globals": {
     "angular": false,
     "inject": false,
