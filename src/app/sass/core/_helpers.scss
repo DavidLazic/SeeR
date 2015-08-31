@@ -36,3 +36,8 @@
 @each $value in $text-align {
     .-text-#{$value} {text-align: #{$value};}
 }
+
+//== Cursor.
+@each $value in $cursor-values {
+    .-cursor-#{$value} {cursor: #{$value};}
+}

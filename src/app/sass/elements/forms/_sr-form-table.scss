@@ -8,11 +8,39 @@
 
     .form-row {
         @include transition(all 0.3s ease);
-        margin-bottom: 10px;
-        padding: 15px 0;
+        margin-bottom: 2px;
+        padding: 0;
         background-color: $gray-dark;
-        border: 1px solid $red-darkest;
-        box-shadow: 0 0 10px -1px #000;
+        box-shadow: 0 0 5px 1px #000;
+        font-family: $font-family-openLight;
+
+        &:hover {
+            background-color: lighten($gray-dark, 3);
+        }
+
+        &:last-of-type {
+            margin-bottom: 15px;
+        }
+
+        > div {
+            padding: 15px;
+
+            .border-left {
+                position: absolute;
+                top: 0;
+                left: -5px;
+                bottom: 0;
+                width: 10px;
+                background-color: #161818;
+                box-shadow: inset 0px 0px 5px -1px #000;
+            }
+        }
+
+        > div:first-of-type {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
 
         &.ng-enter {
             opacity: 0;

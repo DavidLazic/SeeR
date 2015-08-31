@@ -144,6 +144,10 @@
         left: 0;
         overflow-x: hidden;
         overflow-y: auto;
+
+        &.-table-end {
+            padding: 0 8px 0 0;
+        }
     }
 
     &.-wrapper-header {
@@ -153,28 +157,13 @@
         box-shadow: 0 0 10px -1px #000;
 
         .headline {
-            @include transition(all 0.3s ease);
-            padding: 5px 0;
+            padding: 4px 0;
+            font-family: $font-family-juraRegular;
+            font-size: $font-size-medium;
             text-align: center;
             box-shadow: 0 0 6px -1px #000;
-            cursor: pointer;
-
-            &:hover {
-                background-color: $red-darkest;
-            }
-
-            &.-not-sortable {
-                box-shadow: none;
-                cursor: default;
-
-                &:hover {
-                    background-color: transparent;
-                }
-            }
-
-            &.active {
-                background-color: $red-darkest;
-            }
+            background-color: $red-darkest;
+            cursor: default;
         }
     }
 

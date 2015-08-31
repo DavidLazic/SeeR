@@ -22,6 +22,17 @@
         color: $gray;
     }
 
+    &.-title-logo {
+        position: fixed;
+        bottom: 2px;
+        right: 10px;
+        z-index: 5;
+        font-family: $font-family-building;
+        font-size: $font-size-large;
+        text-transform: uppercase;
+        text-align: right;
+    }
+
     &.-title-neon {
         text-shadow: -1px 1px 8px $blue-lighter, 1px -1px 8px #fff;
     }

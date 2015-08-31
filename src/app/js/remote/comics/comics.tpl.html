@@ -11,36 +11,39 @@
         <div class="col-sm-6 -line-height-45">
             <pagination
                 class="sr-pagination"
+                ng-class="{'-no-boundaries': cctrl.pagination.totalCount <= 5}"
                 total-items="cctrl.pagination.totalCount"
                 items-per-page="cctrl.pagination.limit"
                 ng-model="cctrl.pagination.offset"
                 max-size="cctrl.pagination.maxSize"
                 boundary-links="true"
                 previous-text="‹"
-                next-text="›">
+                next-text="›"
+                first-text="«"
+                last-text="»">
             </pagination>
         </div>
         <div class="col-sm-12">
             <div class="row sr-wrapper -wrapper-header">
-                <div class="col-md-6 -padding-y-0 -padding-x-5">
-                    <div class="headline active" data-text="Title">Title</div>
+                <div class="col-sm-9 -padding-y-0 -padding-x-5">
+                    <div class="headline" data-text="Title">Title</div>
                 </div>
-                <div class="col-md-6 -padding-y-0 -padding-x-5">
-                    <div class="headline -not-sortable">Actions</div>
+                <div class="col-sm-3 -padding-y-0 -padding-x-5">
+                    <div class="headline">Actions</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="sr-wrapper -wrapper-table">
+    <div class="sr-wrapper -wrapper-table" ng-class="{'-table-end': cctrl.isPaginationEnd()}">
         <div class="sr-form-table">
             <div class="row form-row" ng-repeat="item in cctrl.comics | filter: item.name | offset: {offset: cctrl.pagination.offset, limit: cctrl.pagination.limit}">
-                <div class="col-md-6 -text-center">
+                <div class="col-sm-9">
                     <div ng-bind="::item.name"></div>
                 </div>
-                <div class="col-md-6 -text-center">
-                    <i class="sr-icon -icon-lg icon-eye" ng-click="cctrl.onOpen(item)"></i>
-                    </button>
+                <div class="col-sm-3 -text-center -cursor-pointer" ng-click="cctrl.onOpen(item)">
+                    <div class="border-left"></div>
+                    <i class="sr-icon -icon-lg icon-eye"></i>
                 </div>
             </div>
         </div>
