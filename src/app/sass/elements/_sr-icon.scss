@@ -10,4 +10,9 @@
     &.-icon-lg {
         font-size: $font-size-big;
     }
+
+    &.-icon-back {
+        font-size: $font-size-x-medium;
+        color: lighten($green-dark, 10);
+    }
 }

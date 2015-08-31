@@ -3,8 +3,16 @@
     <div class="sr-view -view-corner -corner-tr"></div>
 
     <div class="sr-wrapper -wrapper-bar">
-        <a href="#/" ng-click="appctrl.onResetMode()">Home</a>
-        <a href ng-click="appctrl.onRead()" ng-if="appctrl.isItemSet()">Read</a>
+        <div class="row">
+            <div class="col-md-6 -padding-left-30 -text-left">
+                {{appctrl.item.name}}
+            </div>
+            <div class="col-md-6 -padding-right-30 -text-right">
+                <a href="#/" ng-click="appctrl.onResetMode()">
+                    <i class="sr-icon -icon-back icon-undo2"></i>
+                </a>
+            </div>
+        </div>
     </div>
 
     {{appctrl.item.info}}
