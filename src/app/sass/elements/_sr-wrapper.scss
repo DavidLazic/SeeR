@@ -168,6 +168,11 @@
         }
     }
 
+    &.-wrapper-form-text {
+        position: relative;
+        width: 320px;
+    }
+
     &.-wrapper-fixed-header {
         padding-top: 5px;
         height: 40px;
@@ -185,6 +190,10 @@
 
 @media screen and (min-width: $screen-x-lg) {
     .sr-wrapper {
+
+        &.-wrapper-form-text {
+            width: 420px;
+        }
 
         &.-wrapper-absolute {
 

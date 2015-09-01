@@ -17,7 +17,7 @@
 
         // Default pagination config.
         var paginationConfig = {
-                limit: 30,
+                limit: 50,
                 offset: 1,
                 offsetStart: 0,
                 totalCount: 0,

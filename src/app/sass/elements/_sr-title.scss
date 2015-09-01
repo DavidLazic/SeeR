@@ -23,14 +23,32 @@
     }
 
     &.-title-logo {
+        @include transition(opacity 0.3s ease);
         position: fixed;
-        bottom: 2px;
-        right: 10px;
+        top: 2px;
+        left: 10px;
         z-index: 5;
         font-family: $font-family-building;
         font-size: $font-size-large;
         text-transform: uppercase;
         text-align: right;
+
+        &.ng-enter {
+            opacity: 0;
+        }
+
+        &.ng-enter.ng-enter-active {
+            opacity: 1;
+        }
+
+        &.ng-leave {
+            opacity: 1;
+        }
+
+        &.ng-leave.ng-leave-active {
+            @include transition(opacity 0.2s ease);
+            opacity: 0;
+        }
     }
 
     &.-title-neon {

@@ -1,12 +1,15 @@
 <section>
 
     <div class="row sr-wrapper -wrapper-fixed-header">
-        <div class="col-sm-6">
-            <input class="sr-form-text"
-                   ng-model="item.name"
-                   ng-change="cctrl.onSearch()"
-                   ng-model-options="{debounce: 350}"
-                   placeholder="Search">
+        <div class="col-sm-6 -height-45">
+            <div class="sr-wrapper -wrapper-form-text">
+                <input class="sr-form-text -form-md"
+                       ng-model="cctrl.query"
+                       ng-change="cctrl.onSearch()"
+                       ng-model-options="{debounce: 350}"
+                       placeholder="Search">
+                <div class="sr-icon -icon-search -icon-green icon-search" ng-click="cctrl.onClear()"></div>
+            </div>
         </div>
         <div class="col-sm-6 -line-height-45">
             <pagination
@@ -15,6 +18,7 @@
                 total-items="cctrl.pagination.totalCount"
                 items-per-page="cctrl.pagination.limit"
                 ng-model="cctrl.pagination.offset"
+                ng-if="cctrl.pagination.totalCount > 0"
                 max-size="cctrl.pagination.maxSize"
                 boundary-links="true"
                 previous-text="‹"
@@ -25,10 +29,10 @@
         </div>
         <div class="col-sm-12">
             <div class="row sr-wrapper -wrapper-header">
-                <div class="col-sm-9 -padding-y-0 -padding-x-5">
+                <div class="col-sm-10 -padding-y-0 -padding-x-5">
                     <div class="headline" data-text="Title">Title</div>
                 </div>
-                <div class="col-sm-3 -padding-y-0 -padding-x-5">
+                <div class="col-sm-2 -padding-y-0 -padding-x-5">
                     <div class="headline">Actions</div>
                 </div>
             </div>
@@ -37,13 +41,13 @@
 
     <div class="sr-wrapper -wrapper-table" ng-class="{'-table-end': cctrl.isPaginationEnd()}">
         <div class="sr-form-table">
-            <div class="row form-row" ng-repeat="item in cctrl.comics | filter: item.name | offset: {offset: cctrl.pagination.offset, limit: cctrl.pagination.limit}">
-                <div class="col-sm-9">
+            <div class="row form-row" ng-repeat="item in cctrl.comics | filter: cctrl.query | offset: {offset: cctrl.pagination.offset, limit: cctrl.pagination.limit}">
+                <div class="col-sm-10">
                     <div ng-bind="::item.name"></div>
                 </div>
-                <div class="col-sm-3 -text-center -cursor-pointer" ng-click="cctrl.onOpen(item)">
+                <div class="col-sm-2 -text-center -cursor-pointer" ng-click="cctrl.onOpen(item)">
                     <div class="border-left"></div>
-                    <i class="sr-icon -icon-lg icon-eye"></i>
+                    <i class="sr-icon -icon-green icon-circle-right"></i>
                 </div>
             </div>
         </div>

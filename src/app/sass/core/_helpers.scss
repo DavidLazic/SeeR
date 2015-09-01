@@ -27,6 +27,11 @@
     .-position-#{$value} {position: #{$value};}
 }
 
+//== Height.
+@each $value in $line-height-values {
+    .-height-#{$value} {height: #{$value}px;}
+}
+
 //== Line height.
 @each $value in $line-height-values {
     .-line-height-#{$value} {line-height: #{$value}px;}

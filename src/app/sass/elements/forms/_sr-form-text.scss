@@ -5,7 +5,7 @@
 .sr-form-text {
     @include transition(all 0.3s ease);
     display: block;
-    padding: 0 10px;
+    padding: 0 25px 0 10px;
     height: 35px;
     width: 100%;
     max-width: 320px;
@@ -17,5 +17,19 @@
 
     &:focus {
         outline: none;
+    }
+
+    &.-form-md {
+        width: 320px;
+        max-width: none;
+    }
+}
+
+@media screen and (min-width: $screen-x-lg) {
+    .sr-form-text {
+
+        &.-form-md {
+            width: 420px;
+        }
     }
 }

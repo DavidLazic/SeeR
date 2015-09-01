@@ -11,7 +11,12 @@
     &.-logo-absolute {
         position: absolute;
         left: 50%;
+        opacity: 0;
         transform: translateX(-50%);
+        animation: enterTop 0.5s forwards ease;
+        -webkit-animation: enterTop 0.5s forwards ease;
+        animation-delay: 0.1s;
+        -webkit-animation-delay: 0.1s;
     }
 }
 

@@ -6,13 +6,17 @@
     display: inline-block;
     color: #000;
     cursor: pointer;
+    font-size: $font-size-x-medium;
 
-    &.-icon-lg {
-        font-size: $font-size-big;
+    &.-icon-search {
+        position: absolute;
+        top: 11px;
+        right: 5px;
+        font-size: $font-size-base;
+        cursor: default;
     }
 
-    &.-icon-back {
-        font-size: $font-size-x-medium;
-        color: lighten($green-dark, 10);
+    &.-icon-green {
+        color: lighten($green-dark, 5);
     }
 }

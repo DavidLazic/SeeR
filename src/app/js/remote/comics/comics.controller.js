@@ -12,11 +12,13 @@
         // view model
         vm.comics = [];
         vm.pagination = ComicsService.getPaginationConfig();
+        vm.query = '';
 
         // events
         vm.onSearch = onSearch;
         vm.onOpen = onOpen;
         vm.isPaginationEnd = isPaginationEnd;
+        vm.onClear = onClear;
 
         init();
 
@@ -44,6 +46,14 @@
             ComicsService.getSingleComic(item.mangaId).then(function (response) {
                 ComicsService.setCurrentItem({item: response});
             });
+        }
+
+        /**
+         * @description
+         * On clear search query fn.
+         */
+        function onClear () {
+            vm.query = '';
         }
 
         /**
