@@ -10,7 +10,8 @@
   "validthis": true,
   "jasmine": true,
   "predef": [
-    "document"
+    "document",
+    "console"
   ],
   "globals": {
     "angular": false,

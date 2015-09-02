@@ -110,11 +110,11 @@
 
 @font-face {
     font-family: 'icomoon';
-    src:url('../../../assets/fonts/icomoon/icomoon.eot?-2ff8rl');
-    src:url('../../../assets/fonts/icomoon/icomoon.eot?#iefix-2ff8rl') format('embedded-opentype'),
-        url('../../../assets/fonts/icomoon/icomoon.ttf?-2ff8rl') format('truetype'),
-        url('../../../assets/fonts/icomoon/icomoon.woff?-2ff8rl') format('woff'),
-        url('../../../assets/fonts/icomoon/icomoon.svg?-2ff8rl#icomoon') format('svg');
+    src:url('../../../assets/fonts/icomoon/icomoon.eot?-5p57xg');
+    src:url('../../../assets/fonts/icomoon/icomoon.eot?#iefix-5p57xg') format('embedded-opentype'),
+        url('../../../assets/fonts/icomoon/icomoon.ttf?-5p57xg') format('truetype'),
+        url('../../../assets/fonts/icomoon/icomoon.woff?-5p57xg') format('woff'),
+        url('../../../assets/fonts/icomoon/icomoon.svg?-5p57xg#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -133,23 +133,17 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-display:before {
-    content: "\e956";
-}
 .icon-upload:before {
     content: "\e961";
 }
 .icon-undo2:before {
     content: "\e967";
 }
-.icon-redo2:before {
-    content: "\e968";
+.icon-spinner2:before {
+    content: "\e97b";
 }
 .icon-spinner9:before {
     content: "\e982";
-}
-.icon-spinner10:before {
-    content: "\e983";
 }
 .icon-search:before {
     content: "\e986";
@@ -181,9 +175,6 @@
 .icon-circle-left:before {
     content: "\ea44";
 }
-.icon-embed:before {
-    content: "\ea7f";
-}
 .icon-share2:before {
     content: "\ea82";
 }
@@ -196,3 +187,4 @@
 .icon-linkedin:before {
     content: "\eac8";
 }
+

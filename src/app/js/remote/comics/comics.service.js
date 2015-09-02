@@ -19,7 +19,7 @@
          */
         function getAllComics() {
             return HttpRequestService.get({url: hostConfig.LIST}).then(function (response) {
-                return $filter('orderBy')(response, 'name');
+                return $filter('orderBy')(response, 'mangaId');
             });
         }
 
@@ -36,6 +36,7 @@
             };
 
             return HttpRequestService.get(param).then(function (response) {
+                response.mangaId = params;
                 return response;
             });
         }

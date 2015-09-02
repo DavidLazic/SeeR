@@ -5,6 +5,7 @@
     <div class="sr-wrapper -wrapper-bar">
         <div class="row">
             <div class="col-md-6 -padding-left-30 -text-left">
+                <loader></loader>
                 {{appctrl.item.name}}
             </div>
             <div class="col-md-6 -padding-right-30 -text-right">
@@ -19,7 +20,7 @@
 
     <ul>
         <li ng-repeat="comic in appctrl.item.chapters">
-            <a href ng-click="appctrl.onRead(appctrl.item.href, comic.chapterId, $index)">{{comic.chapterId}}</a>
+            <a href ng-click="appctrl.onRead(appctrl.item.mangaId, comic.chapterId, $index)">{{comic.chapterId}}</a>
         </li>
     </ul>
 

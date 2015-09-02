@@ -19,7 +19,8 @@
             isWidthSet: false,
             posLeft: 0,
             wrapperWidth: 0,
-            timeout: false
+            timeout: false,
+            imageLoaded: false
         };
 
         /**
@@ -27,7 +28,7 @@
          * Set width of the parent element ("ul").
          */
         this._setWrapperWidth = function () {
-            ctrl.cfg.wrapperWidth = [($scope.model.total + 1) * childWidth, 'px'].join('');
+            ctrl.cfg.wrapperWidth = ($scope.model.total + 1) * childWidth + 'px';
         };
 
         /**
@@ -170,7 +171,7 @@
          * @return {String}
          */
         this._getPosition = function () {
-            return ['-', 100 * $scope.model.index, '%'].join('');
+            return '-' + 100 * $scope.model.index + '%';
         };
 
         /**
@@ -195,6 +196,8 @@
     }
 
     cReaderModule.directive('cReader', cReader);
+
+    cReader.$inject = [];
     function cReader() {
         return {
             replace: true,
@@ -214,7 +217,6 @@
 
     readerWrapper.$inject = ['$timeout'];
     function readerWrapper($timeout) {
-
         return {
             restrict: 'A',
             require: '^cReader',
@@ -238,7 +240,6 @@
 
     imageWrapper.$inject = [];
     function imageWrapper() {
-
         return {
             restrict: 'A',
             require: '^cReader',
@@ -248,6 +249,30 @@
                         ctrl._setWrapperWidth();
                     });
                 }
+            }
+        };
+    }
+
+    cReaderModule.directive('loadComplete', loadComplete);
+
+    loadComplete.$inject = [];
+    function loadComplete() {
+        return {
+            restrict: 'A',
+            require: '^cReader',
+            scope: {},
+            link: function (scope, elem, attrs, ctrl) {
+                scope.$watch(function () {
+                    return elem[0].complete;
+                }, function (val) {
+                    if (val) {
+                        ctrl.cfg.imageLoaded = true;
+                    }
+                });
+
+                scope.$on('$destroy', function () {
+                    elem.off();
+                });
             }
         };
     }

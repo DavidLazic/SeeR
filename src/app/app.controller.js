@@ -8,8 +8,8 @@
         'readerApp.service.utility'
     ]).controller('AppController', AppController);
 
-    AppController.$inject = ['$rootScope', '$modal', 'AppConfig', 'AppService', 'UtilityService'];
-    function AppController($rootScope, $modal, AppConfig, AppService, UtilityService) {
+    AppController.$inject = ['$http', '$scope', '$rootScope', '$modal', 'AppConfig', 'AppService', 'UtilityService'];
+    function AppController($http, $scope, $rootScope, $modal, AppConfig, AppService, UtilityService) {
         var vm = this,
             data = AppService.getDataConfig();
 

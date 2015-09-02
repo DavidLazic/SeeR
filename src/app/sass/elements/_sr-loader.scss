@@ -1,0 +1,12 @@
+//
+// SeeR loader
+// --------------------------------------------------
+
+.sr-loader {
+    @include border-radius(50%);
+    display: none;
+
+    &.active {
+        display: inline-block;
+    }
+}

@@ -20,7 +20,7 @@
          */
         function getChapterById (params) {
             var param = {
-                url: hostConfig.COMIC_BY_ID + '-' + params.comic + '/' + params.chapterId
+                url: hostConfig.COMIC_BY_ID + params.comic + '/' + params.chapterId
             };
 
             return HttpRequestService.get(param).then(function (response) {
