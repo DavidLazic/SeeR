@@ -1,0 +1,11 @@
+//
+// SeeR labels
+// --------------------------------------------------
+
+.sr-label {
+    font-family: $font-family-openLight;
+
+    &.-label-tag {
+        font-family: $font-family-juraRegular;
+    }
+}

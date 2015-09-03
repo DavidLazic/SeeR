@@ -1,10 +1,57 @@
 <div class="row sr-wrapper -wrapper-comic">
-    <div class="col-md-6">
-        <div class="sr-wrapper -wrapper-cover">
-            <img ng-src="{{appctrl.item.cover}}" ng-if="appctrl.item" image-loader>
+
+    <div class="col-sm-8">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="sr-label -label-tag">Author:</label>
+            </div>
+            <div class="col-sm-6">
+                {{appctrl.item.author}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="sr-label -label-tag">Artist:</label>
+            </div>
+            <div class="col-sm-6">
+                {{appctrl.item.artist}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="sr-label -label-tag">Status:</label>
+            </div>
+            <div class="col-sm-6">
+                {{appctrl.item.status}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="sr-label -label-tag">Released:</label>
+            </div>
+            <div class="col-sm-6">
+                {{(appctrl.item.yearOfRelease) ? appctrl.item.yearOfRelease : 'N/A'}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 -padding-right-0">
+                <label class="sr-label -label-tag">Description:</label>
+            </div>
+            <div class="col-sm-12 -padding-right-0">
+                {{appctrl.item.info}}
+            </div>
         </div>
     </div>
-    <div class="col-md-6">
-        {{appctrl.item.info}}
+
+    <div class="col-sm-4">
+        <div class="sr-image">
+            <img class="image-element" ng-src="{{appctrl.item.cover}}" image-loader>
+        </div>
     </div>
+
 </div>

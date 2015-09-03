@@ -4,7 +4,9 @@
     <div class="slider" ng-class="{ '-loader-active' : rctrl.cfg.isLoading }">
         <ul reader-wrapper class="asdf" style="left: {{rctrl.cfg.posLeft}}; width: {{rctrl.cfg.wrapperWidth}}">
             <li ng-repeat="image in model.chapter track by $index" image-wrapper>
-                <img ng-src="{{image}}" image-loader ng-show="imageLoaded">
+                <div class="sr-image">
+                    <img class="image-element" ng-src="{{image}}" image-loader>
+                </div>
             </li>
         </ul>
     </div>

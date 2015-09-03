@@ -10,25 +10,26 @@
 
     imageLoaderModule.directive('imageLoader', imageLoader);
 
-    imageLoader.$inject = [];
-    function imageLoader() {
+    imageLoader.$inject = ['$timeout'];
+    function imageLoader($timeout) {
         return {
             restrict: 'A',
-            scope: {
-                ngShow: '='
-            },
+            scope: {},
             link: function (scope, elem) {
-                scope.ngShow = false;
                 scope.$watch(function () {
                     return elem[0].complete;
                 }, function (val) {
                     if (val) {
-                        scope.ngShow = true;
+                        var timeout = $timeout(function () {
+                            angular.element(elem[0]).parent().addClass('active');
+                        }, 1000);
+
                     }
                 });
 
                 scope.$on('$destroy', function () {
                     elem.off();
+                    $timeout.off(timeout);
                 });
             }
         };

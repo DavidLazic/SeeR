@@ -44,10 +44,8 @@
             restrict: 'A',
             require: '^loader',
             link: function (scope, elem, attrs, ctrl) {
-                var requests = $http.pendingRequests;
-
                 scope.$watch(function () {
-                    return requests.length;
+                    return $http.pendingRequests.length;
                 }, ctrl.resolveClass);
             }
         };

@@ -12,7 +12,9 @@
     readerController.$inject = ['$scope', '$timeout'];
     function readerController($scope, $timeout) {
         var ctrl = this,
-            childWidth = 0;
+            childWidth = 0,
+            onPrev = $scope.onPrev || angular.noop,
+            onNext = $scope.onNext || angular.noop;
 
         this.cfg = {
             isLoading: false,
@@ -130,7 +132,7 @@
         function _moveLeft (cb) {
             $scope.model.nextChapter = $scope.model.chapter.slice();
             $scope.model.chapter = $scope.model.previousChapter.slice();
-            $scope.onPrev();
+            onPrev();
 
             return (angular.isFunction(cb)) ? cb() : angular.noop;
         }
@@ -145,7 +147,7 @@
         function _moveRight (cb) {
             $scope.model.previousChapter = $scope.model.chapter.slice();
             $scope.model.chapter = $scope.model.nextChapter.slice();
-            $scope.onNext();
+            onNext();
 
             return (angular.isFunction(cb)) ? cb() : angular.noop;
         }

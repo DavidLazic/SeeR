@@ -1,0 +1,54 @@
+//
+// SeeR image
+// --------------------------------------------------
+
+.sr-image {
+    position: relative;
+    min-height: 300px;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px -1px #000;
+
+    .image-element {
+        display: none;
+        width: 100%;
+    }
+
+    &::before{
+        @include transition(all 0.3s ease);
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        transform: translateX(-100%);
+        animation: comicIdle 6s infinite ease;
+        -webkit-animation: comicIdle 6s infinite ease;
+        animation-delay: 0.2s;
+        -webkit-animation-delay: 0.2s;
+        content: "";
+        background: linear-gradient(to right, transparent, $red-darkest, transparent);
+    }
+
+    &.-delayed {
+        animation-delay: 2s;
+        -webkit-animation-delay: 2s;
+    }
+
+    &.active {
+        box-shadow: none;
+
+        &::before {
+            display: none;
+        }
+
+        .image-element {
+            display: block;
+        }
+    }
+}
+
+@media screen and (min-width: $screen-x-lg) {
+    .sr-image {
+        min-height: 400px;
+    }
+}

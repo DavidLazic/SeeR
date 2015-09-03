@@ -42,6 +42,11 @@
     .-text-#{$value} {text-align: #{$value};}
 }
 
+//== Text transform.
+@each $value in $text-transform {
+    .-text-#{$value} {text-transform: #{$value};}
+}
+
 //== Cursor.
 @each $value in $cursor-values {
     .-cursor-#{$value} {cursor: #{$value};}
