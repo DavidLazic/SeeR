@@ -20,7 +20,8 @@
             posLeft: 0,
             wrapperWidth: 0,
             timeout: false,
-            imageLoaded: false
+            imageLoaded: false,
+            style: 'position: relative'
         };
 
         /**
@@ -55,8 +56,8 @@
          */
         this._checkKeyCode = function (event) {
             var keyCodes = {
-                37: ctrl._onMoveLeft,
-                39: ctrl._onMoveRight
+                37: _onMoveLeft,
+                39: _onMoveRight
             };
 
             return (keyCodes[event.keyCode]) ? keyCodes[event.keyCode]() : angular.noop;
@@ -65,134 +66,144 @@
         /**
          * @description
          * Move slider to the left or load previous chapter.
+         * @private
          */
-        this._onMoveLeft = function () {
+        function _onMoveLeft () {
             if ($scope.model.index > 0 ) {
                 --$scope.model.index;
-                ctrl.cfg.posLeft = ctrl._getPosition();
-            } else if (ctrl._isFirstChapter()) {
+                ctrl.cfg.posLeft = _getPosition();
+            } else if (_isFirstChapter()) {
                 return angular.noop;
             } else {
-                ctrl._onResetSlider('previousChapter');
+                _onResetSlider('previousChapter');
             }
-        };
+        }
 
         /**
          * @description
          * Move slider to the right or load next chapter.
+         * @private
          */
-        this._onMoveRight = function () {
+        function _onMoveRight () {
             if ($scope.model.index < $scope.model.total) {
                 ++$scope.model.index;
-                ctrl.cfg.posLeft = ctrl._getPosition();
-            } else if (ctrl._isLastChapter()) {
+                ctrl.cfg.posLeft = _getPosition();
+            } else if (_isLastChapter()) {
                 return angular.noop;
             } else {
-                ctrl._onResetSlider('nextChapter');
+                _onResetSlider('nextChapter');
             }
-        };
+        }
 
         /**
          * @description
          * On reset slider.
          *
          * @param  {String} | property - current $scope property.
+         * @private
          */
-        this._onResetSlider = function (property) {
+        function _onResetSlider (property) {
             var type = {
-                'previousChapter': ctrl._moveLeft,
-                'nextChapter': ctrl._moveRight
+                'previousChapter': _moveLeft,
+                'nextChapter': _moveRight
             };
 
             if ($scope.model[property].length && type[property]) {
-                ctrl._setLoader();
+                _setLoader();
                 type[property](function () {
-                    ctrl._resetSlider(function () {
+                    _resetSlider(function () {
                         ctrl.cfg.timeout = $timeout(function () {
-                            ctrl._setLoader();
+                            _setLoader();
                         }, 800);
                     });
                 });
             }
-        };
+        }
 
         /**
          * @description
          * Move slider to the left and prefetch previous chapter.
+         * @private
          *
          * @return {Function}
          */
-        this._moveLeft = function (cb) {
+        function _moveLeft (cb) {
             $scope.model.nextChapter = $scope.model.chapter.slice();
             $scope.model.chapter = $scope.model.previousChapter.slice();
             $scope.onPrev();
 
             return (angular.isFunction(cb)) ? cb() : angular.noop;
-        };
+        }
 
         /**
          * @description
          * Move slider to the right and prefetch next chapter.
+         * @private
          *
          * @return {Function}
          */
-        this._moveRight = function (cb) {
+        function _moveRight (cb) {
             $scope.model.previousChapter = $scope.model.chapter.slice();
             $scope.model.chapter = $scope.model.nextChapter.slice();
             $scope.onNext();
 
             return (angular.isFunction(cb)) ? cb() : angular.noop;
-        };
+        }
 
         /**
          * @description
          * Reset slider.
+         * @private
          */
-        this._resetSlider = function (cb) {
+        function _resetSlider (cb) {
             $scope.model.index = 0;
             ctrl.cfg.posLeft = 0;
             ctrl._setWrapperWidth();
 
             return (angular.isFunction(cb)) ? cb() : angular.noop;
-        };
+        }
 
         /**
          * @description
          * Set loading status.
+         * @private
          */
-        this._setLoader = function () {
+        function _setLoader () {
             ctrl.cfg.isLoading = !ctrl.cfg.isLoading;
-        };
+        }
 
         /**
          * @description
          * Get current slider position.
+         * @private
          *
          * @return {String}
          */
-        this._getPosition = function () {
+        function _getPosition () {
             return '-' + 100 * $scope.model.index + '%';
-        };
+        }
 
         /**
          * @description
          * Check if current chapters is first chapter.
+         * @private
          *
          * @return {Bool}
          */
-        this._isFirstChapter = function () {
+        function _isFirstChapter () {
             return $scope.model.chapterIdx === 0;
-        };
+        }
 
         /**
          * @description
          * Check if current chapter is last chapter.
+         * @private
          *
          * @return {Bool}
          */
-        this._isLastChapter = function () {
+        function _isLastChapter () {
             return $scope.model.chapterIdx === $scope.model.totalChapters;
-        };
+        }
     }
 
     cReaderModule.directive('cReader', cReader);
@@ -244,35 +255,11 @@
             restrict: 'A',
             require: '^cReader',
             link: function (scope, elem, attrs, ctrl) {
-                if (!ctrl.isWidthSet) {
+                if (!ctrl.cfg.isWidthSet) {
                     ctrl._setChildWidth(elem[0].getBoundingClientRect().width, function () {
                         ctrl._setWrapperWidth();
                     });
                 }
-            }
-        };
-    }
-
-    cReaderModule.directive('loadComplete', loadComplete);
-
-    loadComplete.$inject = [];
-    function loadComplete() {
-        return {
-            restrict: 'A',
-            require: '^cReader',
-            scope: {},
-            link: function (scope, elem, attrs, ctrl) {
-                scope.$watch(function () {
-                    return elem[0].complete;
-                }, function (val) {
-                    if (val) {
-                        ctrl.cfg.imageLoaded = true;
-                    }
-                });
-
-                scope.$on('$destroy', function () {
-                    elem.off();
-                });
             }
         };
     }

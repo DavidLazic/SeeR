@@ -4,6 +4,9 @@
 
 .sr-loader {
     @include border-radius(50%);
+    position: absolute;
+    top: 0;
+    left: 15px;
     display: none;
 
     &.active {

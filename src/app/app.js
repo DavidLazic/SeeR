@@ -20,7 +20,8 @@
         'readerApp.filter.offset',
         'readerApp.directive.externalView',
         'readerApp.directive.cReader',
-        'readerApp.directive.loader'
+        'readerApp.directive.loader',
+        'readerApp.directive.imageLoader'
     ]).config(function ($routeProvider, AppConfig) {
         $routeProvider
             .otherwise({

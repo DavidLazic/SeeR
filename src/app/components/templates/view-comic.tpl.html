@@ -1,22 +1,21 @@
 <section class="sr-wrapper -wrapper-view">
-    <div class="sr-view -view-corner -corner-tl"></div>
-    <div class="sr-view -view-corner -corner-tr"></div>
 
-    <div class="sr-wrapper -wrapper-bar">
-        <div class="row">
-            <div class="col-md-6 -padding-left-30 -text-left">
-                <loader></loader>
-                {{appctrl.item.name}}
-            </div>
-            <div class="col-md-6 -padding-right-30 -text-right">
-                <a href="#/" ng-click="appctrl.onResetMode()">
-                    <i class="sr-icon -icon-green icon-undo2"></i>
-                </a>
-            </div>
+    <div class="row sr-wrapper -wrapper-bar">
+        <div class="col-md-6 -padding-left-45 -text-left">
+            <loader></loader>
+            {{appctrl.item.name}}
+        </div>
+        <div class="col-md-6 -text-right">
+            <a href="#/" ng-click="appctrl.onResetMode()">
+                <i class="sr-icon -icon-green icon-undo2"></i>
+            </a>
         </div>
     </div>
 
-    {{appctrl.item.info}}
+    <div ng-include ng-if="!appctrl.item" src="'/app/components/templates/partials/comic-default.tpl.html'"></div>
+
+    <div ng-include ng-if="appctrl.item" src="'/app/components/templates/partials/comic.tpl.html'"></div>
+
 
     <ul>
         <li ng-repeat="comic in appctrl.item.chapters">
@@ -24,6 +23,4 @@
         </li>
     </ul>
 
-    <div class="sr-view -view-corner -corner-br"></div>
-    <div class="sr-view -view-corner -corner-bl"></div>
 </section>

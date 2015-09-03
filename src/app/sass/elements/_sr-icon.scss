@@ -17,12 +17,18 @@
         color: $blue-lighter;
     }
 
-    &.-icon-search {
+    &.-icon-search,
+    &.-icon-clear {
         position: absolute;
         top: 11px;
         right: 5px;
         font-size: $font-size-base;
+        z-index: 50;
         cursor: default;
+    }
+
+    &.-icon-clear {
+        cursor: pointer;
     }
 
     &.-icon-green {

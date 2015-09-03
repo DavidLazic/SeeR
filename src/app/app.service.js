@@ -18,6 +18,10 @@
                 currentChapter: null
             };
 
+        var itemModel = {
+                cover: '/images/no-cover.png'
+            };
+
         var cfg = {};
 
         /**
@@ -28,6 +32,16 @@
          */
         function getDataConfig () {
             return angular.extend(cfg, angular.copy(dataConfig, {}));
+        }
+
+        /**
+         * @description
+         * Get default item model.
+         *
+         * @return {Object}
+         */
+        function getItemModel () {
+            return angular.copy(itemModel, {});
         }
 
         /**
@@ -54,6 +68,7 @@
          */
         return {
             getDataConfig: getDataConfig,
+            getItemModel: getItemModel,
             getChapterById: getChapterById
         };
     }

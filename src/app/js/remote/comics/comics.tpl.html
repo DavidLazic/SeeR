@@ -8,7 +8,8 @@
                        ng-change="cctrl.onSearch()"
                        ng-model-options="{debounce: 350}"
                        placeholder="Search">
-                <div class="sr-icon -icon-search -icon-green icon-search" ng-click="cctrl.onClear()"></div>
+                <i class="sr-icon -icon-search -icon-green icon-search" ng-if="!cctrl.query"></i>
+                <i class="sr-icon -icon-clear -icon-green icon-cross" ng-if="cctrl.query" ng-click="cctrl.onClear()"></i>
             </div>
         </div>
         <div class="col-sm-6 -line-height-45">
