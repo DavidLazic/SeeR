@@ -72,6 +72,10 @@
             &::after {
                 right: 5px;
             }
+
+            .-wrapper-home {
+                display: none;
+            }
         }
 
         .wrapper-content {
@@ -98,6 +102,8 @@
         margin: 0 0 20px;
         min-height: 300px;
         text-align: left;
+        animation: fadeIn 0.5s forwards ease;
+        -webkit-animation: fadeIn 0.5s forwards ease;
     }
 
     &.-wrapper-bar {

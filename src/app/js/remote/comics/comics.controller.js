@@ -5,8 +5,8 @@
         'readerApp.remote.comics.service'
     ]).controller('ComicsController', ComicsController);
 
-    ComicsController.$inject = ['ComicsService'];
-    function ComicsController(ComicsService) {
+    ComicsController.$inject = ['$timeout', 'ComicsService'];
+    function ComicsController($timeout, ComicsService) {
         var vm = this;
 
         // view model
@@ -26,8 +26,8 @@
          * @return void
          */
         function init() {
-            _setCurrentView();
             _getAllComics();
+            _debounceAnimation();
         }
 
         /**
@@ -54,6 +54,19 @@
          */
         function onClear () {
             vm.query = '';
+        }
+
+        /**
+         * @description
+         * Debouce initial external comic view animation for smoother rendering.
+         *
+         * @private
+         */
+        function _debounceAnimation () {
+            var timeout = $timeout(function () {
+                _setCurrentView();
+                $timeout.cancel(timeout);
+            }, 750);
         }
 
         /**

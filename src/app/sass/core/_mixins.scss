@@ -18,7 +18,7 @@
 
 @mixin progressiveAnimationDelay($itemCount) {
     @for $i from 1 through $itemCount {
-        $time: 1 + $i * 0.2s;
+        $time: $i * 0.2s;
         &:nth-child(#{$i}){
 
             &::before {
