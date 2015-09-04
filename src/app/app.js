@@ -10,14 +10,21 @@
         'ngRoute',
         'ui.bootstrap',
 
+        // main modules
         'readerApp.app',
         'readerApp.home',
         'readerApp.remote',
         'readerApp.modal',
 
+        // services
         'readerApp.service.httpRequest',
         'readerApp.service.utility',
+
+        // filters
         'readerApp.filter.offset',
+        'readerApp.filter.dashRemove',
+
+        // directives
         'readerApp.directive.externalView',
         'readerApp.directive.cReader',
         'readerApp.directive.loader',

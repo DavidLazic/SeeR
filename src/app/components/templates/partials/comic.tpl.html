@@ -7,7 +7,7 @@
                 <label class="sr-label -label-tag">Author:</label>
             </div>
             <div class="col-sm-6">
-                {{appctrl.item.author}}
+                <span class="sr-label -label-author" ng-repeat="author in appctrl.item.author | dashRemove: author">{{author}}</span>
             </div>
         </div>
 

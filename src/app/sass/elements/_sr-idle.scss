@@ -6,7 +6,7 @@
     position: relative;
     min-height: 300px;
     overflow: hidden;
-    box-shadow: inset 0 0 10px -1px #000;
+    box-shadow: 0 0 10px -1px #000;
 
     .image-element {
         display: none;
@@ -58,6 +58,7 @@
     &.-idle-text {
         @include progressiveAnimationDelay(5);
         min-height: 20px;
+        box-shadow: inset 0 0 6px -1px #000;
 
         &+.-idle-text {
             margin-top: 15px;
@@ -65,6 +66,7 @@
     }
 
     &.active {
+        min-height: 0;
         box-shadow: none;
 
         &::before {

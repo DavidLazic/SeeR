@@ -8,4 +8,15 @@
     &.-label-tag {
         font-family: $font-family-juraRegular;
     }
+
+    &.-label-author {
+        text-transform: capitalize;
+
+        &+.-label-author {
+
+            &::before {
+                content: ", ";
+            }
+        }
+    }
 }
