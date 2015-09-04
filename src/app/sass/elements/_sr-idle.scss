@@ -1,8 +1,8 @@
 //
-// SeeR image
+// SeeR idle
 // --------------------------------------------------
 
-.sr-image {
+.sr-idle {
     position: relative;
     min-height: 300px;
     overflow: hidden;
@@ -25,7 +25,7 @@
         -webkit-animation: comicIdle 6s infinite ease;
         animation-delay: 0.2s;
         -webkit-animation-delay: 0.2s;
-        content: "";
+        content: attr(data-asdf);
         background: linear-gradient(to right, transparent, $red-darkest, transparent);
     }
 
@@ -48,7 +48,7 @@
 }
 
 @media screen and (min-width: $screen-x-lg) {
-    .sr-image {
+    .sr-idle {
         min-height: 400px;
     }
 }
