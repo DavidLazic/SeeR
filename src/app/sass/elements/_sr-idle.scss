@@ -25,8 +25,23 @@
         -webkit-animation: comicIdle 6s infinite ease;
         animation-delay: 0.2s;
         -webkit-animation-delay: 0.2s;
-        content: attr(data-asdf);
-        background: linear-gradient(to right, transparent, $red-darkest, transparent);
+        content: "";
+        background: linear-gradient(to right, transparent, rgba(61, 34, 38, 0.9), transparent);
+    }
+
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        content: attr(idle-text);
+        font-family: $font-family-building;
+        font-size: $font-size-h3;
+        text-align: center;
+        text-transform: uppercase;
+        line-height: 300px;
+        color: rgba(22, 24, 24, 0.7);
     }
 
     &.-delayed {
@@ -50,5 +65,10 @@
 @media screen and (min-width: $screen-x-lg) {
     .sr-idle {
         min-height: 400px;
+
+        &::after {
+            font-size: $font-size-h2;
+            line-height: 400px;
+        }
     }
 }

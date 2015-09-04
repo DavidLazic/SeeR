@@ -16,22 +16,21 @@
             onPrev = $scope.onPrev || angular.noop,
             onNext = $scope.onNext || angular.noop;
 
-        this.cfg = {
-            isLoading: false,
-            isWidthSet: false,
-            posLeft: 0,
-            wrapperWidth: 0,
-            timeout: false,
-            imageLoaded: false,
-            style: 'position: relative'
-        };
+        this.isLoading = false;
+        this.isWidthSet = false;
+        this.posLeft = 0;
+        this.wrapperWidth = 0;
+        this.timeout = false;
+        this.imageLoaded = false;
 
         /**
          * @description
          * Set width of the parent element ("ul").
+         *
+         * @public
          */
-        this._setWrapperWidth = function () {
-            ctrl.cfg.wrapperWidth = ($scope.model.total + 1) * childWidth + 'px';
+        this.setWrapperWidth = function () {
+            ctrl.wrapperWidth = ($scope.model.total + 1) * childWidth + 'px';
         };
 
         /**
@@ -39,10 +38,11 @@
          * Set child element width.
          *
          * @param {Integer}  | width - "li" child element width.
-         * @param {Function} | cb - callback function (_setWrapperWidth).
+         * @param {Function} | cb - callback function (setWrapperWidth).
          * @return {Function}
+         * @public
          */
-        this._setChildWidth = function (width, cb) {
+        this.setChildWidth = function (width, cb) {
             childWidth = width;
             ctrl.isWidthSet = true;
 
@@ -55,11 +55,12 @@
          *
          * @param  {Object} | event - keydown event.
          * @return {Function}
+         * @public
          */
-        this._checkKeyCode = function (event) {
+        this.checkKeyCode = function (event) {
             var keyCodes = {
-                37: _onMoveLeft,
-                39: _onMoveRight
+                37: ctrl.onMoveLeft,
+                39: ctrl.onMoveRight
             };
 
             return (keyCodes[event.keyCode]) ? keyCodes[event.keyCode]() : angular.noop;
@@ -68,34 +69,36 @@
         /**
          * @description
          * Move slider to the left or load previous chapter.
-         * @private
+         *
+         * @public
          */
-        function _onMoveLeft () {
+        this.onMoveLeft = function () {
             if ($scope.model.index > 0 ) {
                 --$scope.model.index;
-                ctrl.cfg.posLeft = _getPosition();
+                ctrl.posLeft = _getPosition();
             } else if (_isFirstChapter()) {
                 return angular.noop;
             } else {
                 _onResetSlider('previousChapter');
             }
-        }
+        };
 
         /**
          * @description
          * Move slider to the right or load next chapter.
-         * @private
+         *
+         * @public
          */
-        function _onMoveRight () {
+        this.onMoveRight = function () {
             if ($scope.model.index < $scope.model.total) {
                 ++$scope.model.index;
-                ctrl.cfg.posLeft = _getPosition();
+                ctrl.posLeft = _getPosition();
             } else if (_isLastChapter()) {
                 return angular.noop;
             } else {
                 _onResetSlider('nextChapter');
             }
-        }
+        };
 
         /**
          * @description
@@ -114,7 +117,7 @@
                 _setLoader();
                 type[property](function () {
                     _resetSlider(function () {
-                        ctrl.cfg.timeout = $timeout(function () {
+                        ctrl.timeout = $timeout(function () {
                             _setLoader();
                         }, 800);
                     });
@@ -125,9 +128,9 @@
         /**
          * @description
          * Move slider to the left and prefetch previous chapter.
-         * @private
          *
          * @return {Function}
+         * @private
          */
         function _moveLeft (cb) {
             $scope.model.nextChapter = $scope.model.chapter.slice();
@@ -140,9 +143,9 @@
         /**
          * @description
          * Move slider to the right and prefetch next chapter.
-         * @private
          *
          * @return {Function}
+         * @private
          */
         function _moveRight (cb) {
             $scope.model.previousChapter = $scope.model.chapter.slice();
@@ -155,12 +158,13 @@
         /**
          * @description
          * Reset slider.
+         *
          * @private
          */
         function _resetSlider (cb) {
             $scope.model.index = 0;
-            ctrl.cfg.posLeft = 0;
-            ctrl._setWrapperWidth();
+            ctrl.posLeft = 0;
+            ctrl.setWrapperWidth();
 
             return (angular.isFunction(cb)) ? cb() : angular.noop;
         }
@@ -168,18 +172,19 @@
         /**
          * @description
          * Set loading status.
+         *
          * @private
          */
         function _setLoader () {
-            ctrl.cfg.isLoading = !ctrl.cfg.isLoading;
+            ctrl.isLoading = !ctrl.isLoading;
         }
 
         /**
          * @description
          * Get current slider position.
-         * @private
          *
          * @return {String}
+         * @private
          */
         function _getPosition () {
             return '-' + 100 * $scope.model.index + '%';
@@ -188,9 +193,9 @@
         /**
          * @description
          * Check if current chapters is first chapter.
-         * @private
          *
          * @return {Bool}
+         * @private
          */
         function _isFirstChapter () {
             return $scope.model.chapterIdx === 0;
@@ -199,9 +204,9 @@
         /**
          * @description
          * Check if current chapter is last chapter.
-         * @private
          *
          * @return {Bool}
+         * @private
          */
         function _isLastChapter () {
             return $scope.model.chapterIdx === $scope.model.totalChapters;
@@ -237,13 +242,13 @@
                 var $doc = angular.element(document);
 
                 $doc.on('keydown', function (event) {
-                    ctrl._checkKeyCode(event);
+                    ctrl.checkKeyCode(event);
                     scope.$apply();
                 });
 
                 scope.$on('$destroy', function () {
                     $doc.off();
-                    $timeout.cancel(ctrl.cfg.timeout);
+                    $timeout.cancel(ctrl.timeout);
                 });
             }
         };
@@ -257,9 +262,9 @@
             restrict: 'A',
             require: '^cReader',
             link: function (scope, elem, attrs, ctrl) {
-                if (!ctrl.cfg.isWidthSet) {
-                    ctrl._setChildWidth(elem[0].getBoundingClientRect().width, function () {
-                        ctrl._setWrapperWidth();
+                if (!ctrl.isWidthSet) {
+                    ctrl.setChildWidth(elem[0].getBoundingClientRect().width, function () {
+                        ctrl.setWrapperWidth();
                     });
                 }
             }

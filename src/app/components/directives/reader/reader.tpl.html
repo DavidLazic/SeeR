@@ -1,13 +1,13 @@
-<div ng-style="rctrl.cfg.style">
-    <button type="button" class="btn-asdf-left" ng-click="rctrl._onMoveLeft()">Left</button>
+<div style="position: relative;">
+    <button type="button" class="btn-asdf-left" ng-click="rctrl.onMoveLeft()">Left</button>
 
-    <div class="slider" ng-class="{ '-loader-active' : rctrl.cfg.isLoading }">
-        <ul reader-wrapper class="asdf" style="left: {{rctrl.cfg.posLeft}}; width: {{rctrl.cfg.wrapperWidth}}">
+    <div class="slider" ng-class="{ '-loader-active' : rctrl.isLoading }">
+        <ul reader-wrapper class="asdf" style="left: {{rctrl.posLeft}}; width: {{rctrl.wrapperWidth}}">
             <li ng-repeat="image in model.chapter track by $index" image-wrapper>
                 <image-loader source="{{image}}"></image-loader>
             </li>
         </ul>
     </div>
 
-    <button type="button" class="btn-asdf-right" ng-click="rctrl._onMoveRight()">Right</button>
+    <button type="button" class="btn-asdf-right" ng-click="rctrl.onMoveRight()">Right</button>
 </div>

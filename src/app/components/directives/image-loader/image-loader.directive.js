@@ -15,6 +15,11 @@
 
         this.imageSource = null;
         this.timeout = angular.noop;
+        this.noImageText = '';
+
+        this.updateNoImageText = function (text) {
+            this.noImageText = (angular.isDefined(text)) ? text : '';
+        };
 
         /**
          * @description
@@ -96,12 +101,16 @@
                 var image = angular.element(elem[0]);
 
                 elem.bind('load', function () {
-                    ctrl.addClass(image);
+                    scope.$apply(function () {
+                        ctrl.addClass(image);
+                        ctrl.updateNoImageText();
+                    });
                 });
 
                 elem.bind('error', function () {
-                    alert('no image');
-                    // scope.noImage = 'No image';
+                    scope.$apply(function () {
+                        ctrl.updateNoImageText('No image');
+                    });
                 });
             }
         };
