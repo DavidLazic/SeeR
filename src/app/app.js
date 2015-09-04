@@ -28,7 +28,8 @@
         'readerApp.directive.externalView',
         'readerApp.directive.cReader',
         'readerApp.directive.loader',
-        'readerApp.directive.imageLoader'
+        'readerApp.directive.imageLoader',
+        'readerApp.directive.animDebounce'
     ]).config(function ($routeProvider, AppConfig) {
         $routeProvider
             .otherwise({

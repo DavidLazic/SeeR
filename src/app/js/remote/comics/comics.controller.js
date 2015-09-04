@@ -19,6 +19,7 @@
         vm.onOpen = onOpen;
         vm.isPaginationEnd = isPaginationEnd;
         vm.onClear = onClear;
+        vm.setCurrentView = setCurrentView;
 
         init();
 
@@ -27,7 +28,6 @@
          */
         function init() {
             _getAllComics();
-            _debounceAnimation();
         }
 
         /**
@@ -58,22 +58,9 @@
 
         /**
          * @description
-         * Debouce initial external comic view animation for smoother rendering.
-         *
-         * @private
-         */
-        function _debounceAnimation () {
-            var timeout = $timeout(function () {
-                _setCurrentView();
-                $timeout.cancel(timeout);
-            }, 750);
-        }
-
-        /**
-         * @description
          * Set custom view on the outside scope of ng-view.
          */
-        function _setCurrentView () {
+        function setCurrentView () {
             ComicsService.setCurrentView({url: 'app/components/templates/view-comic.tpl.html'});
         }
 
