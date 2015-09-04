@@ -8,3 +8,22 @@
   -o-border-radius: $radius;
   border-radius: $radius;
 }
+
+@mixin animation-delay($time) {
+    -webkit-animation-delay: $time;
+    -moz-animation-delay: $time;
+    -o-animation-delay: $time;
+    animation-delay: $time;
+}
+
+@mixin progressiveAnimationDelay($itemCount) {
+    @for $i from 1 through $itemCount {
+        $time: 1 + $i * 0.2s;
+        &:nth-child(#{$i}){
+
+            &::before {
+                @include animation-delay($time);
+            }
+        }
+    }
+}

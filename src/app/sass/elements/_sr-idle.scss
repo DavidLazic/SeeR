@@ -15,6 +15,7 @@
 
     &::before{
         @include transition(all 0.3s ease);
+        @include animation-delay(0.2s);
         position: absolute;
         left: 0;
         right: 0;
@@ -23,8 +24,6 @@
         transform: translateX(-100%);
         animation: comicIdle 6s infinite ease;
         -webkit-animation: comicIdle 6s infinite ease;
-        animation-delay: 0.2s;
-        -webkit-animation-delay: 0.2s;
         content: "";
         background: linear-gradient(to right, transparent, rgba(61, 34, 38, 0.9), transparent);
     }
@@ -44,9 +43,25 @@
         color: rgba(22, 24, 24, 0.7);
     }
 
-    &.-delayed {
-        animation-delay: 2s;
-        -webkit-animation-delay: 2s;
+    &.-idle-delayed {
+
+        &::before {
+            animation-delay: 2.5s;
+            -webkit-animation-delay: 2.5s;
+        }
+
+        &::after {
+            content: 'No image';
+        }
+    }
+
+    &.-idle-text {
+        @include progressiveAnimationDelay(5);
+        min-height: 20px;
+
+        &+.-idle-text {
+            margin-top: 15px;
+        }
     }
 
     &.active {
@@ -69,6 +84,10 @@
         &::after {
             font-size: $font-size-h2;
             line-height: 400px;
+        }
+
+        &.-idle-text {
+            min-height: 25px;
         }
     }
 }
