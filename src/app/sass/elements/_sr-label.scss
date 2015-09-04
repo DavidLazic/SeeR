@@ -9,10 +9,10 @@
         font-family: $font-family-juraRegular;
     }
 
-    &.-label-author {
+    &.-label-multi {
         text-transform: capitalize;
 
-        &+.-label-author {
+        &+.-label-multi {
 
             &::before {
                 content: ", ";

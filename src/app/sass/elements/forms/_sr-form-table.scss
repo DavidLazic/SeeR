@@ -16,6 +16,10 @@
 
         &:hover {
             background-color: lighten($gray-dark, 3);
+
+            .sr-icon {
+                color: lighten($green-dark, 20);
+            }
         }
 
         &:last-of-type {

@@ -9,6 +9,7 @@ $position-values: 'static', 'block', 'inline-block', 'inline', 'hidden';
 $text-align: 'center', 'left', 'right';
 $cursor-values: 'pointer', 'default', 'text';
 $text-transform: 'capitalize', 'uppercase', 'lowercase';
+$font-families: 'openLight', 'openRegular', 'juraLight', 'juraRegular', 'Building-CondensedMedium';
 
 //== Colors
 //
@@ -83,6 +84,7 @@ $font-size-large:         27px !default;
 $font-size-big:           20px !default;
 $font-size-x-medium:      18px !default;
 $font-size-medium:        16px !default;
+$font-size-base-lg:       15px !default;
 $font-size-small:         12px !default;
 
 

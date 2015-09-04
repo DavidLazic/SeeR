@@ -9,18 +9,16 @@
          * @description
          * Replace all dashes with blank space.
          *
-         * @param  {Array} | input - array of authors/artists.
+         * @param  {Array} | data - array of authors/artists.
          * @return {Array}
          */
-        return function (input) {
-            if (angular.isDefined(input) && angular.isArray(input)) {
-                var authors = [];
-                angular.forEach(input, function (author) {
-                    if (angular.isDefined (author)) {
-                        authors.push(author.replace(/-/g, ' '));
-                    }
+        return function (data) {
+            if (angular.isDefined(data) && angular.isArray(data)) {
+                var filtered = [];
+                angular.forEach(data, function (item) {
+                    filtered.push(item.replace(/-/g, ' '));
                 });
-                return authors;
+                return filtered;
             }
         };
     });

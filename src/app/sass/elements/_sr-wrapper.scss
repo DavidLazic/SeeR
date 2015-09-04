@@ -95,7 +95,8 @@
     }
 
     &.-wrapper-comic {
-        margin: 0;
+        margin: 0 0 20px;
+        min-height: 300px;
         text-align: left;
     }
 
@@ -205,6 +206,10 @@
             &.-absolute-center-x {
                 width: auto;
             }
+        }
+
+        &.-wrapper-comic {
+            min-height: 400px;
         }
     }
 }

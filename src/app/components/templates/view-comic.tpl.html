@@ -3,10 +3,14 @@
     <div class="row sr-wrapper -wrapper-bar">
         <div class="col-sm-6 -padding-left-45 -text-left">
             <loader></loader>
-            {{appctrl.item.name}}
+            <span class="sr-title -title-comic">{{appctrl.item.name}}</span>
         </div>
         <div class="col-sm-6 -text-right">
-            <a href="#/" ng-click="appctrl.onResetMode()">
+            <a class="btn sr-btn -btn-link" href="javascript:void(0)">
+                <i class="sr-icon -icon-green icon-loop2" title="Switch server"></i>
+            </a>
+
+            <a class="btn sr-btn -btn-link" href="#/" ng-click="appctrl.onResetMode()">
                 <i class="sr-icon -icon-green icon-undo2" title="Home"></i>
             </a>
         </div>
@@ -16,10 +20,9 @@
 
     <div ng-include ng-if="appctrl.item" src="'/app/components/templates/partials/comic.tpl.html'"></div>
 
-
-    <ul>
-        <li ng-repeat="comic in appctrl.item.chapters">
-            <a href ng-click="appctrl.onRead(appctrl.item.mangaId, comic.chapterId, $index)">{{comic.chapterId}}</a>
+    <ul class="sr-list" ng-if="appctrl.item">
+        <li class="list-item" ng-repeat="comic in appctrl.item.chapters" ng-click="appctrl.onRead(appctrl.item.mangaId, comic.chapterId, $index)">
+            <a href="javascript:void(0)">{{comic.chapterId}}</a>
         </li>
     </ul>
 

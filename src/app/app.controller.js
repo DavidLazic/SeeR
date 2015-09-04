@@ -8,8 +8,8 @@
         'readerApp.service.utility'
     ]).controller('AppController', AppController);
 
-    AppController.$inject = ['$http', '$scope', '$rootScope', '$modal', 'AppConfig', 'AppService', 'UtilityService'];
-    function AppController($http, $scope, $rootScope, $modal, AppConfig, AppService, UtilityService) {
+    AppController.$inject = ['$http', '$scope', '$rootScope', '$modal', '$filter', 'AppConfig', 'AppService', 'UtilityService'];
+    function AppController($http, $scope, $rootScope, $modal, $filter, AppConfig, AppService, UtilityService) {
         var vm = this,
             data = AppService.getDataConfig();
 
@@ -148,12 +148,28 @@
 
         /**
          * @description
+         * Remove dashes from author/artist item values.
+         *
+         * @param  {Array} | props - array of item properties to be filtered.
+         * @private
+         */
+        function _removeDashes (props) {
+            if (angular.isArray(props)) {
+                angular.forEach(props, function (prop) {
+                    vm.item[prop] = $filter('dashRemove')(vm.item[prop]);
+                });
+            }
+        }
+
+        /**
+         * @description
          * On current item set fn.
          */
         function _onItemChosen () {
             $rootScope.$on(AppConfig.BROADCAST.ITEM_CHOSEN, function (event, data) {
                 if (angular.isDefined(data)) {
                     vm.item = data.item;
+                    _removeDashes(['author', 'artist']);
                 }
             });
         }

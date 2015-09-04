@@ -4,8 +4,26 @@
 
 .sr-btn {
     @include border-radius(4px);
+    margin: 0;
+    padding: 0;
     display: inline-block;
+    border: none;
     color: #fff;
+
+    &.-btn-link {
+        @include border-radius(0);
+
+        &:hover {
+
+            .sr-icon {
+                color: lighten($green-dark, 20);
+            }
+        }
+
+        &+.-btn-link {
+            margin-left: 5px;
+        }
+    }
 
     &.-btn-mode {
         @include transition(all 0.2s ease);

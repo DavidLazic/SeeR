@@ -51,3 +51,8 @@
 @each $value in $cursor-values {
     .-cursor-#{$value} {cursor: #{$value};}
 }
+
+//== Font families.
+@each $value in $font-families {
+    .-font-#{$value} {font-family: #{$value}, 'Helvetica', 'Arial', sans-serif;}
+}
