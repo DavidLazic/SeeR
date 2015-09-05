@@ -2,12 +2,16 @@
     'use strict';
 
     angular.module('readerApp.remote.comics.controller', [
+        'readerApp.config',
         'readerApp.remote.comics.service'
     ]).controller('ComicsController', ComicsController);
 
-    ComicsController.$inject = ['$timeout', 'ComicsService'];
-    function ComicsController($timeout, ComicsService) {
-        var vm = this;
+    ComicsController.$inject = ['$rootScope', 'AppConfig', 'ComicsService'];
+    function ComicsController($rootScope, AppConfig, ComicsService) {
+        var vm = this,
+            currentItem = {
+                mangaId: ''
+            };
 
         // view model
         vm.comics = [];
@@ -27,6 +31,7 @@
          * @return void
          */
         function init() {
+            _bindItemCheck();
             _getAllComics();
         }
 
@@ -43,9 +48,13 @@
          * On open item fn.
          */
         function onOpen (item) {
-            ComicsService.getSingleComic(item.mangaId).then(function (response) {
-                ComicsService.setCurrentItem({item: response});
-            });
+            ComicsService.checkCurrentItem();
+            if (currentItem !== null && currentItem.mangaId !== item.mangaId) {
+                ComicsService.resetItem();
+                ComicsService.getSingleComic(item.mangaId).then(function (response) {
+                    ComicsService.setCurrentItem({item: response});
+                });
+            }
         }
 
         /**
@@ -80,6 +89,20 @@
          */
         function isPaginationEnd () {
             return (vm.pagination.offset * vm.pagination.limit) >= vm.pagination.totalCount;
+        }
+
+        /**
+         * @description
+         * Retrieve item from main app controller.
+         *
+         * @private
+         */
+        function _bindItemCheck () {
+            $rootScope.$on(AppConfig.BROADCAST.ITEM_RETRIEVE, function (event, item) {
+                if (item !== null) {
+                    currentItem = item;
+                }
+            });
         }
 
         /**

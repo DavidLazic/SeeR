@@ -31,7 +31,9 @@
          */
         function init () {
             setHostValue('READER');
-            _onItemChosen();
+            _bindOnItemChosen();
+            _bindOnItemCheck();
+            _bindOnItemReset();
         }
 
         /**
@@ -148,6 +150,31 @@
 
         /**
          * @description
+         * Retrieve item from main app controller.
+         *
+         * @return {Object}
+         * @private
+         */
+        function _bindOnItemCheck () {
+            $rootScope.$on(AppConfig.BROADCAST.ITEM_CHECK, function () {
+                $rootScope.$broadcast(AppConfig.BROADCAST.ITEM_RETRIEVE, vm.item);
+            });
+        }
+
+        /**
+         * @description
+         * Reset whole item.
+         *
+         * @private
+         */
+        function _bindOnItemReset () {
+            $rootScope.$on(AppConfig.BROADCAST.ITEM_RESET, function () {
+                vm.item = null;
+            });
+        }
+
+        /**
+         * @description
          * Remove dashes from author/artist item values.
          *
          * @param  {Array} | props - array of item properties to be filtered.
@@ -165,7 +192,7 @@
          * @description
          * On current item set fn.
          */
-        function _onItemChosen () {
+        function _bindOnItemChosen () {
             $rootScope.$on(AppConfig.BROADCAST.ITEM_CHOSEN, function (event, data) {
                 if (angular.isDefined(data)) {
                     vm.item = data.item;

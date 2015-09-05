@@ -61,9 +61,25 @@
          * @return {Object}
          */
         function setCurrentItem (param) {
-            return UtilityService.setCurrentItem(param).then(function (response) {
-                return response;
-            });
+            return UtilityService.setCurrentItem(param);
+        }
+
+        /**
+         * @description
+         * Check currently shown item.
+         */
+        function checkCurrentItem () {
+            return UtilityService.checkCurrentItem();
+        }
+
+        /**
+         * @description
+         * Reset item.
+         *
+         * @return {Function}
+         */
+        function resetItem () {
+            return UtilityService.resetItem();
         }
 
         /**
@@ -85,7 +101,9 @@
             getPaginationConfig: getPaginationConfig,
             getSingleComic: getSingleComic,
             setCurrentView: setCurrentView,
-            setCurrentItem: setCurrentItem
+            setCurrentItem: setCurrentItem,
+            checkCurrentItem: checkCurrentItem,
+            resetItem: resetItem
         };
     }
 })();

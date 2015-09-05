@@ -112,6 +112,22 @@
 
         /**
          * @description
+         * Check currently shown item.
+         */
+        function checkCurrentItem () {
+            $rootScope.$emit(AppConfig.BROADCAST.ITEM_CHECK);
+        }
+
+        /**
+         * @description
+         * Reset item.
+         */
+        function resetItem () {
+            $rootScope.$emit(AppConfig.BROADCAST.ITEM_RESET);
+        }
+
+        /**
+         * @description
          * Set config for current mode.
          *
          * @param {Object} | params - params config object ({modeChosen: <modeChosen>}).
@@ -156,7 +172,9 @@
             setHostValue: setHostValue,
             setCurrentView: setCurrentView,
             setCurrentItem: setCurrentItem,
-            setModeChosen: setModeChosen
+            setModeChosen: setModeChosen,
+            checkCurrentItem: checkCurrentItem,
+            resetItem: resetItem
         };
     }
 })();

@@ -20,7 +20,7 @@
 
     <div ng-include ng-if="appctrl.item" src="'/app/components/templates/partials/comic.tpl.html'"></div>
 
-    <ul class="sr-list" ng-if="appctrl.item">
+    <ul class="sr-list" ng-if="appctrl.item" >
         <li class="list-item" ng-repeat="comic in appctrl.item.chapters" ng-click="appctrl.onRead(appctrl.item.mangaId, comic.chapterId, $index)">
             <a href="javascript:void(0)">{{comic.chapterId}}</a>
         </li>

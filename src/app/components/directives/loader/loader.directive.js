@@ -47,7 +47,11 @@
          * @private
          */
         function _resolveOverlay () {
-            (ctrl.active) ? ctrl.body.addClass('-loader-active') : ctrl.body.removeClass('-loader-active');
+            if (ctrl.active) {
+                ctrl.body.addClass('-loader-active');
+            } else {
+                ctrl.body.removeClass('-loader-active');
+            }
         }
     }
 
@@ -69,8 +73,8 @@
 
     loaderModule.directive('loaderIndicator', loaderIndicator);
 
-    loaderIndicator.$inject = ['$http', '$document'];
-    function loaderIndicator ($http, $document) {
+    loaderIndicator.$inject = ['$http'];
+    function loaderIndicator ($http) {
         return {
             restrict: 'A',
             require: '^loader',
