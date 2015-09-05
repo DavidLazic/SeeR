@@ -7,7 +7,7 @@
                 <label class="sr-label -label-tag">Author:</label>
             </div>
             <div class="col-sm-9">
-                <span class="sr-label -label-multi" ng-repeat="author in appctrl.item.author">{{author}}</span>
+                <span class="sr-label -label-multi" ng-repeat="author in appctrl.item.author" ng-bind="::author"></span>
             </div>
         </div>
 
@@ -16,7 +16,7 @@
                 <label class="sr-label -label-tag">Artist:</label>
             </div>
             <div class="col-sm-9">
-                <span class="sr-label -label-multi" ng-repeat="artist in appctrl.item.artist">{{artist}}</span>
+                <span class="sr-label -label-multi" ng-repeat="artist in appctrl.item.artist" ng-bind="::artist"></span>
             </div>
         </div>
 
@@ -25,7 +25,7 @@
                 <label class="sr-label -label-tag">Status:</label>
             </div>
             <div class="col-sm-9">
-                <span class="sr-label -label-multi">{{appctrl.item.status}}</span>
+                <span class="sr-label -label-multi" ng-bind="::appctrl.item.status"></span>
             </div>
         </div>
 
@@ -33,18 +33,7 @@
             <div class="col-sm-3">
                 <label class="sr-label -label-tag">Released:</label>
             </div>
-            <div class="col-sm-9">
-                {{(appctrl.item.yearOfRelease) ? appctrl.item.yearOfRelease : 'N/A'}}
-            </div>
-        </div>
-
-        <div class="row -margin-bottom-10">
-            <div class="col-sm-3">
-                <label class="sr-label -label-tag">Last update:</label>
-            </div>
-            <div class="col-sm-9">
-                {{appctrl.item.lastUpdate | date: 'EEE, MMM dd'}}
-            </div>
+            <div class="col-sm-9" ng-bind="(appctrl.item.yearOfRelease) ? appctrl.item.yearOfRelease : 'N/A'"></div>
         </div>
 
         <div class="row -margin-bottom-10">
@@ -52,7 +41,7 @@
                 <label class="sr-label -label-tag">Genres:</label>
             </div>
             <div class="col-sm-9">
-                <span class="sr-label -label-multi" ng-repeat="genre in appctrl.item.genres">{{genre}}</span>
+                <span class="sr-label -label-multi" ng-repeat="genre in appctrl.item.genres" ng-bind="::genre"></span>
             </div>
         </div>
 
@@ -60,9 +49,7 @@
             <div class="col-sm-12 -padding-right-0">
                 <label class="sr-label -label-tag">Description:</label>
             </div>
-            <div class="col-sm-12 -padding-right-5 -font-openLight">
-                {{appctrl.item.info}}
-            </div>
+            <div class="col-sm-12 -padding-right-5 -font-openLight" ng-bind="appctrl.item.info"></div>
         </div>
     </div>
 

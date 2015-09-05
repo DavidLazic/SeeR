@@ -31,7 +31,7 @@
          * @return void
          */
         function init() {
-            _bindItemCheck();
+            _bindOnItemRetrive();
             _getAllComics();
         }
 
@@ -49,7 +49,7 @@
          */
         function onOpen (item) {
             ComicsService.checkCurrentItem();
-            if (currentItem !== null && currentItem.mangaId !== item.mangaId) {
+            if (currentItem.mangaId !== item.mangaId) {
                 ComicsService.resetItem();
                 ComicsService.getSingleComic(item.mangaId).then(function (response) {
                     ComicsService.setCurrentItem({item: response});
@@ -97,7 +97,7 @@
          *
          * @private
          */
-        function _bindItemCheck () {
+        function _bindOnItemRetrive () {
             $rootScope.$on(AppConfig.BROADCAST.ITEM_RETRIEVE, function (event, item) {
                 if (item !== null) {
                     currentItem = item;

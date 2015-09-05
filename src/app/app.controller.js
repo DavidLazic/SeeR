@@ -50,18 +50,17 @@
          * @description
          * Open modal with specific comic fn.
          *
-         * @param {String} | name - comic name.
-         * @param {String} | id - chapter id.
-         * @param {String} | idx - chapter index.
+         * @param {Object} | comic - comic object. ({name: <name>, id: <id>, index: <index>})
          */
-        function onRead (name, id, idx) {
-            var chapter = (angular.isDefined(id)) ? id : vm.item.chapters[0].chapterId,
-                index = idx || 0;
+        function onRead (comic) {
+            console.log(comic);
+            var chapter = (angular.isDefined(comic.id)) ? comic.id : vm.item.chapters[0].chapterId,
+                index = comic.index || 0;
 
-            _setChapterIndex(name, index);
+            _setChapterIndex(comic.name, index);
             _setAllChapters();
 
-            AppService.getChapterById({comic: name, chapterId: chapter}).then(function (response) {
+            AppService.getChapterById({comic: comic.name, chapterId: chapter}).then(function (response) {
                 data.currentChapter = response;
                 _onOpen(data);
             });
@@ -169,7 +168,7 @@
          */
         function _bindOnItemReset () {
             $rootScope.$on(AppConfig.BROADCAST.ITEM_RESET, function () {
-                vm.item = null;
+                // vm.item = null;
             });
         }
 

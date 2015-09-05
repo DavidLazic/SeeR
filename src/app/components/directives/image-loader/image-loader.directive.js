@@ -10,8 +10,8 @@
 
     imageLoaderModule.controller('imageLoaderController', imageLoaderController);
 
-    imageLoaderController.$inject = ['$scope', '$timeout'];
-    function imageLoaderController($scope, $timeout) {
+    imageLoaderController.$inject = ['$timeout'];
+    function imageLoaderController($timeout) {
 
         this.imageSource = null;
         this.timeout = angular.noop;
