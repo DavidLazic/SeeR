@@ -1,0 +1,24 @@
+//
+// SeeR overlay
+// --------------------------------------------------
+
+.sr-overlay {
+    position: fixed;
+    display: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+    background-color: transparent;
+}
+
+body {
+
+    &.-loader-active {
+
+        .sr-overlay {
+            display: block;
+        }
+    }
+}

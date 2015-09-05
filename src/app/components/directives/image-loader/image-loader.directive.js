@@ -54,6 +54,7 @@
          */
         this.removeClass = function (imageWrapper) {
             imageWrapper.removeClass('active');
+            $timeout.cancel(this.timeout);
         };
     }
 
