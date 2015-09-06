@@ -11,7 +11,8 @@
     AppController.$inject = ['$http', '$scope', '$rootScope', '$modal', '$filter', 'AppConfig', 'AppService', 'UtilityService'];
     function AppController($http, $scope, $rootScope, $modal, $filter, AppConfig, AppService, UtilityService) {
         var vm = this,
-            data = AppService.getDataConfig();
+            data = AppService.getDataConfig(),
+            host = 'READER'; // default API
 
         // view model
         vm.modeChosen = false;
@@ -21,6 +22,7 @@
         vm.onModeChosen = onModeChosen;
         vm.onResetMode = onResetMode;
         vm.onRead = onRead;
+        vm.onSwitch = onSwitch;
         vm.isItemSet = isItemSet;
         vm.setHostValue = setHostValue;
 
@@ -30,7 +32,7 @@
          * @return void
          */
         function init () {
-            setHostValue('READER');
+            setHostValue(host);
             _bindOnItemChosen();
             _bindOnItemCheck();
             _bindOnItemReset();
@@ -41,6 +43,7 @@
          * Set global host value.
          *
          * @param {String} | hostValue - chosen host value.
+         * @public
          */
         function setHostValue (hostValue) {
             UtilityService.setHostValue(hostValue);
@@ -51,9 +54,9 @@
          * Open modal with specific comic fn.
          *
          * @param {Object} | comic - comic object. ({name: <name>, id: <id>, index: <index>})
+         * @public
          */
         function onRead (comic) {
-            console.log(comic);
             var chapter = (angular.isDefined(comic.id)) ? comic.id : vm.item.chapters[0].chapterId,
                 index = comic.index || 0;
 
@@ -68,16 +71,46 @@
 
         /**
          * @description
+         * Open modal for API switching.
+         *
+         * @return {Object}
+         * @public
+         */
+        function onSwitch () {
+            onResetMode();
+            var modalInstance = $modal.open({
+                backdrop: false,
+                keyboard: false,
+                windowClass: 'sr-modal -modal-switch',
+                templateUrl: 'app/js/modal/api/api.tpl.html',
+                controller: "ApiModalController",
+                controllerAs: 'amctrl',
+                size: 'lg'
+            });
+
+            modalInstance.result.then(function () {
+                console.log('closed modal');
+                // host = 'FOX';
+            });
+        }
+
+        /**
+         * @description
          * On mode chosen fn.
+         *
+         * @public
          */
         function onModeChosen () {
             vm.modeChosen = !vm.modeChosen;
+            setHostValue(host);
             UtilityService.setModeChosen({modeChosen: true});
         }
 
         /**
          * @description
          * On reset mode fn.
+         *
+         * @public
          */
         function onResetMode () {
             vm.modeChosen = false;
@@ -94,6 +127,7 @@
          * Check if item is set.
          *
          * @return {Bool}
+         * @public
          */
         function isItemSet () {
             return vm.item !== null;
@@ -104,15 +138,16 @@
          * Open modal with specific chapter id and prefetch next chapter.
          *
          * @param  {Object} | data - comic config object.
+         * @private
          */
         function _onOpen (data) {
             var modalInstance = $modal.open({
                 backdrop: false,
                 keyboard: false,
-                windowClass: 'ra-modal',
-                templateUrl: 'app/js/modal/modal.tpl.html',
-                controller: "ModalController",
-                controllerAs: 'mctrl',
+                windowClass: 'sr-modal -modal-reader',
+                templateUrl: 'app/js/modal/reader/reader.tpl.html',
+                controller: "ReaderModalController",
+                controllerAs: 'rmctrl',
                 size: 'lg',
                 resolve: {
                     data: function () {
@@ -129,6 +164,8 @@
         /**
          * @description
          * Set all chapters to data chapters array.
+         *
+         * @private
          */
         function _setAllChapters () {
             angular.forEach(vm.item.chapters, function (chapter) {
@@ -142,6 +179,7 @@
          *
          * @param {String}  | name - comic name.
          * @param {Integer} | idx - current chapter index.
+         * @private
          */
         function _setChapterIndex (name, idx) {
             angular.extend(data, {name: name, chapterIndex: idx});
@@ -190,6 +228,8 @@
         /**
          * @description
          * On current item set fn.
+         *
+         * @private
          */
         function _bindOnItemChosen () {
             $rootScope.$on(AppConfig.BROADCAST.ITEM_CHOSEN, function (event, data) {

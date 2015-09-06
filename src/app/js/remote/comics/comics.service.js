@@ -9,8 +9,6 @@
     ComicsService.$inject = ['$filter', 'HttpRequestService', 'UtilityService'];
     function ComicsService($filter, HttpRequestService, UtilityService) {
 
-        var hostConfig = UtilityService.getHostConfig();
-
         /**
          * @description
          * Get all comics.
@@ -18,6 +16,7 @@
          * @return {Object}
          */
         function getAllComics() {
+            var hostConfig = _getHostConfig();
             return HttpRequestService.get({url: hostConfig.LIST}).then(function (response) {
                 return $filter('orderBy')(response, 'mangaId');
             });
@@ -31,9 +30,10 @@
          * @return {Object}
          */
         function getSingleComic (params) {
-            var param = {
-                url: hostConfig.COMIC_BY_ID + params
-            };
+            var hostConfig = _getHostConfig(),
+                param = {
+                    url: hostConfig.COMIC_BY_ID + params
+                };
 
             return HttpRequestService.get(param).then(function (response) {
                 response.mangaId = params;
@@ -90,6 +90,17 @@
          */
         function getPaginationConfig () {
             return UtilityService.getPaginationConfig();
+        }
+
+        /**
+         * @description
+         * Get host API config.
+         *
+         * @return {Object}
+         * @private
+         */
+        function _getHostConfig () {
+            return UtilityService.getHostConfig();
         }
 
         /**

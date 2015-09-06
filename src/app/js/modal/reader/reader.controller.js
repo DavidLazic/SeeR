@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('readerApp.modal.controller', [
+    angular.module('readerApp.modal.reader.controller', [
         'readerApp.modal.service'
-    ]).controller('ModalController', ModalController);
+    ]).controller('ReaderModalController', ReaderModalController);
 
-    ModalController.$inject = ['$scope', '$modalInstance', 'ModalService', 'data'];
-    function ModalController($scope, $modalInstance, ModalService, chapter) {
+    ReaderModalController.$inject = ['$modalInstance', 'ModalService', 'data'];
+    function ReaderModalController($modalInstance, ModalService, chapter) {
         var vm = this,
             data = angular.copy(chapter) || {name: null, chapterIndex: 0, chapters: [], currentChapter: {images: []}};
 
@@ -39,6 +39,8 @@
         /**
          * @description
          * Prepare model.
+         *
+         * @private
          */
         function _prepareModel () {
             vm.model.total = data.currentChapter.pages.length - 1;
@@ -51,6 +53,8 @@
         /**
          * @description
          * On previous previous chapter fn.
+         *
+         * @public
          */
         function onPrev () {
             --data.chapterIndex;
@@ -62,6 +66,8 @@
         /**
          * @description
          * On next chapter fn.
+         *
+         * @public
          */
         function onNext () {
             ++data.chapterIndex;
@@ -73,6 +79,8 @@
         /**
          * @description
          * Cancel modal.
+         *
+         * @public
          */
         function onCancel () {
             $modalInstance.close();
@@ -84,6 +92,7 @@
          *
          * @param {String} | data - data object.
          * @param {String} | vmProperty - model object property.
+         * @private
          */
         function _extractImages (data, vmProperty) {
             vm.model[vmProperty].length = 0;
@@ -96,6 +105,8 @@
         /**
          * @description
          * Prefetch previous comic chapter by id.
+         *
+         * @private
          */
         function _prefetchPreviousChapter () {
             var prevChapterIdx = data.chapterIndex - 1;
@@ -109,6 +120,8 @@
         /**
          * @description
          * Prefetch next comic chapter by id.
+         *
+         * @private
          */
         function _prefetchNextChapter () {
             var nextChapterIdx = data.chapterIndex + 1;
@@ -122,6 +135,8 @@
         /**
          * @description
          * Update total chapter length.
+         *
+         * @private
          */
         function _updateTotal() {
             vm.model.total = vm.model.chapter.length - 1;
@@ -130,6 +145,8 @@
         /**
          * @description
          * Update current chapter index.
+         *
+         * @private
          */
         function _updateChapterIndex () {
             vm.model.chapterIdx = data.chapterIndex;

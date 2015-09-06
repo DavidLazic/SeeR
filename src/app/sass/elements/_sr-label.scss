@@ -5,6 +5,13 @@
 .sr-label {
     font-family: $font-family-openLight;
 
+    &.-label-host {
+
+        &.active {
+
+        }
+    }
+
     &.-label-tag {
         font-family: $font-family-juraRegular;
     }

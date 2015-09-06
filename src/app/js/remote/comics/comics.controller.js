@@ -37,6 +37,8 @@
         /**
          * @description
          * Set pagination offset to 1 on user search.
+         *
+         * @public
          */
         function onSearch() {
             vm.pagination.offset = 1;
@@ -45,6 +47,8 @@
         /**
          * @description
          * On open item fn.
+         *
+         * @public
          */
         function onOpen (item) {
             ComicsService.checkCurrentItem();
@@ -59,6 +63,8 @@
         /**
          * @description
          * On clear search query fn.
+         *
+         * @public
          */
         function onClear () {
             vm.query = '';
@@ -67,6 +73,8 @@
         /**
          * @description
          * Set custom view on the outside scope of ng-view.
+         *
+         * @public
          */
         function setCurrentView () {
             ComicsService.setCurrentView({url: 'app/components/templates/view-comic.tpl.html'});
@@ -75,6 +83,8 @@
         /**
          * @description
          * Get all comics and paginate them.
+         *
+         * @private
          */
         function _getAllComics() {
             ComicsService.getAllComics().then(_setVM);
@@ -99,6 +109,7 @@
          * Paginate all comics.
          *
          * @param {Object} | data - all comics JSON response.
+         * @private
          */
         function _setVM(data) {
             vm.pagination.totalCount = data.length;

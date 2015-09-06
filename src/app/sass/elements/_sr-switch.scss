@@ -1,0 +1,85 @@
+//
+// SeeR switch
+// --------------------------------------------------
+
+.sr-switch {
+    position: relative;
+    display: inline-block;
+    top: 3px;
+
+    &.-switch-absolute{
+        position: absolute;
+        top: 15px;
+        right: 15px;
+
+        &::after{
+            display: table-cell;
+            content: "";
+            clear: both;
+        }
+
+        .form-switch-label{
+            display: inline-block;
+            float: left;
+        }
+    }
+
+    .form-switch-checkbox{
+        position: absolute;
+        visibility: hidden;
+        z-index: -1;
+    }
+
+    .form-switch-label{
+        @include border-radius(16px);
+        position: relative;
+        margin: 0;
+        display: inline-block;
+        width: 35px;
+        height: 18px;
+        cursor: pointer;
+
+        &::before,
+        &::after {
+           position: absolute;
+           display: block;
+           content: "";
+        }
+
+        &::before{
+            @include border-radius(16px);
+            @include transition(all, 0.3s, ease);
+            top: 1px;
+            right: 1px;
+            bottom: 1px;
+            left: 1px;
+            // background-color: $gray-lighter;
+        }
+
+        &::after{
+            @include border-radius(100%);
+            @include transition(all, 0.3s, ease);
+            width: 14px;
+            height: 14px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            top: 2px;
+            bottom: -3px;
+            left: 2px;
+        }
+    }
+
+    .form-switch-checkbox:checked{
+
+        &+.form-switch-label{
+
+            &::before{
+                // background-color: $green;
+            }
+
+            &::after{
+                margin-left: 17px;
+            }
+        }
+    }
+}

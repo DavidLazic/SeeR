@@ -3,6 +3,7 @@
 
     angular.module('readerApp.modal', [
         'readerApp.modal.service',
-        'readerApp.modal.controller'
+        'readerApp.modal.reader.controller',
+        'readerApp.modal.api.controller'
     ]);
 })();
