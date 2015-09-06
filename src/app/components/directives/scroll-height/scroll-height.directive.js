@@ -26,12 +26,27 @@
         this.activate = function (activeState) {
             ctrl.active = activeState;
         };
+
+        /**
+         * @description
+         * Get element's height and scroll height dimensions.
+         *
+         * @param {Object} | elem - DOM element to get values from.
+         * @return {Object}
+         * @public
+         */
+        this.getDimensions = function (elem) {
+            return {
+                height: elem[0].getBoundingClientRect().height,
+                scrollHeight: elem[0].scrollHeight
+            };
+        };
     }
 
     scrollHeightModule.directive('scrollHeight', scrollHeight);
 
-    scrollHeight.$inject = [];
-    function scrollHeight() {
+    scrollHeight.$inject = ['$window'];
+    function scrollHeight($window) {
         return {
             restrict: 'A',
             require: 'scrollHeight',
@@ -39,13 +54,18 @@
             controller: 'scrollHeightController',
             controllerAs: 'shctrl',
             link: function (scope, elem, attrs, ctrl) {
-                var elemHeight = elem[0].getBoundingClientRect().height;
-                scope.$watch(function () {
-                    return elem[0].scrollHeight;
-                }, function (val) {
-                    var activeState = (val > elemHeight);
-                    ctrl.activate(activeState);
+                var w = angular.element($window);
+
+                w.bind('resize', function () {
+                    scope.$apply();
                 });
+
+                scope.$watch(function () {
+                    return ctrl.getDimensions(elem);
+                }, function (val) {
+                    var activeState = (val.scrollHeight > val.height);
+                    ctrl.activate(activeState);
+                }, true);
 
                 scope.$on('$destroy', function () {
                     elem.off();
