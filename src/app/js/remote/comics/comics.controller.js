@@ -21,7 +21,6 @@
         // events
         vm.onSearch = onSearch;
         vm.onOpen = onOpen;
-        vm.isPaginationEnd = isPaginationEnd;
         vm.onClear = onClear;
         vm.setCurrentView = setCurrentView;
 
@@ -79,16 +78,6 @@
          */
         function _getAllComics() {
             ComicsService.getAllComics().then(_setVM);
-        }
-
-        /**
-         * @description
-         * Watcher for the end of pagination.
-         *
-         * @return {Bool}
-         */
-        function isPaginationEnd () {
-            return (vm.pagination.offset * vm.pagination.limit) >= vm.pagination.totalCount;
         }
 
         /**

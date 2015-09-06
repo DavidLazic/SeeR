@@ -25,6 +25,7 @@
     &.-title-comic {
         font-family: $font-family-juraSemibold;
         font-size: $font-size-base-lg;
+        white-space: nowrap;
         color: lighten($green-dark, 30);
         cursor: default;
     }

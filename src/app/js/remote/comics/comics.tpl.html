@@ -8,8 +8,7 @@
                        ng-change="cctrl.onSearch()"
                        ng-model-options="{debounce: 350}"
                        placeholder="Search">
-                <i class="sr-icon -icon-search -icon-green icon-search" ng-if="!cctrl.query"></i>
-                <i class="sr-icon -icon-clear -icon-green icon-cross" ng-if="cctrl.query" ng-click="cctrl.onClear()"></i>
+                <i class="sr-icon -icon-search -icon-green icon-search" ng-class="{'active': cctrl.query}" ng-click="cctrl.onClear()"></i>
             </div>
         </div>
         <div class="col-sm-6 -line-height-45">
@@ -40,8 +39,8 @@
         </div>
     </div>
 
-    <div class="sr-wrapper -wrapper-table" ng-class="{'-table-end': cctrl.isPaginationEnd()}">
-        <div class="sr-form-table">
+    <div class="sr-wrapper -wrapper-table" scroll-height>
+        <div class="sr-form-table" ng-class="{'-scroll-active': scrollActive}" scroll-class>
             <div class="row form-row" ng-repeat="item in cctrl.comics | filter: cctrl.query | offset: {offset: cctrl.pagination.offset, limit: cctrl.pagination.limit}">
                 <div class="col-sm-10">
                     <div ng-bind="::item.name"></div>

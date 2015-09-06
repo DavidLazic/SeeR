@@ -80,6 +80,36 @@
     }
 }
 
+@keyframes comicIdleY {
+
+    0% {
+        transform: translate3d(0, -100%, 0);
+    }
+
+    50% {
+        transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+        transform: translate3d(0, 100%, 0);
+    }
+}
+
+@-webkit-keyframes comicIdleY {
+
+    0% {
+        transform: translate3d(0, -100%, 0);
+    }
+
+    50% {
+        transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+        transform: translate3d(0, 100%, 0);
+    }
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;

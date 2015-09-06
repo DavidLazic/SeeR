@@ -4,7 +4,7 @@
 
 .sr-form-table {
     position: relative;
-    padding: 0 25px 0 30px;
+    padding: 0 32px 0 30px;
 
     .form-row {
         @include transition(all 0.3s ease);
@@ -65,5 +65,9 @@
         span + span::before {
             content: ", ";
         }
+    }
+
+    &.-scroll-active {
+        padding: 0 25px 0 30px;
     }
 }

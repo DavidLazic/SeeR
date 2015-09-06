@@ -10,8 +10,8 @@
 
     chapterListModule.controller('chapterListController', chapterListController);
 
-    chapterListController.$inject = ['$compile', '$scope', '$templateRequest'];
-    function chapterListController($compile, $scope, $templateRequest) {
+    chapterListController.$inject = ['$compile', '$scope'];
+    function chapterListController($compile, $scope) {
         var chapters = [];
 
         this.onClick = $scope.onClick || angular.noop;
@@ -46,7 +46,7 @@
             wrapper.children().remove();
             angular.forEach(chapters, function (chapter, index) {
                 var tpl = angular.element('<dd class="list-item" ng-click="clctrl.onClick({index:' + index + ', chapterId: ' + chapter.chapterId + '})">' +
-                                    '<a href="javascript:void(0)">' + chapter.chapterId + '</a>' +
+                                    '<a href="javascript:void(0)">' + (index + 1) + '</a>' +
                                 '</dd>');
 
                 var compiled = $compile(tpl)($scope);

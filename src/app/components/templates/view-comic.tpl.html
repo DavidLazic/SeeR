@@ -1,20 +1,20 @@
-<section class="sr-wrapper -wrapper-view">
-
-    <div class="row sr-wrapper -wrapper-bar">
-        <div class="col-sm-6 -padding-left-45 -text-left">
-            <loader></loader>
-            <span class="sr-title -title-comic">{{appctrl.item.name}}</span>
-        </div>
-        <div class="col-sm-6 -text-right">
-            <a class="btn sr-btn -btn-link" href="javascript:void(0)">
-                <i class="sr-icon -icon-green icon-loop2" title="Switch server"></i>
-            </a>
-
-            <a class="btn sr-btn -btn-link" href="#/" ng-click="appctrl.onResetMode()">
-                <i class="sr-icon -icon-green icon-undo2" title="Home"></i>
-            </a>
-        </div>
+<div class="row sr-wrapper -wrapper-bar">
+    <div class="col-sm-6 -padding-left-45 -text-left">
+        <loader></loader>
+        <span class="sr-title -title-comic">{{appctrl.item.name}}</span>
     </div>
+    <div class="col-sm-6 -text-right">
+        <a class="btn sr-btn -btn-link" href="javascript:void(0)">
+            <i class="sr-icon -icon-green icon-loop2" title="Switch server"></i>
+        </a>
+
+        <a class="btn sr-btn -btn-link" href="#/" ng-click="appctrl.onResetMode()">
+            <i class="sr-icon -icon-green icon-undo2" title="Home"></i>
+        </a>
+    </div>
+</div>
+
+<section class="sr-wrapper -wrapper-view">
 
     <div ng-include ng-if="!appctrl.item" src="'/app/components/templates/partials/comic-default.tpl.html'"></div>
 
