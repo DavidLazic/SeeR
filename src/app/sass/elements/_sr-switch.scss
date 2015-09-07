@@ -7,36 +7,19 @@
     display: inline-block;
     top: 3px;
 
-    &.-switch-absolute{
-        position: absolute;
-        top: 15px;
-        right: 15px;
-
-        &::after{
-            display: table-cell;
-            content: "";
-            clear: both;
-        }
-
-        .form-switch-label{
-            display: inline-block;
-            float: left;
-        }
-    }
-
-    .form-switch-checkbox{
+    .switch-checkbox{
         position: absolute;
         visibility: hidden;
         z-index: -1;
     }
 
-    .form-switch-label{
+    .switch-label{
         @include border-radius(16px);
         position: relative;
         margin: 0;
         display: inline-block;
-        width: 35px;
-        height: 18px;
+        width: 45px;
+        height: 20px;
         cursor: pointer;
 
         &::before,
@@ -53,32 +36,29 @@
             right: 1px;
             bottom: 1px;
             left: 1px;
-            // background-color: $gray-lighter;
+            background-color: $gray-dark;
+            box-shadow: 0 0 6px -1px #000;
         }
 
         &::after{
             @include border-radius(100%);
             @include transition(all, 0.3s, ease);
-            width: 14px;
-            height: 14px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            width: 17px;
+            height: 17px;
+            background-color: $red-darkest;
             top: 2px;
-            bottom: -3px;
-            left: 2px;
+            bottom: 0;
+            left: 1px;
+            box-shadow: 0 0 2px 5px $red-darker;
         }
     }
 
-    .form-switch-checkbox:checked{
+    .switch-checkbox:checked{
 
-        &+.form-switch-label{
-
-            &::before{
-                // background-color: $green;
-            }
+        &+.switch-label{
 
             &::after{
-                margin-left: 17px;
+                margin-left: 26px;
             }
         }
     }

@@ -1,30 +1,28 @@
 <section class="modal-inner">
     <div class="row">
 
-        <div class="col-sm-12">Current server: <span ng-bind="amctrl.host"></span></div>
+        <div class="col-sm-12 -margin-bottom-50">Server is currently set to <span ng-bind="amctrl.getFullHostName()"></span>.</div>
 
-        <div class="col-sm-6">
-            <div class="sr-label -label-host">
+        <div class="col-sm-5 -margin-bottom-50">
+            <div class="sr-label -label-host" ng-class="{'active': amctrl.host.name === 'READER'}">
                 Mangareader.net
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="sr-label -label-host">
-                Mangafox.net
-            </div>
+        <div class="col-md-2 -margin-bottom-50">
+            <switcher
+                class="sr-switch"
+                ng-model="amctrl.host.name"
+                on-change="amctrl.onSwitch()">
+            </switcher>
         </div>
-
-        <div class="col-sm-12 -margin-bottom-50">
-            <div>
-            TOGGLE
-<!--                 <ray-toggle class="ray-form-switch"
-                            ng-model="theme.enabled"
-                            on-change="themesCtrl.onToggleStatus(theme)"></ray-toggle> -->
+        <div class="col-sm-5 -margin-bottom-50">
+            <div class="sr-label -label-host" ng-class="{'active': amctrl.host.name === 'FOX'}">
+                Mangafox.me
             </div>
         </div>
 
         <div class="col-md-12">
-            <button class="btn sr-btn -btn-gray">Accept</button>
+            <button class="btn sr-btn -btn-gray" ng-click="amctrl.onApply()">Apply</button>
             <button class="btn sr-btn -btn-gray" ng-click="amctrl.onCancel()">Cancel</button>
         </div>
 

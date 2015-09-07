@@ -12,7 +12,7 @@
     function AppController($http, $scope, $rootScope, $modal, $filter, AppConfig, AppService, UtilityService) {
         var vm = this,
             data = AppService.getDataConfig(),
-            host = 'READER'; // default API
+            hostName = 'READER'; // default API
 
         // view model
         vm.modeChosen = false;
@@ -32,7 +32,7 @@
          * @return void
          */
         function init () {
-            setHostValue(host);
+            setHostValue(hostName);
             _bindOnItemChosen();
             _bindOnItemCheck();
             _bindOnItemReset();
@@ -42,11 +42,11 @@
          * @description
          * Set global host value.
          *
-         * @param {String} | hostValue - chosen host value.
+         * @param {String} | hostName - chosen host value.
          * @public
          */
-        function setHostValue (hostValue) {
-            UtilityService.setHostValue(hostValue);
+        function setHostValue (hostName) {
+            UtilityService.setHostValue(hostName);
         }
 
         /**
@@ -77,6 +77,10 @@
          * @public
          */
         function onSwitch () {
+            var host = {
+                name: hostName
+            };
+
             onResetMode();
             var modalInstance = $modal.open({
                 backdrop: false,
@@ -85,12 +89,17 @@
                 templateUrl: 'app/js/modal/api/api.tpl.html',
                 controller: "ApiModalController",
                 controllerAs: 'amctrl',
-                size: 'lg'
+                size: 'lg',
+                resolve: {
+                    data: function () {
+                        return host;
+                    }
+                }
             });
 
-            modalInstance.result.then(function () {
-                console.log('closed modal');
-                // host = 'FOX';
+            modalInstance.result.then(function (host) {
+                hostName = host.name;
+                setHostValue(hostName);
             });
         }
 
@@ -102,7 +111,7 @@
          */
         function onModeChosen () {
             vm.modeChosen = !vm.modeChosen;
-            setHostValue(host);
+            setHostValue(hostName);
             UtilityService.setModeChosen({modeChosen: true});
         }
 

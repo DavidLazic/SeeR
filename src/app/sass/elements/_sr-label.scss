@@ -6,9 +6,14 @@
     font-family: $font-family-openLight;
 
     &.-label-host {
+        @include transition(all 0.3s ease);
+        font-family: $font-family-juraLight;
+        font-size: $font-size-big;
+        color: lighten($gray-dark, 20);
 
         &.active {
-
+            color: #fff;
+            text-shadow: -1px 1px 8px $blue-lighter, 1px -1px 8px #fff;
         }
     }
 

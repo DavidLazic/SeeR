@@ -31,7 +31,8 @@
         'readerApp.directive.imageLoader',
         'readerApp.directive.animDebounce',
         'readerApp.directive.chapterList',
-        'readerApp.directive.scrollHeight'
+        'readerApp.directive.scrollHeight',
+        'readerApp.directive.switcher'
     ]).config(function ($routeProvider, AppConfig) {
         $routeProvider
             .otherwise({
