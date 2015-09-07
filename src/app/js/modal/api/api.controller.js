@@ -14,14 +14,14 @@
 
         // events
         vm.onSwitch = onSwitch;
-        vm.onClose = onClose;
+        vm.onCancel = onCancel;
 
         function onSwitch () {
 
         }
 
-        function onClose () {
-            $modal.dismiss();
+        function onCancel () {
+            $modalInstance.close();
         }
     }
 })();

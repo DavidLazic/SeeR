@@ -57,27 +57,12 @@
 
     loaderModule.directive('loader', loader);
 
-    loader.$inject = [];
-    function loader() {
-        return {
-            replace: true,
-            restrict: 'E',
-            scope: {},
-            controller: 'loaderController',
-            controllerAs: 'lctrl',
-            template: '<div class="sr-loader" ng-class="{\'active\': lctrl.active}" loader-indicator>' +
-                        '<i class="sr-icon -icon-loader icon-spinner9"></i>' +
-                      '</div>'
-        };
-    }
-
-    loaderModule.directive('loaderIndicator', loaderIndicator);
-
-    loaderIndicator.$inject = ['$http'];
-    function loaderIndicator ($http) {
+    loader.$inject = ['$http'];
+    function loader($http) {
         return {
             restrict: 'A',
-            require: '^loader',
+            controller: 'loaderController',
+            controllerAs: 'lctrl',
             link: function (scope, elem, attrs, ctrl) {
                 ctrl.setOverlay();
 
@@ -85,7 +70,25 @@
                     return $http.pendingRequests.length;
                 }, ctrl.resolveClass);
 
+                scope.$on('$destroy', function () {
+                    elem.off();
+                });
+            }
+        };
+    }
 
+    loaderModule.directive('loaderIndicator', loaderIndicator);
+
+    loaderIndicator.$inject = [];
+    function loaderIndicator () {
+        return {
+            replace: true,
+            restrict: 'E',
+            require: '^loader',
+            template: '<div class="sr-loader" ng-class="{\'active\': lctrl.active}">' +
+                        '<i class="sr-icon -icon-loader icon-spinner9"></i>' +
+                      '</div>',
+            link: function (scope, elem) {
                 scope.$on('$destroy', function () {
                     elem.off();
                 });
