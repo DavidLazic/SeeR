@@ -18,6 +18,7 @@
 
         // services
         'readerApp.service.httpRequest',
+        'readerApp.service.httpInterceptor',
         'readerApp.service.utility',
 
         // filters

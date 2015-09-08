@@ -8,24 +8,48 @@
     function switcher() {
         return {
             replace: true,
+            require: 'ngModel',
             restrict: 'E',
             scope: {
                 onChange: '&'
             },
             templateUrl: '/app/components/directives/switcher/switcher.tpl.html',
-            link: function (scope, elem, attrs) {
-                scope.isChecked = false;
+            link: function (scope, elem, attrs, ngModel) {
 
-                function onToggleClick () {
+                scope.$watch(function () {
+                    return ngModel.$modelValue;
+                }, function (val) {
+                    scope.isChecked = _isActive(val);
+                });
+
+                /**
+                 * @description
+                 * Check which host is currently active.
+                 *
+                 * @param  {String} | hostName - current host name.
+                 * @return {Bool}
+                 * @private
+                 */
+                function _isActive (hostName) {
+                    return hostName !== 'READER';
+                }
+
+                /**
+                 * @description
+                 * On toggle fn.
+                 *
+                 * @return {Function}
+                 * @private
+                 */
+                function _onToggle () {
                     scope.$apply(function () {
-                        scope.isChecked = !scope.isChecked;
                         if (angular.isDefined(attrs.onChange)) {
                             scope.onChange();
                         }
                     });
                 }
 
-                elem.on('click', onToggleClick);
+                elem.on('click', _onToggle);
 
                 scope.$on('$destroy', function () {
                     elem.off();

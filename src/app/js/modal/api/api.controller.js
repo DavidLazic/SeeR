@@ -30,14 +30,13 @@
         vm.onCancel = onCancel;
         vm.getFullHostName = getFullHostName;
 
-        function getFullHostName () {
-            return hostValue[vm.host.name].fullName;
-        }
-
-        function _isActive (hostName) {
-            return hostConfig.name === hostName;
-        }
-
+        /**
+         * @description
+         * On switch host selection fn.
+         *
+         * @return {String}
+         * @public
+         */
         function onSwitch () {
             angular.forEach(hostValue, function (item) {
                 item.active = !item.active;
@@ -47,12 +46,49 @@
             });
         }
 
+        /**
+         * @description
+         * On apply host selection fn.
+         *
+         * @return {Object}
+         * @public
+         */
         function onApply () {
             $modalInstance.close(vm.host);
         }
 
+        /**
+         * @description
+         * On cancel modal fn.
+         *
+         * @return void
+         * @public
+         */
         function onCancel () {
             $modalInstance.dismiss('cancel');
+        }
+
+        /**
+         * @description
+         * Get full host name.
+         *
+         * @return {String}
+         * @public
+         */
+        function getFullHostName () {
+            return hostValue[vm.host.name].fullName;
+        }
+
+        /**
+         * @description
+         * Check which host is currently active.
+         *
+         * @param  {String} | hostName - current host name.
+         * @return {Bool}
+         * @private
+         */
+        function _isActive (hostName) {
+            return hostConfig.name === hostName;
         }
     }
 })();
