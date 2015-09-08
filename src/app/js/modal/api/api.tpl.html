@@ -1,21 +1,24 @@
 <section class="modal-inner">
     <div class="row">
 
-        <div class="col-sm-12 -margin-bottom-50">Server is currently set to <span ng-bind="amctrl.getFullHostName()"></span>.</div>
+        <div class="col-sm-12 -margin-bottom-50">
+            <div class="sr-title -title-gray -gray-md">Server set to</div>
+            <div class="sr-title -title-host -title-upper" ng-bind="amctrl.getFullHostName()"></div>
+        </div>
 
-        <div class="col-sm-5 -margin-bottom-50">
+        <div class="col-sm-5 -margin-bottom-50 -line-height-1">
             <div class="sr-label -label-host" ng-class="{'active': amctrl.host.name === 'READER'}">
                 Mangareader.net
             </div>
         </div>
-        <div class="col-md-2 -margin-bottom-50">
+        <div class="col-sm-2 -margin-bottom-50 -line-height-1">
             <switcher
                 class="sr-switch"
                 ng-model="amctrl.host.name"
                 on-change="amctrl.onSwitch()">
             </switcher>
         </div>
-        <div class="col-sm-5 -margin-bottom-50">
+        <div class="col-sm-5 -margin-bottom-50 -line-height-1">
             <div class="sr-label -label-host" ng-class="{'active': amctrl.host.name === 'FOX'}">
                 Mangafox.me
             </div>

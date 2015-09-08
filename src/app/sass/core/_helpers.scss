@@ -37,6 +37,10 @@
     .-line-height-#{$value} {line-height: #{$value}px;}
 }
 
+.-line-height-1 {
+    line-height: 1;
+}
+
 //== Text alignment.
 @each $value in $text-align {
     .-text-#{$value} {text-align: #{$value};}

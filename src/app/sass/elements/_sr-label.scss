@@ -10,6 +10,7 @@
         font-family: $font-family-juraLight;
         font-size: $font-size-big;
         color: lighten($gray-dark, 20);
+        cursor: default;
 
         &.active {
             color: #fff;

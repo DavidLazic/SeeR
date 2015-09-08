@@ -20,6 +20,15 @@
 
     &.-title-gray {
         color: $gray;
+
+        &.-gray-md {
+            font-size: $font-size-big;
+        }
+    }
+
+    &.-title-host {
+        font-family: $font-family-building;
+        font-size: $font-size-h3;
     }
 
     &.-title-comic {
