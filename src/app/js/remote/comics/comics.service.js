@@ -74,16 +74,6 @@
 
         /**
          * @description
-         * Reset item.
-         *
-         * @return {Function}
-         */
-        function resetItem () {
-            return UtilityService.resetItem();
-        }
-
-        /**
-         * @description
          * Get pagination config.
          *
          * @return {Object}
@@ -113,8 +103,7 @@
             getSingleComic: getSingleComic,
             setCurrentView: setCurrentView,
             setCurrentItem: setCurrentItem,
-            checkCurrentItem: checkCurrentItem,
-            resetItem: resetItem
+            checkCurrentItem: checkCurrentItem
         };
     }
 })();

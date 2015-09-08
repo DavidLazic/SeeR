@@ -35,7 +35,6 @@
             setHostValue(hostName);
             _bindOnItemChosen();
             _bindOnItemCheck();
-            _bindOnItemReset();
         }
 
         /**
@@ -204,18 +203,6 @@
         function _bindOnItemCheck () {
             $rootScope.$on(AppConfig.BROADCAST.ITEM_CHECK, function () {
                 $rootScope.$broadcast(AppConfig.BROADCAST.ITEM_RETRIEVE, vm.item);
-            });
-        }
-
-        /**
-         * @description
-         * Reset whole item.
-         *
-         * @private
-         */
-        function _bindOnItemReset () {
-            $rootScope.$on(AppConfig.BROADCAST.ITEM_RESET, function () {
-                // vm.item = null;
             });
         }
 

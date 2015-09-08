@@ -53,7 +53,6 @@
         function onOpen (item) {
             ComicsService.checkCurrentItem();
             if (currentItem.mangaId !== item.mangaId) {
-                ComicsService.resetItem();
                 ComicsService.getSingleComic(item.mangaId).then(function (response) {
                     ComicsService.setCurrentItem({item: response});
                 });

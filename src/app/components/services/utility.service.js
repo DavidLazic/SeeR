@@ -120,14 +120,6 @@
 
         /**
          * @description
-         * Reset item.
-         */
-        function resetItem () {
-            $rootScope.$emit(AppConfig.BROADCAST.ITEM_RESET);
-        }
-
-        /**
-         * @description
          * Set config for current mode.
          *
          * @param {Object} | params - params config object ({modeChosen: <modeChosen>}).
@@ -173,8 +165,7 @@
             setCurrentView: setCurrentView,
             setCurrentItem: setCurrentItem,
             setModeChosen: setModeChosen,
-            checkCurrentItem: checkCurrentItem,
-            resetItem: resetItem
+            checkCurrentItem: checkCurrentItem
         };
     }
 })();
