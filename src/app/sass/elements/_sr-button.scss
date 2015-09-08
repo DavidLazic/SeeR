@@ -9,6 +9,7 @@
     padding: 0;
     display: inline-block;
     border: none;
+    background: none;
     outline: none;
     color: #fff;
 
@@ -73,6 +74,26 @@
         &::after {
             display: block;
             content: attr(data-text);
+        }
+    }
+
+    &.-btn-close {
+        position: fixed;
+        top: 15px;
+        right: 3%;
+        z-index: 50;
+    }
+
+    &.-btn-navigation {
+        position: fixed;
+        top: 50%;
+
+        &.-nav-left {
+            left: calc(50% - 550px);
+        }
+
+        &.-nav-right {
+            right: calc(50% - 550px);
         }
     }
 }

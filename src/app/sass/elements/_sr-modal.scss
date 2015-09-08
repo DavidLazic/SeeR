@@ -5,8 +5,6 @@
 .sr-modal {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
 
     &.-modal-reader {
 
@@ -15,23 +13,31 @@
             width: 7px;
         }
 
-        &::-webkit-scrollbar-thumb {
-            border-radius: 4px;
-            background-color: rgba(0, 0, 0, 0.5);
-            -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+        ::-webkit-scrollbar-thumb {
+            @include border-radius(4px);
+            background-color: rgba(57, 65, 33, 0.8);
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar-track {
+            @include border-radius(10px);
+            -webkit-box-shadow: inset 0 0 6px rgba(79, 32, 30, 0.4);
         }
 
         .modal-dialog{
             @include transition(all 0.3s ease);
+            @include border-radius(0);
             margin: 0;
-            height: 100%;
             width: 100%;
             transform: none !important;
         }
 
         .modal-content {
             @include border-radius(0);
+            padding: 60px 40px 40px;
+            background-color: $gray-darker;
             box-shadow: none;
+            border: none;
         }
 
         .modal-backdrop.in {
@@ -42,66 +48,6 @@
             margin: 0;
             width: 100% !important;
 
-        }
-
-        .slider{
-            margin: 0 auto;
-            position: relative;
-            width: 700px;
-            overflow: hidden;
-        }
-
-        .slider.-loader-active::after{
-            content: "Loading";
-            display: block;
-            position: absolute;
-            bottom: 0;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: #fff;
-        }
-
-        .slider > ul{
-            position: relative;
-            -webkit-transition: 0.3s left;
-            -moz-transition: 0.3s left;
-            -ms-transition: 0.3s left;
-            -o-transition: 0.3s left;
-            list-style: none;
-            margin: 0; padding: 0;
-        }
-
-        .slider ul > li {
-            width: 700px;
-            float: left;
-        }
-
-        .slider ul > li > img {
-            max-width: 100%;
-            width: 99%;
-        }
-
-        .btn-asdf-left {
-            position: absolute;
-            top: 0;
-            left: 50px;
-        }
-
-        .btn-asdf-right{
-            position: absolute;
-            top: 0;
-            right: 50px;
-        }
-
-        .asdf::after {
-            position: absolute;
-            content: "Loading";
-            background-color: #fff;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
         }
     }
 

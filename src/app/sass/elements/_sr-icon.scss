@@ -6,7 +6,7 @@
     @include transition(all 0.3s ease);
     padding: 0 5px;
     display: inline-block;
-    color: #000;
+    color: #fff;
     cursor: pointer;
     font-size: $font-size-x-medium;
     vertical-align: middle;
@@ -37,6 +37,32 @@
             &::before {
                 content: "\ea0f";
             }
+        }
+    }
+
+    &.-icon-close {
+        font-size: $font-size-big;
+        color: lighten($gray-dark, 20);
+
+        &:hover {
+            color: lighten($gray, 50);
+        }
+    }
+
+    &.-icon-navigation {
+        color: $green-dark;
+        font-size: $font-size-h2;
+
+        &:hover {
+            color: lighten($green-dark, 20);
+        }
+
+        &.-nav-right {
+            transform: rotate(90deg);
+        }
+
+        &.-nav-left {
+            transform: rotate(-90deg);
         }
     }
 

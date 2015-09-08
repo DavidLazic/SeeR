@@ -1,15 +1,22 @@
-<div>
-    {{rmctrl.model.index + 1}} / {{rmctrl.model.total + 1}}
-</div>
-<div>
-    Chapter {{rmctrl.model.chapterIdx + 1}}
-</div>
+<section>
+    <div class="row reader-header">
+        <div class="col-sm-6 sr-title -title-neon -text-right">
+            Chapter {{rmctrl.model.chapterIdx + 1}}
+        </div>
+        <div class="col-sm-6 sr-title -title-neon">
+            {{rmctrl.model.index + 1}} / {{rmctrl.model.total + 1}}
+        </div>
+    </div>
 
-<button type="button" ng-click="rmctrl.onCancel()">X</button>
+    <button type="button" class="btn sr-btn -btn-close" ng-click="rmctrl.onCancel()">
+        <i class="sr-icon -icon-close icon-cross"></i>
+    </button>
 
-<c-reader ng-model="rmctrl.model"
-          on-prev="rmctrl.onPrev()"
-          on-next="rmctrl.onNext()">
-</c-reader>
+    <c-reader ng-model="rmctrl.model"
+              on-prev="rmctrl.onPrev()"
+              on-next="rmctrl.onNext()">
+    </c-reader>
+</section>
+
 
 

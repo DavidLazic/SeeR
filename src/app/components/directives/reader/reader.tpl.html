@@ -1,13 +1,17 @@
-<div style="position: relative;">
-    <button type="button" class="btn-asdf-left" ng-click="rctrl.onMoveLeft()">Left</button>
+<div class="sr-wrapper -wrapper-relative">
+    <button type="button" class="btn sr-btn -btn-navigation -nav-left" ng-click="rctrl.onMoveLeft()">
+        <i class="sr-icon -icon-navigation -nav-left icon-arrow-top"></i>
+    </button>
 
-    <div class="slider" ng-class="{ '-loader-active' : rctrl.isLoading }">
-        <ul reader-wrapper class="asdf" style="left: {{rctrl.posLeft}}; width: {{rctrl.wrapperWidth}}">
-            <li ng-repeat="image in model.chapter track by $index" image-wrapper>
+    <div class="sr-reader" ng-class="{ '-loader-active' : rctrl.isLoading }">
+        <ul reader-wrapper class="reader-list" style="left: {{rctrl.posLeft}}; width: {{rctrl.wrapperWidth}}">
+            <li class="list-item" ng-repeat="image in model.chapter track by $index" image-wrapper>
                 <image-loader source="{{image}}"></image-loader>
             </li>
         </ul>
     </div>
 
-    <button type="button" class="btn-asdf-right" ng-click="rctrl.onMoveRight()">Right</button>
+    <button type="button" class="btn sr-btn -btn-navigation -nav-right" ng-click="rctrl.onMoveRight()">
+        <i class="sr-icon -icon-navigation -nav-right icon-arrow-top"></i>
+    </button>
 </div>

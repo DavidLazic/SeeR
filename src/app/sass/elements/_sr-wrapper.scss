@@ -187,6 +187,10 @@
         }
     }
 
+    &.-wrapper-relative {
+        position: relative;
+    }
+
     &.-wrapper-form-text {
         position: relative;
         width: 320px;
