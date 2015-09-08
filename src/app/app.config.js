@@ -32,7 +32,6 @@
             VIEW_CHANGED: 'view:changed',
             MODE_CHOSEN: 'mode:chosen',
             ITEM_CHOSEN: 'item:chosen',
-            ITEM_RESET: 'item:reset',
             ITEM_CHECK: 'item:check',
             ITEM_RETRIEVE: 'item:retrieve'
         }
