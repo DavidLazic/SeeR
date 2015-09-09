@@ -58,6 +58,8 @@
                 z-index: 1;
                 visibility: visible;
                 opacity: 1;
+                transition-delay: 1.2s;
+                -webkit-transition-delay: 1.2s;
                 -webkit-transform: rotateX(0deg) scale(1) translateX(20%);
                 transform: rotateX(0deg) scale(1) translateX(20%);
                 pointer-events: auto;

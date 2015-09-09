@@ -11,19 +11,19 @@
     function httpInterceptor($q, $location) {
         return {
 
-            request: function (config) {
+            'request': function (config) {
                 return config || $q.when(config);
             },
 
-            requestError: function (rejection) {
+            'requestError': function (rejection) {
                 return $q.reject(rejection);
             },
 
-            response: function (response) {
+            'response': function (response) {
                 return response || $q.when(response);
             },
 
-            responseError: function (rejection) {
+            'responseError': function (rejection) {
 
                 if ([401, 404].indexOf(rejection.status) !== -1) {
                     $location.path('/');

@@ -47,12 +47,14 @@
                     transformRequest: _formPostParamTransformFn,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     params: data,
+                    timeout: 10000,
                     cache: true
                 };
             } else {
                 config = {
                     method: 'GET',
                     url: url,
+                    timeout: 10000,
                     cache: true
                 };
             }

@@ -41,7 +41,7 @@
          * @return {Object}
          */
         function getCurrentConfig () {
-            return _doRequest()(config).then(function (response) {
+            return _doRequest(config).then(function (response) {
                 return response;
             });
         }
@@ -89,7 +89,7 @@
          */
         function setCurrentView (params) {
             _setConfig(params);
-            return _doRequest()(config).then(function (response) {
+            return _doRequest(config).then(function (response) {
                 $rootScope.$emit(AppConfig.BROADCAST.VIEW_CHANGED, config);
                 return response;
             });
@@ -104,7 +104,7 @@
          */
         function setCurrentItem (params) {
             _setConfig(params);
-            return _doRequest()(config).then(function (response) {
+            return _doRequest(config).then(function (response) {
                 $rootScope.$emit(AppConfig.BROADCAST.ITEM_CHOSEN, config);
                 return response;
             });
@@ -127,7 +127,7 @@
          */
         function setModeChosen (params) {
             _setConfig(params);
-            return _doRequest()(config).then(function (response) {
+            return _doRequest(config).then(function (response) {
                 return response;
             });
         }
@@ -145,12 +145,8 @@
          * @return {Object}
          * @private
          */
-        function _doRequest () {
-            var deffered = $q.defer();
-            return function (params) {
-                deffered.resolve(params);
-                return deffered.promise;
-            };
+        function _doRequest (params) {
+            return $q.when(params);
         }
 
         /**
