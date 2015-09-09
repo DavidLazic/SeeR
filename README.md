@@ -21,7 +21,7 @@ $ gulp build
 
 ```
 
-[Live preview](http://davidlazic.github.io/SeeR/#/)
+[SeeR preview](http://davidlazic.github.io/SeeR/#/)
 
 ====
 
