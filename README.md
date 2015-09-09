@@ -1,15 +1,11 @@
 ## SeeR
-
 Angular v1.4.0 SPA.
-
-====
 
 #### Description:
 
-SPA for reading comics. SeeR uses Manga Scraper API that gives reach to two hosts (mangareader.net and mangafox.me).
+SPA for reading comics.<br>
+SeeR uses Manga Scraper API that gives reach to two hosts (mangareader.net and mangafox.me).<br>
 Offline mode is not supported at the moment.
-
-====
 
 #### Setup:
 
