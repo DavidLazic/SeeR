@@ -8,13 +8,13 @@
     padding: 5px 20px;
     top: 35px;
     right: 0;
-    background-color: $red-darkest;
+    background-color: rgba(61, 34, 38, 0.9);
     text-align: center;
     color: #fff;
     z-index: 0;
     visibility: hidden;
     opacity: 0;
-    font-family: $font-family-openRegular;
+    font-family: $font-family-juraRegular;
     font-size: $font-size-small;
     -webkit-transition: all 0.3s cubic-bezier(0.3, 0, 0, 1.2);
     transition: all 0.3s cubic-bezier(0.3, 0, 0, 1.2);
@@ -31,8 +31,8 @@
         width: 0;
         content: "";
         border: 10px solid transparent;
-        border-top: 10px solid $red-darkest;
-        border-top-color: $red-darkest;
+        border-top: 10px solid rgba(61, 34, 38, 0.9);
+        border-top-color: rgba(61, 34, 38, 0.9);
     }
 
     &.-tooltip-hover{
