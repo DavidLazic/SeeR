@@ -46,11 +46,21 @@
 
     &.-btn-link {
         @include border-radius(0);
+        position: relative;
 
         &:hover {
 
             .sr-icon {
                 color: lighten($green-dark, 20);
+            }
+
+            .sr-tooltip {
+                z-index: 1;
+                visibility: visible;
+                opacity: 1;
+                -webkit-transform: rotateX(0deg) scale(1) translateX(20%);
+                transform: rotateX(0deg) scale(1) translateX(20%);
+                pointer-events: auto;
             }
         }
 

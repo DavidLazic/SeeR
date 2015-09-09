@@ -13,6 +13,7 @@
         background-color: $gray-dark;
         box-shadow: 0 0 5px 1px #000;
         font-family: $font-family-openLight;
+        cursor: pointer;
 
         &:hover {
             background-color: lighten($gray-dark, 3);

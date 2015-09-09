@@ -41,13 +41,13 @@
 
     <div class="sr-wrapper -wrapper-table" scroll-height>
         <div class="sr-form-table" ng-class="{'-scroll-active': scrollActive}" scroll-class>
-            <div class="row form-row" ng-repeat="item in cctrl.comics | filter: cctrl.query | offset: {offset: cctrl.pagination.offset, limit: cctrl.pagination.limit}">
+            <div class="row form-row" ng-click="cctrl.onOpen(item)" ng-repeat="item in cctrl.comics | filter: cctrl.query | offset: {offset: cctrl.pagination.offset, limit: cctrl.pagination.limit}">
                 <div class="col-sm-10">
                     <div ng-bind="::item.name"></div>
                 </div>
-                <div class="col-sm-2 -text-center -cursor-pointer" ng-click="cctrl.onOpen(item)">
+                <div class="col-sm-2 -text-center -cursor-pointer">
                     <div class="border-left"></div>
-                    <i class="sr-icon -icon-green icon-circle-right" title="View"></i>
+                    <i class="sr-icon -icon-green icon-circle-right"></i>
                 </div>
             </div>
         </div>
