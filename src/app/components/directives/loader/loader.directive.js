@@ -47,11 +47,7 @@
          * @private
          */
         function _resolveOverlay () {
-            if (ctrl.active) {
-                ctrl.body.addClass('-loader-active');
-            } else {
-                ctrl.body.removeClass('-loader-active');
-            }
+            return (ctrl.active) ? ctrl.body.addClass('-loader-active') : ctrl.body.removeClass('-loader-active');
         }
     }
 
