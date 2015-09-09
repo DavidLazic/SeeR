@@ -10,12 +10,14 @@ Offline mode is not supported at the moment.
 #### Setup:
 
 > Development:
+
 ```
 $ npm install
 $ gulp serve
-
+```
 
 > Production:
+
 ```
 $ npm install
 $ gulp build
