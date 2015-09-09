@@ -70,7 +70,7 @@
             },
             controller: 'imageLoaderController',
             controllerAs: 'ictrl',
-            templateUrl: '/app/components/directives/image-loader/image-loader.tpl.html',
+            templateUrl: 'app/components/directives/image-loader/image-loader.tpl.html',
             link: function (scope, elem, attrs, ctrl) {
                 var imageWrapper = angular.element(elem[0]);
 

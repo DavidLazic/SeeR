@@ -13,7 +13,7 @@
             scope: {
                 onChange: '&'
             },
-            templateUrl: '/app/components/directives/switcher/switcher.tpl.html',
+            templateUrl: 'app/components/directives/switcher/switcher.tpl.html',
             link: function (scope, elem, attrs, ngModel) {
 
                 scope.$watch(function () {
