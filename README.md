@@ -18,7 +18,10 @@ $ gulp serve
 > Production:
 $ npm install
 $ gulp build
+
 ```
+
+[Live preview](http://davidlazic.github.io/SeeR/#/)
 
 ====
 
