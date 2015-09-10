@@ -1,11 +1,12 @@
 (function() {
     'use strict';
 
-    angular.module('readerApp.modal.api.controller', [])
-    .controller('ApiModalController', ApiModalController);
+    angular.module('readerApp.modal.api.controller', [
+        'readerApp.modal.service'
+    ]).controller('ApiModalController', ApiModalController);
 
-    ApiModalController.$inject = ['$modalInstance', 'data'];
-    function ApiModalController($modalInstance, host) {
+    ApiModalController.$inject = ['$modalInstance', 'ModalService', 'data'];
+    function ApiModalController($modalInstance, ModalService, host) {
         var vm = this,
             hostConfig = angular.copy(host) || {name: ''},
             hostValue = {
@@ -54,7 +55,9 @@
          * @public
          */
         function onApply () {
-            $modalInstance.close(vm.host);
+            ModalService.notifySuccess('Server successfully changed.').then(function () {
+                $modalInstance.close(vm.host);
+            });
         }
 
         /**

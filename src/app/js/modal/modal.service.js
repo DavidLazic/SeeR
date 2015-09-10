@@ -3,11 +3,12 @@
 
     angular.module('readerApp.modal.service', [
         'readerApp.service.httpRequest',
-        'readerApp.service.utility'
+        'readerApp.service.utility',
+        'readerApp.service.notification'
     ]).factory('ModalService', ModalService);
 
-    ModalService.$inject = ['$filter', 'HttpRequestService', 'UtilityService'];
-    function ModalService($filter, HttpRequestService, UtilityService) {
+    ModalService.$inject = ['$q', '$filter', 'HttpRequestService', 'UtilityService', 'notificationMessage'];
+    function ModalService($q, $filter, HttpRequestService, UtilityService, notificationMessage) {
 
         var hostConfig = UtilityService.getHostConfig();
 
@@ -30,10 +31,23 @@
 
         /**
          * @description
+         * Create notification.
+         *
+         * @param  {String} | message - success message.
+         * @return {Object}
+         * @public
+         */
+        function notifySuccess (message) {
+            return $q.when(notificationMessage.success(message));
+        }
+
+        /**
+         * @description
          * Public ModalService API.
          */
         return {
-            getChapterById: getChapterById
+            getChapterById: getChapterById,
+            notifySuccess: notifySuccess
         };
     }
 })();
