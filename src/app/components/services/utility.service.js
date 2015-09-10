@@ -132,7 +132,14 @@
             });
         }
 
-
+        /**
+         * @description
+         * Set current config.
+         *
+         * @param {Object} params - current config.
+         * @return {Object}
+         * @private
+         */
         function _setConfig (params) {
             return angular.extend(config, angular.copy(params, defaultConfig));
         }

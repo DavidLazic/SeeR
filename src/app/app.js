@@ -20,6 +20,7 @@
         'readerApp.service.httpRequest',
         'readerApp.service.httpInterceptor',
         'readerApp.service.utility',
+        'readerApp.service.notification',
 
         // filters
         'readerApp.filter.offset',
