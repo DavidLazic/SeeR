@@ -20,13 +20,13 @@
 
     .sr-notification-inner {
         position: relative;
+        padding: 15px 10px;
         margin: 0 auto;
         max-width: 560px;
-        height: 50px;
         animation: notify 6s forwards ease;
         -webkit-animation: notify 6s forwards ease;
-        line-height: 50px;
         font-family: $font-family-openLight;
+        font-size: $font-size-small;
         text-align: center;
         color: #fff;
         background-color: $gray-dark;
@@ -49,6 +49,46 @@
 
         .notification-content {
 
+        }
+
+        .sr-icon {
+            @include border-radius(50%);
+            padding: 5px;
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background-color: $gray-dark;
+            cursor: default;
+        }
+
+        &.-info {
+
+            .sr-icon {
+
+                &::before {
+                    color: $blue-lighter;
+                }
+            }
+        }
+
+        &.-success {
+
+            .sr-icon {
+
+                &::before {
+                    color: $green-dark;
+                }
+            }
+        }
+
+        &.-error {
+
+            .sr-icon {
+
+                &::before {
+                    color: lighten($red-darker, 20);
+                }
+            }
         }
     }
 }

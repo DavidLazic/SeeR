@@ -37,8 +37,8 @@
          * @return {Object}
          * @public
          */
-        function notifySuccess (message) {
-            return $q.when(notificationMessage.success(message));
+        function sendNotification (message) {
+            return $q.when(notificationMessage.info(message));
         }
 
         /**
@@ -47,7 +47,7 @@
          */
         return {
             getChapterById: getChapterById,
-            notifySuccess: notifySuccess
+            sendNotification: sendNotification
         };
     }
 })();

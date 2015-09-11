@@ -9,6 +9,7 @@
     function NotificationController($scope, model) {
         $scope.isSuccess = (model.notifyType === 'success');
         $scope.isError = (model.notifyType === 'error');
+        $scope.isInfo = (model.notifyType === 'info');
 
         $scope.message = model.message;
         $scope.title = model.title;
@@ -20,7 +21,8 @@
         // default notification message settings
         var defaults = {
                 autoClose: 6000,
-                template:   '<div class="sr-notification-inner" ng-class="{\'-success\': isSuccess, \'-error\': isError}">' +
+                template:   '<div class="sr-notification-inner" ng-class="{\'-success\': isSuccess, \'-error\': isError, \'-info\': isInfo}">' +
+                                '<i class="sr-icon" ng-class="{\'icon-warning\': isError, \'icon-info\': isInfo}"></i>' +
                                 '<span class="notification-title" ng-bind-html="title"></span>' +
                                 '<span class="notification-content" ng-bind-html="message"></span>' +
                             '</div>'
@@ -216,6 +218,9 @@
                 },
                 error: function (message) {
                     getInstance(message, 'error').show();
+                },
+                info: function (message) {
+                    getInstance(message, 'info').show();
                 }
             };
         }
