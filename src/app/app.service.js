@@ -3,11 +3,12 @@
 
     angular.module('readerApp.appService', [
         'readerApp.service.httpRequest',
-        'readerApp.service.utility'
+        'readerApp.service.utility',
+        'readerApp.service.notification'
     ]).factory('AppService', AppService);
 
-    AppService.$inject = ['$filter', 'HttpRequestService', 'UtilityService'];
-    function AppService($filter, HttpRequestService, UtilityService) {
+    AppService.$inject = ['$q', '$filter', 'HttpRequestService', 'UtilityService', 'notificationMessage'];
+    function AppService($q, $filter, HttpRequestService, UtilityService, notificationMessage) {
 
         var hostConfig = {};
 
@@ -64,12 +65,25 @@
 
         /**
          * @description
+         * Create notification.
+         *
+         * @param  {String} | message - success message.
+         * @return {Object}
+         * @public
+         */
+        function sendNotification (message) {
+            return $q.when(notificationMessage.info(message));
+        }
+
+        /**
+         * @description
          * Public AppService API.
          */
         return {
             getDataConfig: getDataConfig,
             getItemModel: getItemModel,
-            getChapterById: getChapterById
+            getChapterById: getChapterById,
+            sendNotification: sendNotification
         };
     }
 })();

@@ -19,7 +19,7 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <a class="sr-btn -btn-mode" data-text="Remote" href="#/remote/comics" ng-click="appctrl.onModeChosen()">
+                <a class="sr-btn -btn-mode" data-text="Remote" href="#/remote/comics" ng-click="appctrl.onModeChosen('remote')">
                     <i class="icon-bookmarks"></i>
                 </a>
                 <div class="sr-title -title-sm -title-gray">
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <a class="sr-btn -btn-mode" data-text="Local" href="javascript:void(0)">
+                <a class="sr-btn -btn-mode" data-text="Local" href="#/" ng-click="appctrl.onModeChosen('local')">
                     <i class="icon-bookmark"></i>
                 </a>
                 <div class="sr-title -title-sm -title-gray">

@@ -8,7 +8,7 @@
         'readerApp.service.utility'
     ]).controller('AppController', AppController);
 
-    AppController.$inject = ['$http', '$scope', '$rootScope', '$modal', '$filter', 'AppConfig', 'AppService', 'UtilityService'];
+    AppController.$inject = ['$http', '$scope', '$rootScope', '$modal', '$filter', 'AppConfig', 'AppService', 'UtilityService', 'notificationMessage'];
     function AppController($http, $scope, $rootScope, $modal, $filter, AppConfig, AppService, UtilityService) {
         var vm = this,
             data = AppService.getDataConfig(),
@@ -106,12 +106,34 @@
          * @description
          * On mode chosen fn.
          *
+         * @param {String} | modeType - mode type.
+         * @return {Function}
          * @public
          */
-        function onModeChosen () {
+        function onModeChosen (modeType) {
+            return (modeType === 'remote') ? _remoteMode() : _localMode();
+        }
+
+        /**
+         * @description
+         * On remote mode chosen.
+         *
+         * @private
+         */
+        function _remoteMode () {
             vm.modeChosen = !vm.modeChosen;
             setHostValue(hostName);
             UtilityService.setModeChosen({modeChosen: true});
+        }
+
+        /**
+         * @description
+         * On local mode chosen.
+         *
+         * @private
+         */
+        function _localMode () {
+            AppService.sendNotification('Sorry, local mode is not yet supported.');
         }
 
         /**
