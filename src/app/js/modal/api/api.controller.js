@@ -55,7 +55,7 @@
          * @public
          */
         function onApply () {
-            ModalService.sendNotification('Server successfully changed.').then(function () {
+            ModalService.sendNotification('Server successfully changed.', 'success').then(function () {
                 $modalInstance.close(vm.host);
             });
         }

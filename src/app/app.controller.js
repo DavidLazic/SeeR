@@ -133,7 +133,7 @@
          * @private
          */
         function _localMode () {
-            AppService.sendNotification('Sorry, local mode is not yet supported.');
+            AppService.sendNotification('Sorry, local mode is not yet supported.', 'error');
         }
 
         /**

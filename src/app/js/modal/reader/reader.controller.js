@@ -32,7 +32,7 @@
          * @return void
          */
         function init () {
-            ModalService.sendNotification('You can use left and right arrow keys to navigate.');
+            ModalService.sendNotification('You can use left and right arrow keys to navigate.', 'info');
             _updateChapterIndex();
             _prepareModel();
         }

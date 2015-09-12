@@ -82,7 +82,7 @@
             .sr-icon {
 
                 &::before {
-                    color: $green-dark;
+                    color: lighten($green-dark, 20);
                 }
             }
         }

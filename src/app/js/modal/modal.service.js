@@ -37,8 +37,8 @@
          * @return {Object}
          * @public
          */
-        function sendNotification (message) {
-            return $q.when(notificationMessage.info(message));
+        function sendNotification (message, messageType) {
+            return $q.when(notificationMessage[messageType](message));
         }
 
         /**
