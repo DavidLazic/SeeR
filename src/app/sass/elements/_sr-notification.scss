@@ -25,6 +25,10 @@
         max-width: 560px;
         animation: notify 6s forwards ease;
         -webkit-animation: notify 6s forwards ease;
+        perspective: 1000px;
+        -webkit-perspective: 1000px;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
         font-family: $font-family-openLight;
         font-size: $font-size-small;
         text-align: center;
@@ -57,6 +61,8 @@
             position: absolute;
             top: -10px;
             left: -10px;
+            animation: notifyDebounce 0.4s forwards ease-in;
+            -webkit-animation: notifyDebounce 0.4s forwards ease-in;
             background-color: $gray-dark;
             cursor: default;
         }
