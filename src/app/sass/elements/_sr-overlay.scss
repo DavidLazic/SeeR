@@ -21,4 +21,31 @@ body {
             display: block;
         }
     }
+
+    &.-screen-sm {
+
+        .sr-overlay {
+            display: block;
+            top: 40px;
+            bottom: 40px;
+            left: 40px;
+            right: 40px;
+            background-color: $gray-darker;
+
+            &::after {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                right: 0;
+                bottom: 0;
+                transform: translateX(-50%) translateY(-50%);
+                animation: fadeIn 1s forwards ease;
+                -webkit-animation: fadeIn 1s forwards ease;
+                font-family: $font-family-juraLight;
+                font-size: $font-size-h3;
+                text-align: center;
+                content: "Sorry, SeeR doesn't support smaller screens.";
+            }
+        }
+    }
 }

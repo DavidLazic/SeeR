@@ -9,11 +9,12 @@
     var loaderModule = angular.module('readerApp.directive.loader', []);
     loaderModule.controller('loaderController', loaderController);
 
-    loaderController.$inject = ['$document'];
-    function loaderController($document) {
+    loaderController.$inject = ['$window', '$document'];
+    function loaderController($window, $document) {
         var ctrl = this;
 
         this.active = false;
+        this.isSmallScreen = false;
         this.body = angular.element($document[0].body);
         this.overlay = angular.element('<div class="sr-overlay"></div>');
 
@@ -25,9 +26,22 @@
          * @return {Bool}
          * @public
          */
-        this.resolveClass = function (requests) {
+        this.resolveClassActive = function (requests) {
             ctrl.active = (requests > 0);
-            _resolveOverlay();
+            _resolveOverlayActive();
+        };
+
+        /**
+         * @description
+         * Resolve class when small screen.
+         *
+         * @param  {Integer}
+         * @return {Bool}
+         * @public
+         */
+        this.resolveClassSmall = function (width) {
+            ctrl.isSmallScreen = (width <= 992);
+            _resolveOverlaySmall();
         };
 
         /**
@@ -42,29 +56,59 @@
 
         /**
          * @description
-         * Resolve body class.
+         * Get window width.
+         *
+         * @return {Integer}
+         * @public
+         */
+        this.getWinWidth = function () {
+            return $window.innerWidth;
+        };
+
+        /**
+         * @description
+         * Resolve body class when loader active.
          *
          * @private
          */
-        function _resolveOverlay () {
+        function _resolveOverlayActive () {
             return (ctrl.active) ? ctrl.body.addClass('-loader-active') : ctrl.body.removeClass('-loader-active');
+        }
+
+        /**
+         * @description
+         * Resolve body class when small screen.
+         *
+         * @private
+         */
+        function _resolveOverlaySmall () {
+            return (ctrl.isSmallScreen) ? ctrl.body.addClass('-screen-sm') : ctrl.body.removeClass('-screen-sm');
         }
     }
 
     loaderModule.directive('loader', loader);
 
-    loader.$inject = ['$http'];
-    function loader($http) {
+    loader.$inject = ['$http', '$window'];
+    function loader($http, $window) {
         return {
             restrict: 'A',
             controller: 'loaderController',
             controllerAs: 'lctrl',
             link: function (scope, elem, attrs, ctrl) {
+                var w = angular.element($window);
                 ctrl.setOverlay();
+
+                w.bind('resize', function () {
+                    scope.$apply();
+                });
+
+                scope.$watch(function () {
+                    return ctrl.getWinWidth();
+                }, ctrl.resolveClassSmall);
 
                 scope.$watch(function () {
                     return $http.pendingRequests.length;
-                }, ctrl.resolveClass);
+                }, ctrl.resolveClassActive);
 
                 scope.$on('$destroy', function () {
                     elem.off();
