@@ -22,6 +22,17 @@ body {
         }
     }
 
+    &.-menu-open {
+
+        .sr-overlay {
+            display: block;
+            right: 400px;
+            animation: fadeInLeft 0.5s forwards ease;
+            -webkit-animation: fadeInLeft 0.5s forwards ease;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+    }
+
     &.-screen-sm {
 
         .sr-overlay {

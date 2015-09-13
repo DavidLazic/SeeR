@@ -1,0 +1,53 @@
+//
+// SeeR menu
+// --------------------------------------------------
+
+.sr-menu {
+    @include transition(all 0.5s cubic-bezier(0.165, 0.840, 0.440, 1.000));
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -360px;
+    width: 400px;
+    z-index: 2100;
+    background-color: transparent;
+
+    .menu-content {
+        opacity: 0;
+        visibility: hidden;
+        backface-visibility: hidden;
+        z-index: -1;
+    }
+
+    .content-bg {
+        > div {
+            height: 15px;
+            background-color: $gray-darker;
+
+            &:nth-child(odd) {
+                animation: fadeInLeft 1.5s forwards ease;
+                -webkit-animation: fadeInLeft 1.5s forwards ease;
+            }
+
+            &:nth-child(even) {
+                animation: fadeInRight 1.5s forwards ease;
+                -webkit-animation: fadeInRight 1.5s forwards ease;
+            }
+        }
+    }
+
+    .content-text {
+
+    }
+
+    &.active {
+        right: 0;
+
+        .menu-content{
+            display: none;
+            opacity: 1;
+            visibility: visible;
+            z-index: 1;
+        }
+    }
+}

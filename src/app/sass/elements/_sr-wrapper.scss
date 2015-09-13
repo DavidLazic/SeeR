@@ -5,6 +5,7 @@
 .sr-wrapper {
 
     &.-wrapper-main {
+        @include transition(all 0.5s cubic-bezier(0.165, 0.840, 0.440, 1.000));
         position: fixed;
         padding: 40px;
         bottom: 0;
@@ -199,6 +200,19 @@
     &.-wrapper-fixed-header {
         padding-top: 5px;
         height: 40px;
+    }
+}
+
+body {
+
+    &.-menu-open {
+
+        .sr-wrapper {
+
+            &.-wrapper-main {
+                transform: translate3d(-400px, 0, 0);
+            }
+        }
     }
 }
 
