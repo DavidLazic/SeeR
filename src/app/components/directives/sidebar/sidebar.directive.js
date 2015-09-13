@@ -16,6 +16,7 @@
 
                 // view model
                 scope.isOpen = false;
+                scope.url = encodeURIComponent('http://davidlazic.github.io/SeeR/#/');
 
                 // events
                 scope.onOpen = onOpen;
