@@ -60,7 +60,6 @@
             .modal-dialog {
                 @include transition(all 0.5s ease);
                 margin: 0 auto;
-                top: 50%;
                 height: 100%;
                 max-width: 600px;
                 transform: translate3d(0, 10%, 0);
