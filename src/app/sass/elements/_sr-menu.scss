@@ -8,46 +8,58 @@
     top: 0;
     bottom: 0;
     right: -360px;
-    width: 400px;
+    width: 300px;
     z-index: 2100;
     background-color: transparent;
 
     .menu-content {
+        @include transition(all 0.3s ease);
+        padding: 40px;
+        height: 100%;
         opacity: 0;
-        visibility: hidden;
-        backface-visibility: hidden;
-        z-index: -1;
     }
 
-    .content-bg {
-        > div {
-            height: 15px;
-            background-color: $gray-darker;
+    .menu-footer {
+        position: absolute;
+        padding: 10px 40px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-size: $font-size-x-small;
 
-            &:nth-child(odd) {
-                animation: fadeInLeft 1.5s forwards ease;
-                -webkit-animation: fadeInLeft 1.5s forwards ease;
-            }
+        .footer-border-b {
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid $green-dark;
+        }
 
-            &:nth-child(even) {
-                animation: fadeInRight 1.5s forwards ease;
-                -webkit-animation: fadeInRight 1.5s forwards ease;
+        a {
+            color: $blue-lighter;;
+
+            &:hover {
+                color: lighten($blue-lighter, 15);
             }
         }
-    }
-
-    .content-text {
-
     }
 
     &.active {
         right: 0;
 
         .menu-content{
+            animation: fadeInLeft 0.5s forwards ease;
+            -webkit-animation: fadeInLeft 0.5s forwards ease;
+            animation-delay: 0.2s;
+            -webkit-animation-delay: 0.2s;
+        }
+    }
+}
+
+body {
+
+    &.-screen-sm {
+
+        .sr-menu {
             display: none;
-            opacity: 1;
-            visibility: visible;
-            z-index: 1;
         }
     }
 }

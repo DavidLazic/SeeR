@@ -205,12 +205,22 @@
 
 body {
 
+    &.-screen-sm {
+
+        .sr-wrapper {
+
+            &.-wrapper-main {
+                display: none;
+            }
+        }
+    }
+
     &.-menu-open {
 
         .sr-wrapper {
 
             &.-wrapper-main {
-                transform: translate3d(-400px, 0, 0);
+                transform: translate3d(-300px, 0, 0);
             }
         }
     }

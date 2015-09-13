@@ -6,6 +6,7 @@ $bootstrap-sass-asset-helper: false !default;
 $margin-and-padding-values: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100;
 $line-height-values: 45;
 $position-values: 'static', 'block', 'inline-block', 'inline', 'hidden';
+$display-values: 'block', 'inline-block', 'inline', 'none';
 $text-align: 'center', 'left', 'right';
 $cursor-values: 'pointer', 'default', 'text';
 $text-transform: 'capitalize', 'uppercase', 'lowercase';
@@ -82,11 +83,12 @@ $font-size-base:          14px !default;
 
 $font-size-large:         27px !default;
 $font-size-big:           20px !default;
+$font-size-xx-medium:     19px !default;
 $font-size-x-medium:      18px !default;
 $font-size-medium:        16px !default;
 $font-size-base-lg:       15px !default;
 $font-size-small:         12px !default;
-
+$font-size-x-small:       11px !default;
 
 $font-size-h1:            70px !default;
 $font-size-h2:            55px !default;

@@ -25,7 +25,3 @@ $ gulp build
 ```
 
 [SeeR preview](http://davidlazic.github.io/SeeR/#/)
-
-====
-
-Licenced under [MIT license](https://github.com/DavidLazic/SeeR/blob/master/LICENSE.md).

@@ -37,10 +37,6 @@
     .-line-height-#{$value} {line-height: #{$value}px;}
 }
 
-.-line-height-1 {
-    line-height: 1;
-}
-
 //== Text alignment.
 @each $value in $text-align {
     .-text-#{$value} {text-align: #{$value};}
@@ -59,4 +55,17 @@
 //== Font families.
 @each $value in $font-families {
     .-font-#{$value} {font-family: #{$value}, 'Helvetica', 'Arial', sans-serif;}
+}
+
+//== Display.
+@each $value in $display-values {
+    .-display-#{$value} {display: #{$value};}
+}
+
+.-line-height-1 {
+    line-height: 1;
+}
+
+.-v-middle {
+    vertical-align: middle;
 }

@@ -40,9 +40,17 @@
         }
     }
 
+    &.-icon-share {
+        color: lighten($green-dark, 20);
+    }
+
     &.-icon-menu {
+        position: fixed;
+        top: 11px;
+        right: 7px;
         width: 30px;
         height: 30px;
+        z-index: 2300;
 
         .menu-inner {
             @include transition(all 0.3s ease);

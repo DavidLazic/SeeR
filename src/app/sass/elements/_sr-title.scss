@@ -68,6 +68,12 @@
         }
     }
 
+    &.-title-underline {
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid $green-dark;
+    }
+
     &.-title-neon {
         text-shadow: -1px 1px 8px $blue-lighter, 1px -1px 8px #fff;
     }

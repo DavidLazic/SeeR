@@ -7,6 +7,62 @@
     padding: 0 15px;
     text-align: left;
 
+    &.-list-share {
+        margin: 0;
+        padding: 0;
+
+        .list-item {
+            margin: 0 15px;
+            box-shadow: none;
+            background-color: transparent;
+
+            &:hover {
+                background-color: transparent;
+            }
+
+            .sr-icon {
+                font-size: $font-size-large;
+                color: lighten($green-dark, 10);
+
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    &.-list-specs {
+
+        .list-item {
+            position: relative;
+            margin: 0;
+            display: block;
+            width: 100%;
+            font-family: $font-family-openLight;
+            text-align: left;
+            box-shadow: none;
+            background-color: transparent;
+            cursor: default;
+
+            &::before {
+                position: absolute;
+                left: -13px;
+                top: 1px;
+                font-size: $font-size-xx-medium;
+                color: lighten($green-dark, 20);
+                content: "\2022";
+            }
+
+            &:hover {
+                background-color: transparent;
+            }
+        }
+
+        &+.sr-title {
+            margin-top: 40px;
+        }
+    }
+
     .list-item {
         @include transition(all 0.3s ease);
         margin: 0 5px 10px 0;

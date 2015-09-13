@@ -110,11 +110,11 @@
 
 @font-face {
     font-family: 'icomoon';
-    src:url('../../../assets/fonts/icomoon/icomoon.eot?ppohw4');
-    src:url('../../../assets/fonts/icomoon/icomoon.eot?#iefixppohw4') format('embedded-opentype'),
-        url('../../../assets/fonts/icomoon/icomoon.ttf?ppohw4') format('truetype'),
-        url('../../../assets/fonts/icomoon/icomoon.woff?ppohw4') format('woff'),
-        url('../../../assets/fonts/icomoon/icomoon.svg?ppohw4#icomoon') format('svg');
+    src:url('../../../assets/fonts/icomoon/icomoon.eot?-4z0oqz');
+    src:url('../../../assets/fonts/icomoon/icomoon.eot?#iefix-4z0oqz') format('embedded-opentype'),
+        url('../../../assets/fonts/icomoon/icomoon.ttf?-4z0oqz') format('truetype'),
+        url('../../../assets/fonts/icomoon/icomoon.woff?-4z0oqz') format('woff'),
+        url('../../../assets/fonts/icomoon/icomoon.svg?-4z0oqz#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -144,6 +144,12 @@
 }
 .icon-search:before {
     content: "\e986";
+}
+.icon-cog:before {
+    content: "\e994";
+}
+.icon-list:before {
+    content: "\e9ba";
 }
 .icon-eye:before {
     content: "\e9ce";
@@ -184,5 +190,6 @@
 .icon-twitter2:before {
     content: "\ea92";
 }
-
-
+.icon-linkedin:before {
+    content: "\eac8";
+}

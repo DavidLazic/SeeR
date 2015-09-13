@@ -35,7 +35,7 @@
         'readerApp.directive.chapterList',
         'readerApp.directive.scrollHeight',
         'readerApp.directive.switcher',
-        'readerApp.directive.menu'
+        'readerApp.directive.sidebar'
     ]).config(function ($routeProvider, AppConfig) {
         $routeProvider
             .otherwise({
