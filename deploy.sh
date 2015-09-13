@@ -11,3 +11,4 @@ git checkout master
 git branch -D gh-pages
 git remote set-url origin git@bitbucket.org:DavidLazic/seer.git
 
+
