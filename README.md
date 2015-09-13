@@ -1,5 +1,5 @@
 ## SeeR
-Angular v1.4.0 SPA.
+Angular v1.4.0 | NodeJS SPA.
 
 #### Description:
 
