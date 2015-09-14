@@ -9,8 +9,8 @@
     var cReaderModule = angular.module('readerApp.directive.cReader', []);
     cReaderModule.controller('readerController', readerController);
 
-    readerController.$inject = ['$scope', '$timeout'];
-    function readerController($scope, $timeout) {
+    readerController.$inject = ['$scope', '$timeout', '$anchorScroll'];
+    function readerController($scope, $timeout, $anchorScroll) {
         var ctrl = this,
             childWidth = 0,
             onPrev = $scope.onPrev || angular.noop,
@@ -73,6 +73,7 @@
          * @public
          */
         this.onMoveLeft = function () {
+            _scrollTop();
             if ($scope.model.index > 0 ) {
                 --$scope.model.index;
                 ctrl.posLeft = _getPosition();
@@ -90,6 +91,7 @@
          * @public
          */
         this.onMoveRight = function () {
+            _scrollTop();
             if ($scope.model.index < $scope.model.total) {
                 ++$scope.model.index;
                 ctrl.posLeft = _getPosition();
@@ -99,6 +101,17 @@
                 _onResetSlider('nextChapter');
             }
         };
+
+        /**
+         * @description
+         * Scroll to top by using HTML anchor.
+         *
+         * @return void
+         * @private
+         */
+        function _scrollTop () {
+            $anchorScroll('currentPage');
+        }
 
         /**
          * @description
