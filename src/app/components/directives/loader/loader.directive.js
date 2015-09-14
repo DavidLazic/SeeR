@@ -125,9 +125,9 @@
             replace: true,
             restrict: 'E',
             require: '^loader',
-            template: '<div class="sr-loader" ng-class="{\'active\': lctrl.active}">' +
-                        '<i class="sr-icon -icon-loader icon-spinner9"></i>' +
-                      '</div>',
+            template: ''.concat('<div class="sr-loader" ng-class="{\'active\': lctrl.active}">',
+                        '<i class="sr-icon -icon-loader icon-spinner9"></i>',
+                      '</div>'),
             link: function (scope, elem) {
                 scope.$on('$destroy', function () {
                     elem.off();

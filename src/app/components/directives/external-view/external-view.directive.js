@@ -17,9 +17,9 @@
         return {
             replace: true,
             restrict: 'E',
-            template: '<div class="col-sm-8 col-md-6 sr-wrapper -wrapper-external-view" ng-class="{ \'active\' : appctrl.modeChosen }">' +
-                        '<div class="wrapper-content" ng-include src="contentUrl"></div>' +
-                      '</div>',
+            template: ''.concat('<div class="col-sm-8 col-md-6 sr-wrapper -wrapper-external-view" ng-class="{ \'active\' : appctrl.modeChosen }">',
+                        '<div class="wrapper-content" ng-include src="contentUrl"></div>',
+                      '</div>'),
             link: function (scope) {
                 $rootScope.$on(AppConfig.BROADCAST.VIEW_CHANGED, function (event, data) {
                     if (angular.isDefined(data)) {
