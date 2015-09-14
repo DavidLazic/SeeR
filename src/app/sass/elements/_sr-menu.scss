@@ -41,20 +41,23 @@
             }
         }
     }
-
-    &.active {
-        right: 0;
-
-        .menu-content{
-            animation: fadeInLeft 0.5s forwards ease;
-            -webkit-animation: fadeInLeft 0.5s forwards ease;
-            animation-delay: 0.2s;
-            -webkit-animation-delay: 0.2s;
-        }
-    }
 }
 
 body {
+
+    &.-menu-open {
+
+        .sr-menu {
+            right: 0;
+
+            .menu-content{
+                animation: fadeInLeft 0.5s forwards ease;
+                -webkit-animation: fadeInLeft 0.5s forwards ease;
+                animation-delay: 0.2s;
+                -webkit-animation-delay: 0.2s;
+            }
+        }
+    }
 
     &.-screen-sm {
 

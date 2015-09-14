@@ -9,14 +9,14 @@
     var loaderModule = angular.module('readerApp.directive.loader', []);
     loaderModule.controller('loaderController', loaderController);
 
-    loaderController.$inject = ['$window', '$document'];
-    function loaderController($window, $document) {
+    loaderController.$inject = ['$scope', '$compile', '$window', '$document'];
+    function loaderController($scope, $compile, $window, $document) {
         var ctrl = this;
 
         this.active = false;
         this.isSmallScreen = false;
         this.body = angular.element($document[0].body);
-        this.overlay = angular.element('<div class="sr-overlay"></div>');
+        this.overlay = angular.element('<div class="sr-overlay" autoclose></div>');
 
         /**
          * @description
@@ -51,7 +51,8 @@
          * @public
          */
         this.setOverlay = function () {
-            ctrl.body.append(ctrl.overlay);
+            var compiled = $compile(ctrl.overlay)($scope);
+            ctrl.body.append(compiled);
         };
 
         /**

@@ -80,26 +80,6 @@
                 bottom: -7px;
             }
         }
-
-        &.active {
-
-            .menu-inner {
-                background-color: transparent;
-
-                &::before,
-                &::after {
-                    width: 70%;
-                }
-
-                &::before{
-                    transform: rotateZ(-45deg) translate3d(-6px, 12px, 0);
-                }
-
-                &::after {
-                    transform: rotateZ(45deg) translate3d(3px, -4px, 0);
-                }
-            }
-        }
     }
 
     &.-icon-close {
@@ -130,5 +110,34 @@
 
     &.-icon-green {
         color: lighten($green-dark, 5);
+    }
+}
+
+body {
+
+    &.-menu-open {
+
+        .sr-icon {
+
+            &.-icon-menu {
+
+                .menu-inner {
+                    background-color: transparent;
+
+                    &::before,
+                    &::after {
+                        width: 70%;
+                    }
+
+                    &::before{
+                        transform: rotateZ(-45deg) translate3d(-6px, 12px, 0);
+                    }
+
+                    &::after {
+                        transform: rotateZ(45deg) translate3d(3px, -4px, 0);
+                    }
+                }
+            }
+        }
     }
 }

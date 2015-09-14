@@ -15,7 +15,6 @@
                 var body = angular.element($document[0].body);
 
                 // view model
-                scope.isOpen = false;
                 scope.url = encodeURIComponent('http://davidlazic.github.io/SeeR/#/');
 
                 // events
@@ -29,7 +28,6 @@
                  * @public
                  */
                 function onOpen () {
-                    scope.isOpen = !scope.isOpen;
                     body.toggleClass('-menu-open');
                 }
             }
