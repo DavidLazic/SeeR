@@ -12,6 +12,7 @@
 
         // view model
         vm.model = {
+            name: '',
             chapterIdx: 0,
             index: 0,
             total: 0,
@@ -44,6 +45,7 @@
          * @private
          */
         function _prepareModel () {
+            vm.model.name = data.name;
             vm.model.total = data.currentChapter.pages.length - 1;
             vm.model.totalChapters = data.chapters.length - 1;
             _prefetchPreviousChapter();

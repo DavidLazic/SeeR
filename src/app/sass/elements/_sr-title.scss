@@ -68,6 +68,17 @@
         }
     }
 
+    &.-title-name {
+
+        &::before {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            font-size: $font-size-base;
+            content: attr(data-name);
+        }
+    }
+
     &.-title-select {
         font-family: $font-family-juraLight;
         font-size: $font-size-big;

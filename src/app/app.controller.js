@@ -64,6 +64,7 @@
 
             AppService.getChapterById({comic: comic.name, chapterId: chapter}).then(function (response) {
                 data.currentChapter = response;
+                data.name = vm.item.name;
                 _onOpen(data);
             });
         }
@@ -148,7 +149,6 @@
             modalInstance.result.then(function ($files) {
                 _onOpen({
                     local: true,
-                    name: 'local',
                     chapterIndex: 0,
                     chapters: [],
                     currentChapter: {
