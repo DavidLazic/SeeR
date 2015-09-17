@@ -111,7 +111,9 @@
          * @public
          */
         function onModeChosen (modeType) {
-            return (modeType === 'remote') ? _remoteMode() : _localMode();
+            if (angular.isDefined(modeType)) {
+                return (modeType === 'remote') ? _remoteMode() : _localMode();
+            }
         }
 
         /**
@@ -122,8 +124,8 @@
          */
         function _remoteMode () {
             vm.modeChosen = !vm.modeChosen;
-            setHostValue(hostName);
             UtilityService.setModeChosen({modeChosen: true});
+            setHostValue(hostName);
         }
 
         /**
@@ -133,7 +135,20 @@
          * @private
          */
         function _localMode () {
-            AppService.sendNotification('Sorry, local mode is not yet supported.', 'error');
+            var modalInstance = $modal.open({
+                backdrop: false,
+                keyboard: false,
+                windowClass: 'sr-modal -modal-switch',
+                templateUrl: 'app/js/modal/select/select.tpl.html',
+                controller: "SelectModalController",
+                controllerAs: 'smctrl',
+                size: 'lg'
+            });
+
+            modalInstance.result.then(function ($files) {
+                console.log($files);
+            });
+            // AppService.sendNotification('Sorry, local mode is not yet supported.', 'error');
         }
 
         /**

@@ -194,7 +194,7 @@
 
     &.-wrapper-form-text {
         position: relative;
-        width: 320px;
+        max-width: 320px;
     }
 
     &.-wrapper-fixed-header {
@@ -239,7 +239,7 @@ body {
     .sr-wrapper {
 
         &.-wrapper-form-text {
-            width: 420px;
+            max-width: 420px;
         }
 
         &.-wrapper-absolute {

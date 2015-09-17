@@ -1,25 +1,25 @@
-<section anim-debounce delayed-fn="cctrl.setCurrentView()" delay="750">
+<section anim-debounce delayed-fn="rcctrl.setCurrentView()" delay="750">
 
     <div class="row sr-wrapper -wrapper-fixed-header">
         <div class="col-sm-6 -height-45">
             <div class="sr-wrapper -wrapper-form-text">
                 <input class="sr-form-text -form-md"
-                       ng-model="cctrl.query"
-                       ng-change="cctrl.onSearch()"
+                       ng-model="rcctrl.query"
+                       ng-change="rcctrl.onSearch()"
                        ng-model-options="{debounce: 350}"
                        placeholder="Search">
-                <i class="sr-icon -icon-search -icon-green icon-search" ng-class="{'active': cctrl.query}" ng-click="cctrl.onClear()"></i>
+                <i class="sr-icon -icon-search -icon-green icon-search" ng-class="{'active': rcctrl.query}" ng-click="rcctrl.onClear()"></i>
             </div>
         </div>
         <div class="col-sm-6 -line-height-45">
             <pagination
                 class="sr-pagination"
-                ng-class="{'-no-boundaries': cctrl.pagination.totalCount <= 5}"
-                total-items="cctrl.pagination.totalCount"
-                items-per-page="cctrl.pagination.limit"
-                ng-model="cctrl.pagination.offset"
-                ng-if="cctrl.pagination.totalCount > 0"
-                max-size="cctrl.pagination.maxSize"
+                ng-class="{'-no-boundaries': rcctrl.pagination.totalCount <= 5}"
+                total-items="rcctrl.pagination.totalCount"
+                items-per-page="rcctrl.pagination.limit"
+                ng-model="rcctrl.pagination.offset"
+                ng-if="rcctrl.pagination.totalCount > 0"
+                max-size="rcctrl.pagination.maxSize"
                 boundary-links="true"
                 previous-text="‹"
                 next-text="›"
@@ -41,7 +41,7 @@
 
     <div class="sr-wrapper -wrapper-table" scroll-height>
         <div class="sr-form-table" ng-class="{'-scroll-active': scrollActive}" scroll-class>
-            <div class="row form-row" ng-click="cctrl.onOpen(item)" ng-repeat="item in cctrl.comics | filter: cctrl.query | offset: {offset: cctrl.pagination.offset, limit: cctrl.pagination.limit}">
+            <div class="row form-row" ng-click="rcctrl.onOpen(item)" ng-repeat="item in rcctrl.comics | filter: rcctrl.query | offset: {offset: rcctrl.pagination.offset, limit: rcctrl.pagination.limit}">
                 <div class="col-sm-10">
                     <div ng-bind="::item.name"></div>
                 </div>

@@ -23,7 +23,8 @@
 
     &.-btn-gray {
         @include border-radius(2px);
-        padding: 5px 80px;
+        padding: 5px 0;
+        width: 200px;
         font-family: $font-family-openLight;
         text-transform: uppercase;
         color: #fff;

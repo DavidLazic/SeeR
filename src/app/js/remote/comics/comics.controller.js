@@ -4,10 +4,10 @@
     angular.module('readerApp.remote.comics.controller', [
         'readerApp.config',
         'readerApp.remote.comics.service'
-    ]).controller('ComicsController', ComicsController);
+    ]).controller('RemoteComicsController', RemoteComicsController);
 
-    ComicsController.$inject = ['$rootScope', 'AppConfig', 'ComicsService'];
-    function ComicsController($rootScope, AppConfig, ComicsService) {
+    RemoteComicsController.$inject = ['$rootScope', 'AppConfig', 'ComicsService'];
+    function RemoteComicsController($rootScope, AppConfig, ComicsService) {
         var vm = this,
             currentItem = {
                 mangaId: ''

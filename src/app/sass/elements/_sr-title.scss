@@ -68,6 +68,11 @@
         }
     }
 
+    &.-title-select {
+        font-family: $font-family-juraLight;
+        font-size: $font-size-big;
+    }
+
     &.-title-underline {
         margin-bottom: 20px;
         padding-bottom: 5px;

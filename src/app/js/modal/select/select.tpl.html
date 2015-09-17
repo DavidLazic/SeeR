@@ -1,0 +1,17 @@
+<section class="modal-inner">
+    <div class="row">
+
+        <div class="col-sm-12 -margin-bottom-70">
+            <image-select
+                on-select-error="smctrl.onSelectError()"
+                items="smctrl.files">
+            </image-select>
+        </div>
+
+        <div class="col-md-12">
+            <button class="btn sr-btn -btn-gray" ng-click="smctrl.onApply()">Continue</button>
+            <button class="btn sr-btn -btn-gray" ng-click="smctrl.onCancel()">Cancel</button>
+        </div>
+
+    </div>
+</section>

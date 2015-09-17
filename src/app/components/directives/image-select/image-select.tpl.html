@@ -1,0 +1,11 @@
+<div class="sr-form-select">
+    <div class="sr-title -title-select -title-neon">{{isctrl.total}} files selected</div>
+
+    <input class="select-hidden" id="image-select" type="file" multiple file-select accept="image/jpeg, image/png">
+    <label class="select-input" for="image-select" ng-show="!isctrl.isLoading">
+        <i class="sr-icon -icon-upload icon-upload2"></i>
+    </label>
+    <label class="select-input" ng-show="isctrl.isLoading">
+        <i class="sr-icon -icon-loader icon-spinner9"></i>
+    </label>
+</div>

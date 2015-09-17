@@ -1,0 +1,19 @@
+//
+// SeeR form-select
+// --------------------------------------------------
+
+.sr-form-select {
+
+    .select-hidden {
+        z-index: -1;
+        visibility: hidden;
+        backface-visibility: hidden;
+        opacity: 0;
+    }
+
+    .select-input {
+        margin: 0;
+        height: 77px;
+        line-height: 77px;
+    }
+}

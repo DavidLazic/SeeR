@@ -110,11 +110,11 @@
 
 @font-face {
     font-family: 'icomoon';
-    src:url('../../../assets/fonts/icomoon/icomoon.eot?-4z0oqz');
-    src:url('../../../assets/fonts/icomoon/icomoon.eot?#iefix-4z0oqz') format('embedded-opentype'),
-        url('../../../assets/fonts/icomoon/icomoon.ttf?-4z0oqz') format('truetype'),
-        url('../../../assets/fonts/icomoon/icomoon.woff?-4z0oqz') format('woff'),
-        url('../../../assets/fonts/icomoon/icomoon.svg?-4z0oqz#icomoon') format('svg');
+    src:url('../../../assets/fonts/icomoon/icomoon.eot?koxa0v');
+    src:url('../../../assets/fonts/icomoon/icomoon.eot?#iefixkoxa0v') format('embedded-opentype'),
+        url('../../../assets/fonts/icomoon/icomoon.ttf?koxa0v') format('truetype'),
+        url('../../../assets/fonts/icomoon/icomoon.woff?koxa0v') format('woff'),
+        url('../../../assets/fonts/icomoon/icomoon.svg?koxa0v#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -150,6 +150,12 @@
 }
 .icon-list:before {
     content: "\e9ba";
+}
+.icon-download2:before {
+    content: "\e9c5";
+}
+.icon-upload2:before {
+    content: "\e9c6";
 }
 .icon-eye:before {
     content: "\e9ce";

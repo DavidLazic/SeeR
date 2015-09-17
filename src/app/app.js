@@ -25,6 +25,7 @@
         // filters
         'readerApp.filter.offset',
         'readerApp.filter.dashRemove',
+        'readerApp.filter.fileImage',
 
         // directives
         'readerApp.directive.externalView',
@@ -36,7 +37,8 @@
         'readerApp.directive.scrollHeight',
         'readerApp.directive.switcher',
         'readerApp.directive.sidebar',
-        'readerApp.directive.autoclose'
+        'readerApp.directive.autoclose',
+        'readerApp.directive.imageSelect'
     ]).config(function ($routeProvider, AppConfig) {
         $routeProvider
             .otherwise({

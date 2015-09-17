@@ -6,16 +6,16 @@
         'readerApp.remote.comics.controller',
         'readerApp.remote.comics.service',
         'readerApp.service.utility'
-    ]).config(ComicsRoute);
+    ]).config(RemoteComicsRoute);
 
-    ComicsRoute.$inject = ['$routeProvider'];
+    RemoteComicsRoute.$inject = ['$routeProvider'];
 
-    function ComicsRoute($routeProvider) {
+    function RemoteComicsRoute($routeProvider) {
         $routeProvider
             .when('/remote/comics', {
                 templateUrl: 'app/js/remote/comics/comics.tpl.html',
-                controller: 'ComicsController',
-                controllerAs: 'cctrl',
+                controller: 'RemoteComicsController',
+                controllerAs: 'rcctrl',
                 resolve : {
                     factory : checkModeChosen
                 }

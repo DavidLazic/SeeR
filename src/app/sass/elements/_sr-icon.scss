@@ -44,6 +44,35 @@
         color: lighten($green-dark, 20);
     }
 
+    &.-icon-upload {
+        @include border-radius(50%);
+        position: relative;
+        padding: 25px;
+        font-size: $font-size-large;
+        background-color: $blue;
+        box-shadow: 0 0 10px -1px #000;
+
+        &:hover {
+            background-color: $red-darkest;
+        }
+
+        &:active {
+            background-color: $red-darkest;
+            box-shadow: inset 0 0 10px -1px #000;
+        }
+
+        &::after {
+            position: absolute;
+            bottom: -30px;
+            left: -5px;
+            font-family: $font-family-juraLight;
+            font-size: $font-size-x-medium;
+            white-space: nowrap;
+            color: $gray;
+            content: "Select files";
+        }
+    }
+
     &.-icon-menu {
         position: fixed;
         top: 11px;
