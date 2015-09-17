@@ -18,8 +18,11 @@
         vm.onSelectError = onSelectError;
 
         /**
-         * [onSelectError description]
-         * @return {[type]} [description]
+         * @description
+         * On selection error fn.
+         *
+         * @return {Object}
+         * @public
          */
         function onSelectError () {
             ModalService.sendNotification('Please select JPEG or PNG type only.', 'error');

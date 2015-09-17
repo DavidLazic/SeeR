@@ -8,7 +8,7 @@
     ReaderModalController.$inject = ['$modalInstance', 'ModalService', 'data'];
     function ReaderModalController($modalInstance, ModalService, chapter) {
         var vm = this,
-            data = angular.copy(chapter) || {name: null, chapterIndex: 0, chapters: [], currentChapter: {images: []}};
+            data = angular.copy(chapter) || {name: null, chapterIndex: 0, chapters: [], currentChapter: {pages: []}};
 
         // view model
         vm.model = {
@@ -48,7 +48,7 @@
             vm.model.totalChapters = data.chapters.length - 1;
             _prefetchPreviousChapter();
             _prefetchNextChapter();
-            _extractImages(data.currentChapter.pages, 'chapter');
+            return (data.local) ? vm.model.chapter = data.currentChapter.pages : _extractImages(data.currentChapter.pages, 'chapter');
         }
 
         /**

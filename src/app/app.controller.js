@@ -146,9 +146,16 @@
             });
 
             modalInstance.result.then(function ($files) {
-                console.log($files);
+                _onOpen({
+                    local: true,
+                    name: 'local',
+                    chapterIndex: 0,
+                    chapters: [],
+                    currentChapter: {
+                        pages: $files
+                    }
+                });
             });
-            // AppService.sendNotification('Sorry, local mode is not yet supported.', 'error');
         }
 
         /**
