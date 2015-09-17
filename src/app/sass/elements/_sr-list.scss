@@ -7,6 +7,31 @@
     padding: 0 15px;
     text-align: left;
 
+    .list-item {
+        @include transition(all 0.3s ease);
+        margin: 0 5px 10px 0;
+        padding: 5px 0;
+        display: inline-block;
+        width: calc(10% - 5px);
+        text-align: center;
+        background-color: $gray-dark;
+        box-shadow: 0 0 6px -1px #000;
+        cursor: pointer;
+
+        > a {
+            display: block;
+            color: lighten($gray-dark, 20);
+        }
+
+        &:hover {
+            background-color: $red-darkest;
+
+            > a {
+                color: #fff;
+            }
+        }
+    }
+
     &.-list-share {
         margin: 0;
         padding: 0;
@@ -56,35 +81,18 @@
             &:hover {
                 background-color: transparent;
             }
+
+            > a {
+                color: #fff;
+
+                &:hover {
+                    color: $blue-lighter;
+                }
+            }
         }
 
         &+.sr-title {
             margin-top: 40px;
-        }
-    }
-
-    .list-item {
-        @include transition(all 0.3s ease);
-        margin: 0 5px 10px 0;
-        padding: 5px 0;
-        display: inline-block;
-        width: calc(10% - 5px);
-        text-align: center;
-        background-color: $gray-dark;
-        box-shadow: 0 0 6px -1px #000;
-        cursor: pointer;
-
-        > a {
-            display: block;
-            color: lighten($gray-dark, 20);
-        }
-
-        &:hover {
-            background-color: $red-darkest;
-
-            > a {
-                color: #fff;
-            }
         }
     }
 
