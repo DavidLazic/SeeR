@@ -65,6 +65,7 @@
             AppService.getChapterById({comic: comic.name, chapterId: chapter}).then(function (response) {
                 data.currentChapter = response;
                 data.name = vm.item.name;
+                data.mangaId = vm.item.mangaId;
                 _onOpen(data);
             });
         }

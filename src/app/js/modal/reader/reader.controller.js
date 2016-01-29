@@ -114,7 +114,7 @@
         function _prefetchPreviousChapter () {
             var prevChapterIdx = data.chapterIndex - 1;
             if (angular.isDefined(data.chapters[prevChapterIdx])) {
-                ModalService.getChapterById({comic: data.name, chapterId: data.chapters[prevChapterIdx]}).then(function (response) {
+                ModalService.getChapterById({comic: data.mangaId, chapterId: data.chapters[prevChapterIdx]}).then(function (response) {
                     _extractImages(response.pages, 'previousChapter');
                 });
             }
@@ -129,7 +129,7 @@
         function _prefetchNextChapter () {
             var nextChapterIdx = data.chapterIndex + 1;
             if (angular.isDefined(data.chapters[nextChapterIdx])) {
-                ModalService.getChapterById({comic: data.name, chapterId: data.chapters[nextChapterIdx]}).then(function (response) {
+                ModalService.getChapterById({comic: data.mangaId, chapterId: data.chapters[nextChapterIdx]}).then(function (response) {
                     _extractImages(response.pages, 'nextChapter');
                 });
             }
