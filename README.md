@@ -1,6 +1,10 @@
 ## SeeR
 Angular v1.4.0 | NodeJS SPA.
 
+![seer_home](/screenshots/seer_home.png "seer_home")
+
+![seer_search](/screenshots/seer_search.png "seer_search")
+
 #### Description:
 
 SPA for reading comics.<br>
