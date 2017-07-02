@@ -16,9 +16,5 @@ Regarding local mode, you can choose files from your local machine and read thos
 
 [SeeR preview](http://davidlazic.github.io/SeeR)
 
-==
-
-I've created desktop version of the app (currently Windows platform only).<br>
-You can download it [here](http://soundwave.rs/FTP/SeeR-win-x64.zip)
 
 
